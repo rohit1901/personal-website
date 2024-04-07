@@ -1,27 +1,23 @@
 import {Navbar} from "@website/components/Navbar";
 import {Hero} from "@website/components/Hero";
 import {Carousel} from "@website/components/Carousel";
+import {Runner} from "@website/components/Runner";
+import {Footer} from "@website/components/Footer";
+import {MainContent} from "@website/components/MainContent";
 
 export default function Home() {
     return (
-        <main className="min-w-screen min-h-screen flex-auto" data-theme="forest">
+        <main className="min-w-screen min-h-screen flex-auto" data-theme="black">
             <div className="flex flex-col mx-auto h-auto min-h-full">
-                <div className="flex flex-col mx-auto w-3/4 h-auto min-h-full" data-theme="dark">
+                <Runner>
                     <Navbar/>
                     <Hero/>
-                </div>
+                </Runner>
                 <Carousel/>
-                <footer className="footer p-10 bg-neutral text-neutral-content w-3/4 mx-auto flex justify-between" data-theme="dark">
-                    <nav className="grid grid-flow-col gap-4">
-                        <a className="link link-hover">About Me</a>
-                        <a className="link link-hover">Articles</a>
-                        <a className="link link-hover">Projects</a>
-                        <a className="link link-hover">Uses</a>
-                    </nav>
-                    <aside>
-                        <p>© 2024 Rohit Khanduri. All rights reserved.</p>
-                    </aside>
-                </footer>
+                <Runner>
+                    <MainContent/>
+                    <Footer/>
+                </Runner>
             </div>
         </main>
     );
