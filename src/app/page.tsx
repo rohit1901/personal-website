@@ -7,7 +7,7 @@ import {MainContent} from "@website/components/MainContent";
 
 export default function Home() {
     return (
-        <main className="min-w-screen min-h-screen flex-auto" data-theme="black">
+        <main className="min-w-screen min-h-screen flex-auto">
             <div className="flex flex-col mx-auto h-auto min-h-full">
                 <Runner>
                     <Navbar/>

@@ -17,8 +17,8 @@ export default function RootLayout({
     children: ReactNode;
 }>) {
     return (
-        <html lang="en" data-theme="black">
-        <body className={`overflow-x-hidden ${outfit.className}`}>{children}</body>
+        <html lang="en" data-theme="garden">
+        <body className={`overflow-x-hidden ${outfit.className}`} id="body">{children}</body>
         </html>
     );
 }

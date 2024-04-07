@@ -13,7 +13,7 @@ export const DownloadCV = () => {
 }
 const JobsCard = {
     heading: {
-        icon: <FaBriefcase className="w-5 h-5" data-theme="dark"/>,
+        icon: <FaBriefcase className="w-5 h-5"/>,
         text: "Work Experience"
     },
     content: [
