@@ -1,4 +1,5 @@
 import {FaEnvelope} from "react-icons/fa";
+import SubstackWidget from "@website/components/SubstackWidget";
 
 export const SubstackCard = () => {
     return (
@@ -12,8 +13,9 @@ export const SubstackCard = () => {
                     Get notified when I publish something new, and unsubscribe at any time.
                 </p>
                 <div className="mt-6 flex">
-                    <input type="text" placeholder="Email address" className="input input-bordered w-full max-w-xs"/>
-                    <button className="btn btn-outline ml-auto rounded-md text-sm" type="submit">Join</button>
+                    {/*<input type="text" placeholder="Email address" className="input input-bordered w-full max-w-xs"/>
+                    <button className="btn btn-outline ml-auto rounded-md text-sm" type="submit">Join</button>*/}
+                    <SubstackWidget/>
                 </div>
             </form>
         </div>

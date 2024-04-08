@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+#custom-substack-embed form {
+    @apply flex flex-row justify-between;
+}
+
+#custom-substack-embed form > input {
+    @apply input input-bordered mr-2 w-full;
+}
+
+#custom-substack-embed form > button {
+    @apply btn btn-outline rounded-md text-sm;
+}
+
+#custom-substack-embed .error {
+    @apply text-error text-sm mt-2;
+}
+
+#custom-substack-embed .success {
+    @apply text-success text-sm mt-2;
+}

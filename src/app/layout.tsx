@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" data-theme="garden">
-        <body className={`overflow-x-hidden ${outfit.className}`} id="body">{children}</body>
+            <body className={`overflow-x-hidden ${outfit.className}`} id="body">{children}</body>
         </html>
     );
 }
