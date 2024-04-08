@@ -3,7 +3,7 @@ import React, {useEffect, useRef} from 'react';
 import {useScript} from "usehooks-ts";
 
 
-const SubstackWidget = () => {
+export const SubstackWidget = () => {
     const status = useScript(`https://substackapi.com/widget.js`, {
         removeOnUnmount: true,
         id: 'custom-substack-script',
@@ -39,5 +39,3 @@ const SubstackWidget = () => {
         <div id="custom-substack-embed" className="w-full" ref={customSubstackRef}></div>
     );
 };
-
-export default SubstackWidget;

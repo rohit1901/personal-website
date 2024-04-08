@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
 
-export const setActiveClass = (currentPath: string, path: string) => {
+export const setActiveClass = (currentPath?: string | null, path?: string | null) => {
     if (currentPath === path) {
         return "btn-active"
     }
@@ -36,7 +36,7 @@ export const Navbar = () => {
                                 <Link href="/articles" className={`text-md ${setActiveClass(pathname, "/articles")}`}>Articles</Link>
                             </li>
                             <li><a>Project</a></li>
-                            <li><a>Uses</a></li>
+                            <li><a>Currently Reading</a></li>
 
                         </ul>
                     </div>
@@ -50,7 +50,7 @@ export const Navbar = () => {
                         <Link href="/articles" className={`text-md ${setActiveClass(pathname, "/articles")}`}>Articles</Link>
                     </li>
                     <li><a className={`text-md ${setActiveClass(pathname, "")}`}>Projects</a></li>
-                    <li><a className={`text-md ${setActiveClass(pathname, "")}`}>Uses</a></li>
+                    <li><a className={`text-md ${setActiveClass(pathname, "")}`}>Currently Reading</a></li>
                 </ul>
             </div>
             <div className="navbar-end">

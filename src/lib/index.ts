@@ -11,6 +11,25 @@ export const formatDate = (date: string): string => {
         day: 'numeric'
     })
 }
+/**
+ * This function formats the date to a human-readable format using the user's locale.
+ * @param fromDate {string} - the from date to format
+ * @param toDate {string} - the to date to format
+ * @returns {string} - the formatted date
+ * @example getMMYYYYDate("01-2021", "12-2021") => "January 2021 - December 2021"
+ */
+export const getMMYYYYDate = (fromDate: string, toDate?: string): string => {
+    const userLocale = navigator.language
+    const from = new Date(`01-${fromDate}`).toLocaleDateString(userLocale, {
+        month: 'short',
+        year: 'numeric'
+    })
+    const to = toDate ? new Date(`01-${toDate}`).toLocaleDateString(userLocale, {
+        month: 'short',
+        year: 'numeric'
+    }) : "Present"
+    return `${from} - ${to}`
+}
 
 /**
  * This function sets the theme attribute on the runners.

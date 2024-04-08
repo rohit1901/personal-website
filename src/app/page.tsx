@@ -5,7 +5,7 @@ import {Runner} from "@website/components/Runner";
 import {Footer} from "@website/components/Footer";
 import {MainContent} from "@website/components/MainContent";
 
-export default function Home() {
+export default async function Home() {
     return (
         <main className="min-w-screen min-h-screen flex-auto">
             <div className="flex flex-col mx-auto h-auto min-h-full">

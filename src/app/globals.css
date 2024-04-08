@@ -22,5 +22,10 @@
 }
 
 .timeline-divider {
-    @apply rounded-t-lg rounded-b-lg;
+    background: #E4E7EB;
+    @apply rounded-t-lg rounded-b-lg
+}
+
+.timeline-box {
+    border-color: #E4E7EB;
 }

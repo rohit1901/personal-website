@@ -1,9 +1,18 @@
 "use client"
 import Image from 'next/image'
-import {FaEnvelope, FaGithub, FaInstagram, FaLinkedin, FaTwitter} from "react-icons/fa";
+import {FaEnvelope} from "react-icons/fa";
 import Link from "next/link";
+import {useEffect, useState} from "react";
+import {ResumeSchema} from "@website/types";
+import {NetworkProfiles} from "@website/components/NetworkProfiles";
 
 export const AboutContent = () => {
+    const [basics, setBasics] = useState<ResumeSchema["basics"]>({})
+    useEffect(() => {
+        fetch("/api/resume/get?websiteBasics=true")
+            .then(res => res.json())
+            .then(setBasics).catch(console.error)
+    }, [])
     return (
         <div className="flex md:flex-row lg:flex-row flex-col h-full m-20">
             <div className="flex flex-col md:w-1/2 lg:w-1/2 w-full">
@@ -21,38 +30,24 @@ export const AboutContent = () => {
                         home so that the next generation of kids really can make it to orbit — from the comfort of their own backyards.</p>
                 </div>
             </div>
-            <div className="flex flex-col ml-auto sm:mt-6">
+            {basics && <div className="flex flex-col ml-auto sm:mt-6">
                 <div className="ml-auto">
                     <Link href="/">
-                        <Image src="/avatar.png" alt="Spencer Sharp" className="mask mask-squircle object-cover" height={400} width={400}/>
+                        {basics.image &&
+                            <Image src={basics.image} alt="Rohit Khanduri" className="mask mask-squircle object-cover" height={400} width={400}/>}
                     </Link>
                 </div>
                 <div className="mt-6">
                     <div className="flex flex-col mt-6">
-                        <Link className="my-2 flex flex-row" href="https://github.com/rohit1901" target="_blank">
-                            <FaGithub className="w-6 h-6"/>
-                            <span className="ml-2">Github</span>
-                        </Link>
-                        <Link className="my-2 flex flex-row" href="#">
-                            <FaLinkedin className="w-6 h-6"/>
-                            <span className="ml-2">Linkedin</span>
-                        </Link>
-                        <Link className="my-2 flex flex-row" href="#">
-                            <FaTwitter className="w-6 h-6"/>
-                            <span className="ml-2">Twitter</span>
-                        </Link>
-                        <Link className="my-2 flex flex-row" href="#">
-                            <FaInstagram className="w-6 h-6"/>
-                            <span className="ml-2">Instagram</span>
-                        </Link>
+                        <NetworkProfiles profiles={basics?.profiles ?? []} showNetworks={true} className="my-2 flex flex-row"/>
                     </div>
                 </div>
                 <div className="divider"></div>
                 <div className="flex">
                     <FaEnvelope className="w-5 h-5"/>
-                    <Link href="mailto:rohit.khanduri@proton.me" className="ml-3">rohit.khanduri@proton.me</Link>
+                    {basics.email && <Link href={`mailto:${basics.email}`} className="ml-3">rohit.khanduri@hotmail.com</Link>}
                 </div>
-            </div>
+            </div>}
         </div>
     )
 }

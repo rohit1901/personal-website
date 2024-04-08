@@ -16,20 +16,6 @@ const JobsCard = {
         icon: <FaBriefcase className="w-5 h-5"/>,
         text: "Work Experience"
     },
-    content: [
-        {
-            image: "/avatar.png",
-            title: "Adesso SE",
-            subtitle: "Software Architect",
-            aside: "2019 - 2021"
-        },
-        {
-            image: "/avatar.png",
-            title: "Finatix GmbH",
-            subtitle: "Software Engineer",
-            aside: "2017 - 2019"
-        }
-    ],
     button: <DownloadCV/>
 }
 
