@@ -1,8 +1,17 @@
+"use client"
 import {ThemeToggle} from "@website/components/ThemeToggle";
 import {CgMenuLeft} from "react-icons/cg";
 import Image from "next/image";
+import Link from "next/link";
+import {usePathname} from "next/navigation";
 
+export const setActiveClass = (currentPath: string, path: string) => {
+    if (currentPath === path) {
+        return "btn-active"
+    }
+}
 export const Navbar = () => {
+    const pathname = usePathname()
     return (
         <div className="mx-auto navbar bg-base-100 w-1/2 border rounded-full my-4 px-8">
             {/*Mobile Navigation*/}
@@ -22,9 +31,9 @@ export const Navbar = () => {
                                     <Image src="/avatar.png" width="100" height="100" alt="rohit avatar"/>
                                 </div>
                             </div>
-                            <li><a>About Me</a></li>
+                            <li><Link href="/about" className={`text-md ${setActiveClass(pathname, "/about")}`}>About me</Link></li>
                             <li>
-                                <a>Articles</a>
+                                <Link href="/articles" className={`text-md ${setActiveClass(pathname, "/articles")}`}>Articles</Link>
                             </li>
                             <li><a>Project</a></li>
                             <li><a>Uses</a></li>
@@ -36,12 +45,12 @@ export const Navbar = () => {
             {/*Desktop Navigation*/}
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                    <li><a className="text-md">About Me</a></li>
+                    <li><Link href="/about" className={`text-md ${setActiveClass(pathname, "/about")}`}>About me</Link></li>
                     <li>
-                        <a className="text-md">Articles</a>
+                        <Link href="/articles" className={`text-md ${setActiveClass(pathname, "/articles")}`}>Articles</Link>
                     </li>
-                    <li><a className="text-md">Projects</a></li>
-                    <li><a className="text-md">Uses</a></li>
+                    <li><a className={`text-md ${setActiveClass(pathname, "")}`}>Projects</a></li>
+                    <li><a className={`text-md ${setActiveClass(pathname, "")}`}>Uses</a></li>
                 </ul>
             </div>
             <div className="navbar-end">

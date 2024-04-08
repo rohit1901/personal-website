@@ -20,3 +20,7 @@
 #custom-substack-embed .success {
     @apply text-success text-sm mt-2;
 }
+
+.timeline-divider {
+    @apply rounded-t-lg rounded-b-lg;
+}

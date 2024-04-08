@@ -5,11 +5,12 @@ import {useScript} from "usehooks-ts";
 
 const SubstackWidget = () => {
     const status = useScript(`https://substackapi.com/widget.js`, {
-        removeOnUnmount: false,
+        removeOnUnmount: true,
         id: 'custom-substack-script',
     })
     const customSubstackRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
+        if (!window) return;
         // @ts-ignore
         window.CustomSubstackWidget = {
             substackUrl: "rohitkhanduri.substack.com",

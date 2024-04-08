@@ -37,7 +37,7 @@ export const Posts = () => {
             })
     }, [])
     return (
-        <aside className="md:w-1/2 lg:w-1/2 w-full flex flex-col space-y-10 ">
+        <aside className="md:w-1/2 lg:w-1/2 w-full flex flex-col space-y-10 mr-2">
             {substack?.items.map((item, index) => (
                 <Post key={`item.guid-${index}`} {...item}/>
             ))}
