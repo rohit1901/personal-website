@@ -10,6 +10,10 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: 'daisyui.com',
             },
+            {
+                protocol: 'https',
+                hostname: 'scontent-dus1-1.cdninstagram.com',
+            },
         ]
     }
 };

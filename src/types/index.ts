@@ -36,6 +36,10 @@ export type RssToJSON = {
     items: FeedItem[],
     status: "ok" | "error" | "loading" | "unknown" | "timeout" | "invalid" | "missing"
 }
+export type InstagramMedia = {
+    caption: string,
+    media_url: string,
+}
 
 /**
  * @see https://jsonresume.org/schema/
