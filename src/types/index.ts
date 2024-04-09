@@ -21,6 +21,16 @@ export type FeedItem = {
     thumbnail: string,
     title: string
 }
+export type GitHubRepo = {
+    description: string,
+    icon: string,
+    image: string,
+    title: string,
+    url: string,
+    login?: string,
+    avatar_url?: string,
+    html_url?: string
+}
 export type RssToJSON = {
     feed: Feed,
     items: FeedItem[],

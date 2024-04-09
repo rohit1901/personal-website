@@ -1,4 +1,6 @@
 import {ResumeSchema} from "@website/types";
+
+export const GITHUB_PUBLIC_REPOS_URL = "https://api.github.com/users/rohit1901/repos";
 //TODO: Add Projects, interests, and skills
 export const RESUME: ResumeSchema = {
     basics: {
@@ -39,6 +41,10 @@ export const RESUME: ResumeSchema = {
             {
                 network: "Instagram",
                 url: "https://www.instagram.com/johnny.drama.chase/",
+            },
+            {
+                network: "Substack",
+                url: "https://rohitkhanduri.substack.com/",
             }
         ],
     },

@@ -13,7 +13,7 @@ export const ThemeToggle = () => {
         handleTheme(value)
     }, [value, pathname]);
     return (
-        <label className="swap swap-rotate">
+        <label className="swap swap-rotate btn btn-circle bg-transparent">
             {/* this hidden checkbox controls the state */}
             <input type="checkbox" className="theme-controller" defaultChecked={false} onChange={() => {
                 setValue(prevState => prevState === "garden" ? "black" : "garden")
@@ -21,7 +21,7 @@ export const ThemeToggle = () => {
             {/* sun icon */}
             <IoSunny className="swap-off fill-current w-6 h-6" color="orange"/>
             {/* moon icon */}
-            <IoMoon className="swap-on fill-current w-6 h-6"/>
+            <IoMoon className="swap-on fill-cyan-500 w-6 h-6"/>
 
         </label>
     )

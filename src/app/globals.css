@@ -9,8 +9,28 @@
     @apply input input-bordered mr-2 w-full;
 }
 
-#custom-substack-embed form > button {
-    @apply btn btn-outline rounded-md text-sm;
+[data-theme="garden"] #custom-substack-embed form > button {
+    @apply btn btn-neutral rounded-md text-sm;
+}
+
+[data-theme="black"] #custom-substack-embed form > button {
+    @apply btn bg-neutral rounded-md text-sm;
+}
+
+[data-theme="garden"] .action-button {
+    @apply btn rounded-md text-sm;
+}
+
+[data-theme="black"] .action-button {
+    @apply btn bg-neutral rounded-md text-sm;
+}
+
+[data-theme="garden"] .themed-icon {
+    @apply text-gray-600 hover:text-cyan-500;
+}
+
+[data-theme="black"] .themed-icon {
+    @apply text-gray-300 hover:text-cyan-500;
 }
 
 #custom-substack-embed .error {
@@ -28,4 +48,35 @@
 
 .timeline-box {
     border-color: #E4E7EB;
+}
+
+.coding {
+}
+
+.menu a {
+    @apply hover:bg-transparent hover:text-cyan-500 focus:bg-transparent focus:text-cyan-500 !important;
+}
+
+.loader {
+    width: fit-content;
+    font-weight: bold;
+    font-family: monospace;
+    white-space: pre;
+    font-size: 30px;
+    line-height: 1.2em;
+    height: 1.2em;
+    overflow: hidden;
+}
+
+.loader:before {
+    content: "Loading...\A⌰oading...\A⌰⍜ading...\A⌰⍜⏃ding...\A⌰⍜⏃⎅ing...\A⌰⍜⏃⎅⟟ng...\A⌰⍜⏃⎅⟟⋏g...\A⌰⍜⏃⎅⟟⋏☌...\A⌰⍜⏃⎅⟟⋏☌⟒..\A⌰⍜⏃⎅⟟⋏☌⟒⏁.\A⌰⍜⏃⎅⟟⋏☌⟒⏁⋔";
+    white-space: pre;
+    display: inline-block;
+    animation: l39 1s infinite steps(11) alternate;
+}
+
+@keyframes l39 {
+    100% {
+        transform: translateY(-100%)
+    }
 }

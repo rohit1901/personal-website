@@ -5,11 +5,9 @@ import {Runner} from "@website/components/Runner";
 import {Footer} from "@website/components/Footer";
 import {MainContent} from "@website/components/MainContent";
 // TODO: Currently reading page
-// TODO: Projects page
 // TODO: Add Book reviews to substack
 // TODO: Responsive design
 // TODO: Download Resume
-// TODO: Icons
 // TODO: Upload Assets to S3 and consume via CloudFront
 // TODO: MongoDB config and APIs
 // TODO: Consume Literal.club GraphQL API for Currently Reading Books and other statistics

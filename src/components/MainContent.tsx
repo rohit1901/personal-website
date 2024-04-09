@@ -1,19 +1,19 @@
 import {SubstackCard} from "@website/components/SubstackCard";
-import {FaBriefcase, FaDownload} from "react-icons/fa";
+import {FaBriefcase, FaChevronDown} from "react-icons/fa";
 import {Card} from "@website/components/Card";
 import {Posts} from "@website/components/Posts";
 
 export const DownloadCV = () => {
     return (
-        <button className="btn btn-outline w-full mt-6 rounded-md text-sm">
-            <FaDownload className="w-5 h-5"/>
+        <button className="action-button w-full mt-6 rounded-md text-sm">
+            <FaChevronDown className="w-3 h-3 animate-bounce"/>
             <span className="ml-2">Download CV</span>
         </button>
     )
 }
 const JobsCard = {
     heading: {
-        icon: <FaBriefcase className="w-5 h-5"/>,
+        icon: <FaBriefcase className="w-5 h-5 text-gray-400"/>,
         text: "Work Experience"
     },
     button: <DownloadCV/>

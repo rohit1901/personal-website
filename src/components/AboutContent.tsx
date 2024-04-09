@@ -5,14 +5,19 @@ import Link from "next/link";
 import {useEffect, useState} from "react";
 import {ResumeSchema} from "@website/types";
 import {NetworkProfiles} from "@website/components/NetworkProfiles";
+import {ContentLoader} from "@website/components/ContentLoader";
 
 export const AboutContent = () => {
+    const [loading, setLoading] = useState(false)
     const [basics, setBasics] = useState<ResumeSchema["basics"]>({})
     useEffect(() => {
+        setLoading(true)
         fetch("/api/resume/get?websiteBasics=true")
             .then(res => res.json())
             .then(setBasics).catch(console.error)
+            .finally(() => setLoading(false))
     }, [])
+    if (loading) return <ContentLoader/>
     return (
         <div className="flex md:flex-row lg:flex-row flex-col h-full m-20">
             <div className="flex flex-col md:w-1/2 lg:w-1/2 w-full">
@@ -43,9 +48,11 @@ export const AboutContent = () => {
                     </div>
                 </div>
                 <div className="divider"></div>
-                <div className="flex">
-                    <FaEnvelope className="w-5 h-5"/>
-                    {basics.email && <Link href={`mailto:${basics.email}`} className="ml-3">rohit.khanduri@hotmail.com</Link>}
+                <div className="mt-6">
+                    <div className="flex hover:text-cyan-500">
+                        <FaEnvelope className="w-5 h-5 themed-icon hover:cursor-pointer"/>
+                        {basics.email && <Link href={`mailto:${basics.email}`} className="ml-3">rohit.khanduri@hotmail.com</Link>}
+                    </div>
                 </div>
             </div>}
         </div>

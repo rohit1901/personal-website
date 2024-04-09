@@ -6,7 +6,7 @@ export const SubstackCard = () => {
         <div className="group flex flex-col items-start rounded-2xl border px-6">
             <form className="p-6" action="/thank-you">
                 <h2 className="flex font-semibold">
-                    <FaEnvelope className="w-5 h-5"/>
+                    <FaEnvelope className="w-5 h-5 text-gray-400"/>
                     <span className="ml-3">Stay up to date</span>
                 </h2>
                 <p className="mt-2 text-sm">

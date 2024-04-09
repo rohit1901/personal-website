@@ -4,6 +4,7 @@ import {FeedItem, RssToJSON} from "@website/types";
 import Link from "next/link";
 import {FaArrowRight} from "react-icons/fa";
 import {formatDate} from "@website/lib";
+import {ContentLoader} from "@website/components/ContentLoader";
 
 const FEED_URL = encodeURI("https://rohitkhanduri.substack.com/feed")
 const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${FEED_URL}`
@@ -21,21 +22,26 @@ export const Post = (item?: FeedItem) => {
                 </Link>
             </h2>
             <p className="mt-2 text-sm">{item.description}</p>
-            <Link href={item.link} className="mt-4 flex items-center text-sm font-medium text-teal-500">Read article
+            <Link href={item.link} className="mt-4 flex items-center text-sm font-medium text-cyan-500">Read article
                 <FaArrowRight className="w-3 h-3 ml-1"/>
             </Link>
         </article>
     )
 }
 export const Posts = () => {
+    const [loading, setLoading] = useState(false)
     const [substack, setSubstack] = useState<RssToJSON>()
     useEffect(() => {
+        setLoading(true)
         fetch(API_URL)
             .then(res => res.json())
             .then(data => {
                 setSubstack(data)
             })
+            .catch(err => console.error(err))
+            .finally(() => setLoading(false))
     }, [])
+    if (loading) return <ContentLoader/>
     return (
         <aside className="md:w-1/2 lg:w-1/2 w-full flex flex-col space-y-10 mr-2">
             {substack?.items.map((item, index) => (

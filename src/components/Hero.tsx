@@ -3,6 +3,7 @@ import Image from "next/image";
 import {useEffect, useState} from "react";
 import {Profile} from "@website/types";
 import {NetworkProfiles} from "@website/components/NetworkProfiles";
+import {ContentLoader} from "@website/components/ContentLoader";
 
 type HeroProps = {
     name: string;
@@ -12,6 +13,7 @@ type HeroProps = {
     profiles: Profile[]
 }
 export const Hero = () => {
+    const [loading, setLoading] = useState(false);
     const [basics, setBasics] = useState<HeroProps>({
         name: "",
         label: "",
@@ -20,10 +22,13 @@ export const Hero = () => {
         profiles: []
     });
     useEffect(() => {
+        setLoading(true)
         fetch("/api/resume/get?websiteBasics=true")
             .then(res => res.json())
             .then(setBasics).catch(console.error)
+            .finally(() => setLoading(false))
     }, [])
+    if (loading) return <ContentLoader/>
     return (
         <div className="flex flex-col m-10">
             <div className="avatar px-4 mb-10">
