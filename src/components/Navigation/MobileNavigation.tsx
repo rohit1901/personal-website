@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {setActiveClass} from "@website/components/Navbar";
 import {usePathname} from "next/navigation";
+import {getImageUrl} from "@website/lib";
 
 export const MobileNavigation = () => {
     const pathname = usePathname()
@@ -21,7 +22,7 @@ export const MobileNavigation = () => {
                     <ul className="menu p-4 w-80 min-h-full bg-base-200 text-lg pt-20">
                         <div className="avatar px-4 mb-10">
                             <div className="w-12 rounded-full">
-                                <Image src="/avatar.png" width="100" height="100" alt="rohit avatar"/>
+                                <Image src={getImageUrl()} width="100" height="100" alt="rohit avatar"/>
                             </div>
                         </div>
                         <li><Link href="/about" className={`text-md ${setActiveClass(pathname, "/about")}`}>About me</Link></li>

@@ -21,9 +21,9 @@ const JobsCard = {
 
 export const MainContent = () => {
     return (
-        <section className="flex md:flex-row lg:flex-row m-10 flex-col">
+        <section className="flex md:flex-row lg:flex-row m-10 flex-col justify-between">
             <Posts/>
-            <aside className="md:w-1/2 lg:w-1/2 w-full flex flex-col space-y-10 md:ml-2 lg:ml-2 md:mt-0 lg:mt-0 mt-4">
+            <aside className="flex flex-col space-y-10 md:ml-2 lg:ml-2 md:mt-0 lg:mt-0 mt-4">
                 <SubstackCard/>
                 <Card {...JobsCard} />
             </aside>

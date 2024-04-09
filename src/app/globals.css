@@ -13,6 +13,18 @@
     @apply btn btn-neutral rounded-md text-sm;
 }
 
+[data-theme="garden"] .read-article-link, [data-theme="garden"] .read-article-link svg > path {
+    @apply text-cyan-500 !important;
+}
+
+[data-theme="black"] * {
+    @apply text-gray-300 !important;
+}
+
+[data-theme="black"] .read-article-link, [data-theme="black"] .read-article-link svg > path {
+    @apply text-cyan-500 !important;
+}
+
 [data-theme="black"] #custom-substack-embed form > button {
     @apply btn bg-neutral rounded-md text-sm;
 }

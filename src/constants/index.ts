@@ -6,7 +6,7 @@ export const RESUME: ResumeSchema = {
     basics: {
         name: "Rohit Khanduri",
         label: "Software Architect",
-        image: "/avatar.png",
+        image: "/portfolio/profile.pic.svg",
         email: "rohit.khanduri@hotmail.com",
         url: "https://www.rohit.khanduri.de",
         summary: `With over a decade of successful tenure in software development, 
@@ -64,7 +64,7 @@ export const RESUME: ResumeSchema = {
                 "Mentored junior developers and interns",
                 "Conducted workshops and training sessions for the various teams"
             ],
-            image: "/assets/adesso.png",
+            image: "/portfolio/assets/adesso.png",
         },
         {
             name: "Finatix GmbH",
@@ -80,7 +80,7 @@ export const RESUME: ResumeSchema = {
                 "Developed new features for the existing software solutions",
                 "Maintained the existing software solutions",
             ],
-            image: "/assets/finatix.png",
+            image: "/portfolio/assets/finatix.png",
         },
         {
             name: "Peak Performance Apps GmbH",
@@ -96,7 +96,7 @@ export const RESUME: ResumeSchema = {
                 "Developed new features for the existing software solutions",
                 "Maintained the existing software solutions",
             ],
-            image: "/assets/ppa.png",
+            image: "/portfolio/assets/ppa.png",
         },
         {
             name: "Appsfactory GmbH",
@@ -112,7 +112,7 @@ export const RESUME: ResumeSchema = {
                 "Developed new features for the existing software solutions",
                 "Maintained the existing software solutions",
             ],
-            image: "/assets/appsfactory.ico",
+            image: "/portfolio/assets/appsfactory.ico",
         },
         {
             name: "Iris Software Inc. (SSA Infosystems Pvt. Ltd.)",
@@ -133,7 +133,7 @@ export const RESUME: ResumeSchema = {
                 "Conducting code reviews and quality checks",
                 "Regular and direct customer communication"
             ],
-            image: "/assets/iris.jpeg",
+            image: "/portfolio/assets/iris.jpeg",
         },
         {
             name: "Virtusa Corp.",
@@ -152,7 +152,7 @@ export const RESUME: ResumeSchema = {
                 "Software development of new functionalities",
                 "Developing complete functionalities from Java REST endpoints to fully functional AngularJS components."
             ],
-            image: "/assets/virtusa.jpeg",
+            image: "/portfolio/assets/virtusa.jpeg",
         },
         {
             name: "Genpact Headstrong Capital Markets",
@@ -167,7 +167,7 @@ export const RESUME: ResumeSchema = {
                 "Developing new features for the existing software solutions",
                 "Developing new functionalities in Calypso"
             ],
-            image: "/assets/genpact.jpeg",
+            image: "/portfolio/assets/genpact.jpeg",
         },
         {
             name: "NEC Technologies India Pvt. Ltd.",
@@ -183,7 +183,7 @@ export const RESUME: ResumeSchema = {
                 "Supporting the existing software solutions",
                 "Developing new features for the existing software solutions"
             ],
-            image: "/assets/nec.png",
+            image: "/portfolio/assets/nec.png",
         }
     ],
     volunteer: [

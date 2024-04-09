@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import {Profile} from "@website/types";
 import {NetworkProfiles} from "@website/components/NetworkProfiles";
 import {ContentLoader} from "@website/components/ContentLoader";
+import {getImageUrl} from "@website/lib";
 
 type HeroProps = {
     name: string;
@@ -17,7 +18,7 @@ export const Hero = () => {
     const [basics, setBasics] = useState<HeroProps>({
         name: "",
         label: "",
-        image: "/avatar.png",
+        image: "/portfolio/profile.pic.svg",
         summary: "",
         profiles: []
     });
@@ -33,7 +34,7 @@ export const Hero = () => {
         <div className="flex flex-col m-10">
             <div className="avatar px-4 mb-10">
                 <div className="w-24 rounded-full">
-                    <Image src={basics?.image} width="100" height="100" alt="rohit avatar"/>
+                    <Image src={getImageUrl(basics?.image)} width="100" height="100" alt="rohit avatar"/>
                 </div>
             </div>
             <div className="hero flex flex-col items-start min-w-full">

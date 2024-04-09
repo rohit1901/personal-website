@@ -3,7 +3,7 @@ import {SubstackWidget} from "@website/components/SubstackWidget";
 
 export const SubstackCard = () => {
     return (
-        <div className="group flex flex-col items-start rounded-2xl border px-6">
+        <div className="group flex flex-col items-start rounded-2xl border">
             <form className="p-6" action="/thank-you">
                 <h2 className="flex font-semibold">
                     <FaEnvelope className="w-5 h-5 text-gray-400"/>

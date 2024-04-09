@@ -1,7 +1,7 @@
 "use client"
 import {Fragment, ReactNode, useEffect, useState} from "react";
 import Image from "next/image";
-import {getMMYYYYDate} from "@website/lib";
+import {getImageUrl, getMMYYYYDate} from "@website/lib";
 import Link from "next/link";
 import {ContentLoader} from "@website/components/ContentLoader";
 
@@ -49,7 +49,7 @@ export const Card = ({heading, button}: CardProps) => {
                     {workExperience.map((c, i) => (
                         <div className="mt-6 flex flex-row" key={`c.image-${i}`}>
                             <div className="w-2/3 flex flex-row items-center">
-                                <Link href={c.url}><Image src={c.image} width="100" height="100" alt="rohit avatar"
+                                <Link href={c.url}><Image src={getImageUrl(c.image)} width="100" height="100" alt="rohit avatar"
                                                           className="rounded-full w-6 h-6 mr-2"/></Link>
                                 <div className="flex flex-col">
                                     <h3 className="w-full flex-none text-sm font-medium">{c.name}</h3>

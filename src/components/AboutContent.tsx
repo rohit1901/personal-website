@@ -6,6 +6,7 @@ import {useEffect, useState} from "react";
 import {ResumeSchema} from "@website/types";
 import {NetworkProfiles} from "@website/components/NetworkProfiles";
 import {ContentLoader} from "@website/components/ContentLoader";
+import {getImageUrl} from "@website/lib";
 
 export const AboutContent = () => {
     const [loading, setLoading] = useState(false)
@@ -39,7 +40,8 @@ export const AboutContent = () => {
                 <div className="ml-auto">
                     <Link href="/">
                         {basics.image &&
-                            <Image src={basics.image} alt="Rohit Khanduri" className="mask mask-squircle object-cover" height={400} width={400}/>}
+                            <Image src={getImageUrl(basics.image)} alt="Rohit Khanduri" className="mask mask-squircle object-cover" height={400}
+                                   width={400}/>}
                     </Link>
                 </div>
                 <div className="mt-6">
