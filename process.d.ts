@@ -33,5 +33,7 @@ declare namespace NodeJS {
         GOOGLE_PLACES_API_KEY: string
         // GitHub
         GITHUB_PAT: string
+        // Instagram
+        INSTAGRAM_TESTER_SECRET: string
     }
 }

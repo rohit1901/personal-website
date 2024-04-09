@@ -1,3 +1,5 @@
+import {INSTAGRAM_MEDIA_URL} from "@website/constants";
+
 /**
  * This function formats the date to a human-readable format using the user's locale.
  * @param date {string} - the date to format
@@ -73,4 +75,12 @@ export const getImageUrl = (src?: string) => {
     }
     const basePath = process.env.NEXT_PUBLIC_AWS_CLOUDFRONT_URL;
     return `${basePath}${src}`
+}
+/**
+ * Returns the complete Instagram URL
+ * @returns {string} - the Instagram URL
+ */
+export const getInstagramUrl = (): string => {
+    const ACCESS_TOKEN = process.env.INSTAGRAM_TESTER_SECRET;
+    return `${INSTAGRAM_MEDIA_URL}${encodeURIComponent(ACCESS_TOKEN)}`;
 }
