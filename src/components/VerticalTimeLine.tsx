@@ -48,7 +48,7 @@ export const VerticalTimeLine = () => {
                                 </Link>
                             </h2>
                             <p className="text-sm my-4">{item.description}</p>
-                            <Link href={item.link} className="flex items-center text-sm font-medium text-cyan-500 my-2">Read article
+                            <Link href={item.link} className="flex items-center text-sm font-medium read-article-link my-2">Read article
                                 <FaArrowRight className="w-3 h-3 ml-1"/>
                             </Link>
                         </div>

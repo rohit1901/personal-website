@@ -59,3 +59,18 @@ export const handleTheme = (t: string): void => {
     // set the theme attribute on the runners
     handleRunnerTheme(t)
 }
+/**
+ * Get the image url from the src
+ * Fetch from cloudfront in production and from dev in development
+ * NOTE: the src should always have a leading slash
+ * @example getImageUrl("/portfolio/profile.pic.svg") => "https://d1zjcuqflbd5k.cloudfront.net/portfolio/profile.pic.svg"
+ * @param src {string} - the src of the image
+ */
+export const getImageUrl = (src?: string) => {
+    const FALLBACK_IMAGE = "/avatar.png";
+    if (!src) {
+        return FALLBACK_IMAGE;
+    }
+    const basePath = process.env.NEXT_PUBLIC_AWS_CLOUDFRONT_URL;
+    return `${basePath}${src}`
+}

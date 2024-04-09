@@ -22,7 +22,7 @@ export const Post = (item?: FeedItem) => {
                 </Link>
             </h2>
             <p className="mt-2 text-sm">{item.description}</p>
-            <Link href={item.link} className="mt-4 flex items-center text-sm font-medium text-cyan-500">Read article
+            <Link href={item.link} className="mt-4 flex items-center text-sm font-medium read-article-link">Read article
                 <FaArrowRight className="w-3 h-3 ml-1"/>
             </Link>
         </article>
