@@ -1,0 +1,13 @@
+query AllWorkExperience {
+    work {
+        __typename
+        name
+        position
+        url
+        startDate
+        endDate
+        summary
+        highlights
+        image
+    }
+}

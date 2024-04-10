@@ -1,0 +1,9 @@
+query AllCertificates {
+    certificates {
+        __typename
+        name
+        date
+        issuer
+        url
+    }
+}

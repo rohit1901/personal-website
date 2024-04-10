@@ -1,9 +1,10 @@
 "use client"
 import {Fragment, ReactNode, useEffect, useState} from "react";
 import Image from "next/image";
-import {getImageUrl, getMMYYYYDate} from "@website/lib";
+import {getGraphQLQueryStr, getImageUrl, getMMYYYYDate} from "@website/lib";
 import Link from "next/link";
 import {ContentLoader} from "@website/components/ContentLoader";
+import {AllWorkExperienceQuery} from "@website/constants";
 
 type CardHeading = {
     icon: ReactNode;
@@ -26,10 +27,14 @@ export const Card = ({heading, button}: CardProps) => {
     const [workExperience, setWorkExperience] = useState<CardContent[]>([])
     useEffect(() => {
         setLoading(true)
-        fetch("/api/resume/get?websiteWorkExperience=true")
-            .then(res => res.json())
+        fetch("/api/resume/graphql", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: getGraphQLQueryStr(AllWorkExperienceQuery)
+        }).then(res => res.json())
             .then(data => {
-                const formattedData: CardContent[] = data.map((d: any) => ({
+                const parsedData = data.data.work
+                const formattedData: CardContent[] = parsedData.map((d: any) => ({
                     ...d,
                     date: getMMYYYYDate(d.startDate, d.endDate)
                 }))

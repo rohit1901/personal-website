@@ -54,7 +54,7 @@ export const AboutContent = () => {
                 </div>
                 <div className="mt-6">
                     <div className="flex flex-col mt-6">
-                        <NetworkProfiles profiles={basics?.profiles ?? []} showNetworks={true} className="my-2 flex flex-row"/>
+                        <NetworkProfiles profiles={basics.profiles ?? []} showNetworks={true} className="my-2 flex flex-row"/>
                     </div>
                 </div>
                 <div className="divider"></div>

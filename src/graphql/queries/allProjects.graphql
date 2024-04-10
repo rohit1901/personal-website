@@ -1,0 +1,11 @@
+query AllProjects {
+    projects {
+        __typename
+        name
+        startDate
+        endDate
+        description
+        highlights
+        url
+    }
+}

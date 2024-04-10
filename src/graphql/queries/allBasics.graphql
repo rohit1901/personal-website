@@ -1,0 +1,24 @@
+query AllBasics {
+    basics  {
+        __typename
+        name
+        label
+        image
+        email
+        phone
+        url
+        summary
+        location {
+            address
+            postalCode
+            city
+            countryCode
+            region
+        }
+        profiles {
+            network
+            username
+            url
+        }
+    }
+}
