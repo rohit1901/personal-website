@@ -1,0 +1,10 @@
+query AllPublications {
+    publications {
+        __typename
+        name
+        publisher
+        releaseDate
+        url
+        summary
+    }
+}

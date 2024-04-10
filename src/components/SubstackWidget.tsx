@@ -1,6 +1,7 @@
 "use client"
 import React, {useEffect, useRef} from 'react';
 import {useScript} from "usehooks-ts";
+import {usePathname} from "next/navigation";
 
 
 export const SubstackWidget = () => {
@@ -8,6 +9,7 @@ export const SubstackWidget = () => {
         removeOnUnmount: true,
         id: 'custom-substack-script',
     })
+    const pathname = usePathname()
     const customSubstackRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
         if (!window) return;
@@ -17,7 +19,7 @@ export const SubstackWidget = () => {
             placeholder: "example@host.com",
             buttonText: "Subscribe",
         };
-    }, []);
+    }, [pathname]);
 
     useEffect(() => {
         if (status === 'ready') {

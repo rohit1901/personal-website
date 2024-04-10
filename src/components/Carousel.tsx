@@ -12,7 +12,7 @@ export const Carousel = () => {
         fetch("/api/instagram/get")
             .then(response => response.json())
             .then(data => {
-                setMedia(data)
+                setMedia(data.slice(0, 6))
             }).catch(console.error)
             .finally(() => setLoading(false))
     }, [])
@@ -23,7 +23,7 @@ export const Carousel = () => {
         <div className="carousel rounded-box p-4 space-x-4 bg-transparent justify-center">
             {media?.map((m, i) => (
                 <div className="carousel-item mr-2" key={m.media_url}>
-                    <Image src={m.media_url} alt={m.caption} className="object-cover rounded-lg" loading="lazy"
+                    <Image src={m.media_url} alt={`instagram profile image-${i}`} className="object-cover rounded-lg" loading="lazy"
                            width={300} height={400}/>
                 </div>
             ))}

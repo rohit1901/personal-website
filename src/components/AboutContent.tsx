@@ -6,17 +6,25 @@ import {useEffect, useState} from "react";
 import {ResumeSchema} from "@website/types";
 import {NetworkProfiles} from "@website/components/NetworkProfiles";
 import {ContentLoader} from "@website/components/ContentLoader";
-import {getImageUrl} from "@website/lib";
+import {getGraphQLQueryStr, getImageUrl} from "@website/lib";
+import {AboutQuery} from "@website/constants/queries";
 
 export const AboutContent = () => {
     const [loading, setLoading] = useState(false)
     const [basics, setBasics] = useState<ResumeSchema["basics"]>({})
     useEffect(() => {
         setLoading(true)
-        fetch("/api/resume/get?websiteBasics=true")
-            .then(res => res.json())
-            .then(setBasics).catch(console.error)
+        fetch("/api/resume/graphql", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: getGraphQLQueryStr(AboutQuery)
+        }).then(res => res.json())
+            .then((data) => {
+                setBasics(data.basics)
+            })
+            .catch(console.error)
             .finally(() => setLoading(false))
+
     }, [])
     if (loading) return <ContentLoader/>
     return (
@@ -46,7 +54,7 @@ export const AboutContent = () => {
                 </div>
                 <div className="mt-6">
                     <div className="flex flex-col mt-6">
-                        <NetworkProfiles profiles={basics?.profiles ?? []} showNetworks={true} className="my-2 flex flex-row"/>
+                        <NetworkProfiles profiles={basics.profiles ?? []} showNetworks={true} className="my-2 flex flex-row"/>
                     </div>
                 </div>
                 <div className="divider"></div>

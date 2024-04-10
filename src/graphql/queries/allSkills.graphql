@@ -1,0 +1,8 @@
+query AllSkills {
+    skills {
+        __typename
+        name
+        level
+        keywords
+    }
+}

@@ -1,0 +1,12 @@
+query AllVolunteer {
+    volunteer {
+        __typename
+        organization
+        position
+        url
+        startDate
+        endDate
+        summary
+        highlights
+    }
+}

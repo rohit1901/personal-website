@@ -1,0 +1,13 @@
+query AllEducation {
+    education {
+        __typename
+        institution
+        url
+        area
+        studyType
+        startDate
+        endDate
+        score
+        courses
+    }
+}

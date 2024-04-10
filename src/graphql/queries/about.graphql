@@ -1,0 +1,11 @@
+query AboutPageQuery {
+    basics {
+        image
+        email
+        profiles {
+            network
+            username
+            url
+        }
+    }
+}

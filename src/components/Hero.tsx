@@ -4,7 +4,8 @@ import {useEffect, useState} from "react";
 import {Profile} from "@website/types";
 import {NetworkProfiles} from "@website/components/NetworkProfiles";
 import {ContentLoader} from "@website/components/ContentLoader";
-import {getImageUrl} from "@website/lib";
+import {getGraphQLQueryStr, getImageUrl} from "@website/lib";
+import {AllBasicsQuery} from "@website/constants";
 
 type HeroProps = {
     name: string;
@@ -24,9 +25,12 @@ export const Hero = () => {
     });
     useEffect(() => {
         setLoading(true)
-        fetch("/api/resume/get?websiteBasics=true")
-            .then(res => res.json())
-            .then(setBasics).catch(console.error)
+        fetch("/api/resume/graphql", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: getGraphQLQueryStr(AllBasicsQuery)
+        }).then(res => res.json())
+            .then((data) => setBasics(data.basics)).catch(console.error)
             .finally(() => setLoading(false))
     }, [])
     if (loading) return <ContentLoader/>
