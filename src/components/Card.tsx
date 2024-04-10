@@ -33,7 +33,7 @@ export const Card = ({heading, button}: CardProps) => {
             body: getGraphQLQueryStr(AllWorkExperienceQuery)
         }).then(res => res.json())
             .then(data => {
-                const parsedData = data.data.work
+                const parsedData = data.work
                 const formattedData: CardContent[] = parsedData.map((d: any) => ({
                     ...d,
                     date: getMMYYYYDate(d.startDate, d.endDate)

@@ -20,7 +20,7 @@ export const AboutContent = () => {
             body: getGraphQLQueryStr(AboutQuery)
         }).then(res => res.json())
             .then((data) => {
-                setBasics(data.data.basics)
+                setBasics(data.basics)
             })
             .catch(console.error)
             .finally(() => setLoading(false))

@@ -30,7 +30,7 @@ export const Hero = () => {
             headers: {"Content-Type": "application/json"},
             body: getGraphQLQueryStr(AllBasicsQuery)
         }).then(res => res.json())
-            .then((data) => setBasics(data.data.basics)).catch(console.error)
+            .then((data) => setBasics(data.basics)).catch(console.error)
             .finally(() => setLoading(false))
     }, [])
     if (loading) return <ContentLoader/>
