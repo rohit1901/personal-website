@@ -85,6 +85,6 @@ export const getInstagramUrl = (): string => {
     const ACCESS_TOKEN = process.env.INSTAGRAM_TESTER_SECRET;
     return `${INSTAGRAM_MEDIA_URL}${encodeURIComponent(ACCESS_TOKEN)}`;
 }
-export const getGraphQLQueryStr = (taggedQuery: DocumentNode) => {
-    return JSON.stringify({query: taggedQuery.loc?.source.body})
+export const getGraphQLQueryStr = (taggedQuery: DocumentNode, variables?: any) => {
+    return JSON.stringify({query: taggedQuery.loc?.source.body, variables})
 }

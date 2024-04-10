@@ -3,6 +3,7 @@ import {ResumeSchema} from "@website/types";
 export const GITHUB_PUBLIC_REPOS_URL = "https://api.github.com/users/rohit1901/repos";
 export const INSTAGRAM_MEDIA_URL = "https://graph.instagram.com/me/media?fields=caption,media_url&access_token=";
 export const GRAPHQL_URL = "http://localhost:4000/graphql";
+export const LITERALCLUB_GRAPHQL_URL = "https://literal.club/graphql/";
 //TODO: Add Projects, interests, and skills
 export const RESUME: ResumeSchema = {
     basics: {

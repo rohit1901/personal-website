@@ -32,6 +32,8 @@ export const Hero = () => {
         }).then(res => res.json())
             .then((data) => setBasics(data.basics)).catch(console.error)
             .finally(() => setLoading(false))
+        fetch("/api/literal/token").then(res => res.json())
+            .then((data) => console.log(data)).catch(console.error)
     }, [])
     if (loading) return <ContentLoader/>
     return (
