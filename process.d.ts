@@ -35,5 +35,8 @@ declare namespace NodeJS {
         GITHUB_PAT: string
         // Instagram
         INSTAGRAM_TESTER_SECRET: string
+        // Literal.club
+        LITERAL_CLUB_EMAIL: string
+        LITERAL_CLUB_AUTHORIZATION_TOKEN: string
     }
 }

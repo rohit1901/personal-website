@@ -1,5 +1,6 @@
 import {INSTAGRAM_MEDIA_URL} from "@website/constants";
 import {DocumentNode} from "graphql";
+import {LiteralBook, LiteralReadingState, LiteralReadingStatus} from "@website/types";
 
 /**
  * This function formats the date to a human-readable format using the user's locale.
@@ -85,6 +86,51 @@ export const getInstagramUrl = (): string => {
     const ACCESS_TOKEN = process.env.INSTAGRAM_TESTER_SECRET;
     return `${INSTAGRAM_MEDIA_URL}${encodeURIComponent(ACCESS_TOKEN)}`;
 }
-export const getGraphQLQueryStr = (taggedQuery: DocumentNode) => {
-    return JSON.stringify({query: taggedQuery.loc?.source.body})
+/**
+ * Get the GraphQL query string
+ * @param taggedQuery {DocumentNode} - the tagged query [GraphQL query string with the gql tag]
+ * @param variables {any} - the variables to pass to the query
+ * @returns {string} - the GraphQL query string
+ */
+export const getGraphQLQueryStr = (taggedQuery: DocumentNode, variables?: any): string => {
+    return JSON.stringify({query: taggedQuery.loc?.source.body, variables})
+}
+/**
+ * Get the reading section heading based on the status
+ * @returns {Array<LiteralReadingStatus>} - the reading status values
+ */
+export const getLiteralReadingStatusValues = (): Array<LiteralReadingStatus> => {
+    return ["IS_READING", "FINISHED", "WANTS_TO_READ"]
+}
+/**
+ * Get the reading section heading based on the status
+ * @param status {LiteralReadingStatus} - the reading status
+ * @returns {string} - the reading section heading
+ */
+export const getReadingSectionHeading = (status: LiteralReadingStatus): string => {
+    switch (status) {
+        case "IS_READING":
+            return "Books I'm reading"
+        case "FINISHED":
+            return "Books I've read"
+        case "WANTS_TO_READ":
+            return "Books I want to read"
+    }
+}
+/**
+ * Get the cover image of the book or the default avatar
+ * @param cover {string | undefined} - the cover image of the book
+ * @returns {string} - the cover image of the book or the default avatar
+ */
+export const getCoverImage = (cover?: string | undefined): string => {
+    return cover ?? "/avatar.png";
+}
+/**
+ * Get the books based on the reading status
+ * @param readingStates {LiteralReadingState[]} - the reading states
+ * @param status {LiteralReadingStatus} - the reading status
+ * @returns {LiteralBook[]} - the books based on the reading status
+ */
+export const getBooks = (readingStates: LiteralReadingState[], status: LiteralReadingStatus): LiteralBook[] => {
+    return readingStates.filter(state => state.status === status).map(state => state.book)
 }

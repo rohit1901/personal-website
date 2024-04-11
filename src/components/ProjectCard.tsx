@@ -1,6 +1,5 @@
 import {GitHubRepo} from "@website/types";
 import Link from "next/link";
-import {Divider} from "react-daisyui";
 
 export const ProjectCard = ({
                                 description,
@@ -23,7 +22,7 @@ export const ProjectCard = ({
                     </div>
                     <Link href={url}><img src={image} alt={title} className="w-12 h-12 mask mask-circle"/></Link>
                 </div>
-                <Divider/>
+                <div className="divider"/>
                 <div className="mt-4 flex">
                     <span className="text-green-400">github:~$</span>
                     <p className="flex-1 typing items-center pl-2">
@@ -47,7 +46,7 @@ export const ProjectCard = ({
                         <br/>
                     </p>
                 </div>
-                <Divider/>
+                <div className="divider"/>
                 {html_url && <div className="my-4 flex flex-row justify-between">
                     <Link className="flex flex-row items-center" href={html_url}>
                         <img src={avatar_url} alt={title} className="w-8 h-8 mask mask-circle mr-4"/>
