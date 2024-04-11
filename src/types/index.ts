@@ -31,6 +31,7 @@ export type GitHubRepo = {
     avatar_url?: string,
     html_url?: string
 }
+export type GitHubOwner = Pick<GitHubRepo, "login" | "avatar_url" | "html_url">
 export type RssToJSON = {
     feed: Feed,
     items: FeedItem[],
@@ -55,10 +56,14 @@ export type LiteralToken = {
         profile: LiteralProfile
     }
 }
+export type BookAuthor = {
+    name: string
+}
 export type LiteralBook = {
     title: string,
     description: string
     cover: string
+    authors?: BookAuthor[]
 }
 export type LiteralReadingStatus = "IS_READING" | "FINISHED" | "WANTS_TO_READ"
 export type LiteralReadingState = {

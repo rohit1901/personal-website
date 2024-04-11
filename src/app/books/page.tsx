@@ -1,7 +1,7 @@
 import {Runner} from "@website/components/Runner";
 import {Navbar} from "@website/components/Navbar";
 import {Footer} from "@website/components/Footer";
-import {BooksContent} from "@website/components/BooksContent";
+import {BooksContent} from "@website/components/Books/BooksContent";
 
 export default function Books() {
     return (

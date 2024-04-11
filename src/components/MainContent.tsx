@@ -1,6 +1,6 @@
 import {SubstackCard} from "@website/components/SubstackCard";
 import {FaBriefcase, FaChevronDown} from "react-icons/fa";
-import {Card} from "@website/components/Card";
+import {WorkExperiences} from "@website/components/WorkExperiences";
 import {Posts} from "@website/components/Posts";
 
 export const DownloadCV = () => {
@@ -21,11 +21,11 @@ const JobsCard = {
 
 export const MainContent = () => {
     return (
-        <section className="flex md:flex-row lg:flex-row m-10 flex-col justify-between">
+        <section className="flex lg:flex-row m-10 flex-col justify-between">
             <Posts/>
-            <aside className="flex flex-col space-y-10 md:ml-2 lg:ml-2 md:mt-0 lg:mt-0 mt-4">
+            <aside className="flex flex-col lg:ml-2 lg:mt-0 mt-4">
                 <SubstackCard/>
-                <Card {...JobsCard} />
+                <WorkExperiences {...JobsCard} />
             </aside>
         </section>
     );
