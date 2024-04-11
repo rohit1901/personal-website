@@ -11,7 +11,7 @@ export default function Projects() {
                 <Runner>
                     <Navbar/>
                     <div className="flex flex-col h-full m-20">
-                        <div className="flex flex-col w-3/4 ml-5">
+                        <div className="flex flex-col lg:w-3/4 w-full lg:ml-5 mb-4">
                             <h1 className="text-4xl font-bold tracking-tight">Things I’ve made trying to put my dent in the universe.</h1>
                             <div className="mt-6 space-y-7 text-base">
                         <span>I’ve worked on tons of little projects over the years but these are the

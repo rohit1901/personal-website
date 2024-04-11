@@ -11,7 +11,7 @@ export const ProjectCard = ({
                                 html_url
                             }: GitHubRepo) => {
     return (
-        <div className="m-5 w-2/5">
+        <div className="m-5 lg:w-2/5 w-full">
             <div className="coding inverse-toggle px-5 pt-4 shadow-lg text-sm font-mono subpixel-antialiased
               dark:bg-gray-800 bg-transparent pb-6 rounded-lg leading-normal overflow-hidden border">
                 <div className="top mb-2 flex justify-between items-center">
