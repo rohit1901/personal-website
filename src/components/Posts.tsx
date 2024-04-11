@@ -18,7 +18,7 @@ export const Post = (item?: FeedItem) => {
                 <span className="h-4 rounded-full">{formatDate(item.pubDate)}</span>
             </div>
             <div className="flex flex-col">
-                <h2 className="font-semibold tracking-tight text-lg">
+                <h2 className="font-semibold tracking-tight text-md">
                     <Link href={item.link}>
                         <span className="sm:rounded-2xl"></span><span
                         className="relative z-10">{item.title}</span>
