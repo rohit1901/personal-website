@@ -40,7 +40,31 @@ export type InstagramMedia = {
     caption: string,
     media_url: string,
 }
-
+export type LiteralProfile = {
+    id: string
+    name: string
+    bio: string
+    handle: string
+    image: string
+}
+export type LiteralToken = {
+    login: {
+        token: string
+        email: string
+        languages: string[]
+        profile: LiteralProfile
+    }
+}
+export type LiteralBook = {
+    title: string,
+    description: string
+    cover: string
+}
+export type LiteralReadingStatus = "IS_READING" | "FINISHED" | "WANTS_TO_READ"
+export type LiteralReadingState = {
+    book: LiteralBook,
+    status: LiteralReadingStatus,
+}
 /**
  * @see https://jsonresume.org/schema/
  * JSON Resume Schema types

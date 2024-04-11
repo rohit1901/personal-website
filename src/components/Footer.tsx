@@ -11,7 +11,7 @@ export const Footer = () => {
                 <Link href="/about" className={`link link-hover mr-2 ${setActiveClass(pathname, "/about")}`}>About Me</Link>
                 <Link href="/articles" className={`link link-hover mr-2 ${setActiveClass(pathname, "/articles")}`}>Articles</Link>
                 <Link href="/projects" className={`link link-hover mr-2 ${setActiveClass(pathname, "/projects")}`}>Projects</Link>
-                <Link href="#" className={`link link-hover mr-2 ${setActiveClass(pathname, "#")}`}>Currently Reading</Link>
+                <Link href="/books" className={`link link-hover mr-2 ${setActiveClass(pathname, "/books")}`}>Books</Link>
             </nav>
             <aside className="flex mx-auto md:mx-0 lg:mx-0">
                 <p className="text-right">© 2024 Rohit Khanduri. All rights reserved.</p>

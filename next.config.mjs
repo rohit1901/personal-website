@@ -24,6 +24,14 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: 'scontent-dus1-1.cdninstagram.com',
             },
+            {
+                protocol: 'https',
+                hostname: '*.literal.club',
+            },
+            {
+                protocol: 'http',
+                hostname: '*.google.com',
+            },
         ]
     }
 };

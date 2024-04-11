@@ -1,0 +1,10 @@
+query {
+    myReadingStates {
+        book {
+            title
+            description
+            cover
+        }
+        status
+    }
+}

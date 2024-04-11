@@ -32,7 +32,7 @@ export const MobileNavigation = () => {
                         <li>
                             <Link href="/projects" className={`text-md ${setActiveClass(pathname, "/projects")}`}>Projects</Link>
                         </li>
-                        <li><a>Currently Reading</a></li>
+                        <li><Link href="/projects" className={`text-md ${setActiveClass(pathname, "/books")}`}>Books</Link></li>
 
                     </ul>
                 </div>
