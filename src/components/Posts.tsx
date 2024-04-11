@@ -11,7 +11,7 @@ const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${FEED_URL}`
 export const Post = (item?: FeedItem) => {
     if (!item) return null
     return (
-        <article className="group flex flex-col items-start rounded-2xl border p-6">
+        <article className="post group flex flex-col items-start rounded-2xl p-6 transition-all ml-4">
             <div className="z-10 flex-row mb-3 flex items-center text-sm">
                 <span className="h-4 rounded-full">{formatDate(item.pubDate)}</span>
             </div>
@@ -43,7 +43,7 @@ export const Posts = () => {
     }, [])
     if (loading) return <ContentLoader/>
     return (
-        <aside className="md:w-1/2 lg:w-1/2 w-full flex flex-col space-y-10 mr-2">
+        <aside className="md:w-1/2 lg:w-1/2 w-full flex flex-col space-y-10 mr-2 border-l justify-evenly">
             {substack?.items.map((item, index) => (
                 <Post key={`item.guid-${index}`} {...item}/>
             ))}

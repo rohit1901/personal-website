@@ -9,6 +9,14 @@
     @apply input input-bordered mr-2 w-full;
 }
 
+[data-theme="garden"] .post {
+    @apply hover:bg-gray-100 !important;
+}
+
+[data-theme="black"] .post {
+    @apply hover:bg-gray-800 !important;
+}
+
 [data-theme="garden"] #custom-substack-embed form > button {
     @apply btn btn-neutral rounded-md text-sm;
 }
