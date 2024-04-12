@@ -8,6 +8,10 @@ import {NetworkProfiles} from "@website/components/NetworkProfiles";
 import {ContentLoader} from "@website/components/ContentLoader";
 import {getGraphQLQueryStr, getImageUrl} from "@website/lib";
 import {AboutQuery} from "@website/constants/queries";
+import {Divider} from "@website/components/Divider";
+import {DesktopShow} from "@website/components/Desktop/DesktopShow";
+import {DesktopHidden} from "@website/components/Desktop/DesktopHidden";
+import {Section} from "@website/components/Section";
 
 export const AboutContent = () => {
     const [loading, setLoading] = useState(false)
@@ -29,7 +33,7 @@ export const AboutContent = () => {
     if (loading) return <ContentLoader/>
     return (
         <Fragment>
-            <div className="flex lg:flex-wrap flex-wrap-reverse h-full m-20">
+            <Section className="lg:flex-wrap flex-wrap-reverse">
                 <div className="flex flex-col lg:w-1/2">
                     <h1 className="text-4xl font-bold my-5">I’m Rohit Khanduri. I live in Frankfurt am Main, where I design the future.</h1>
                     <div className="mt-6 space-y-7 text-base">
@@ -56,36 +60,34 @@ export const AboutContent = () => {
                             <Image src={getImageUrl(basics.image)} alt="Rohit Khanduri" className="mask mask-squircle object-cover" height={400}
                                    width={400}/>}
                     </Link>
-                    <div className="hidden lg:block">
+                    <DesktopShow>
                         <div className="mt-6">
                             <div className="flex flex-col mt-6">
                                 <NetworkProfiles profiles={basics?.profiles ?? []} showNetworks={true} className="my-2 flex flex-row"/>
                             </div>
                         </div>
-                        <div className="divider"></div>
+                        <Divider/>
                         <div className="mt-6">
                             <div className="flex hover:text-cyan-500">
                                 <FaEnvelope className="w-5 h-5 themed-icon hover:cursor-pointer"/>
                                 {basics?.email && <Link href={`mailto:${basics?.email}`} className="ml-3">rohit.khanduri@hotmail.com</Link>}
                             </div>
                         </div>
-                    </div>
+                    </DesktopShow>
                 </div>}
-            </div>
-            <div className="lg:hidden mx-20 mb-10">
+            </Section>
+            <DesktopHidden className="mx-20 mb-10">
                 <div className="mt-6">
                     <div className="flex flex-col mt-6">
                         <NetworkProfiles profiles={basics?.profiles ?? []} showNetworks={true} className="my-2 flex flex-row"/>
                     </div>
                 </div>
-                <div className="divider"></div>
-                <div className="mt-6">
-                    <div className="flex hover:text-cyan-500">
-                        <FaEnvelope className="w-5 h-5 themed-icon hover:cursor-pointer"/>
-                        {basics?.email && <Link href={`mailto:${basics?.email}`} className="ml-3">rohit.khanduri@hotmail.com</Link>}
-                    </div>
+                <Divider classNames="my-4"/>
+                <div className="flex hover:text-cyan-500">
+                    <FaEnvelope className="w-5 h-5 themed-icon hover:cursor-pointer"/>
+                    {basics?.email && <Link href={`mailto:${basics?.email}`} className="ml-3 truncate">rohit.khanduri@hotmail.com</Link>}
                 </div>
-            </div>
+            </DesktopHidden>
         </Fragment>
     )
 }

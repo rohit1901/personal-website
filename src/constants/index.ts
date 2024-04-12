@@ -37,5 +37,6 @@ export const DefaultLiteralToken: LiteralToken = {
 }
 export const NO_DESCRIPTION = "Whoops! There's no description available."
 export const IS_DEV = process.env.NODE_ENV === "development";
+export const FALLBACK_IMAGE = "/avatar.png";
 
 export * from "./queries";

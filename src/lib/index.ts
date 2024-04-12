@@ -1,4 +1,4 @@
-import {INSTAGRAM_MEDIA_URL} from "@website/constants";
+import {FALLBACK_IMAGE, INSTAGRAM_MEDIA_URL} from "@website/constants";
 import {DocumentNode} from "graphql";
 import {GitHubOwner, GitHubRepo, LiteralBook, LiteralReadingState, LiteralReadingStatus} from "@website/types";
 
@@ -71,7 +71,6 @@ export const handleTheme = (t: string): void => {
  * @param src {string} - the src of the image
  */
 export const getImageUrl = (src?: string) => {
-    const FALLBACK_IMAGE = "/avatar.png";
     if (!src) {
         return FALLBACK_IMAGE;
     }
@@ -123,7 +122,7 @@ export const getReadingSectionHeading = (status: LiteralReadingStatus): string =
  * @returns {string} - the cover image of the book or the default avatar
  */
 export const getCoverImage = (cover?: string | undefined): string => {
-    return cover ?? "/avatar.png";
+    return cover ?? FALLBACK_IMAGE;
 }
 /**
  * Get the books based on the reading status

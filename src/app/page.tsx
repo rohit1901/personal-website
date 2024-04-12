@@ -5,7 +5,6 @@ import {Runner} from "@website/components/Runner";
 import {Footer} from "@website/components/Footer";
 import {MainContent} from "@website/components/MainContent";
 
-// TODO: Responsive design
 // TODO: Download Resume
 // TODO: Readme
 // TODO: CI/CD, Heroku, GitHub Actions

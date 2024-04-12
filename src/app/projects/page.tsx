@@ -3,6 +3,7 @@ import {Runner} from "@website/components/Runner";
 import {Navbar} from "@website/components/Navbar";
 import {Footer} from "@website/components/Footer";
 import {ProjectsContent} from "@website/components/ProjectsContent";
+import {Section} from "@website/components/Section";
 
 export default function Projects() {
     return (
@@ -10,7 +11,7 @@ export default function Projects() {
             <div className="flex flex-col mx-auto h-auto min-h-full">
                 <Runner>
                     <Navbar/>
-                    <div className="flex flex-col h-full m-20">
+                    <Section className="flex-col">
                         <div className="flex flex-col lg:w-3/4 w-full lg:ml-5 mb-4">
                             <h1 className="text-4xl font-bold tracking-tight">Things I’ve made trying to put my dent in the universe.</h1>
                             <div className="mt-6 space-y-7 text-base">
@@ -21,7 +22,7 @@ export default function Projects() {
                             </div>
                         </div>
                         <ProjectsContent/>
-                    </div>
+                    </Section>
                     <Footer/>
                 </Runner>
             </div>

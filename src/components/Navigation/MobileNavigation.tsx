@@ -21,9 +21,9 @@ export const MobileNavigation = () => {
                     <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 min-h-full bg-base-200 text-lg pt-20">
                         <div className="avatar px-4 mb-10">
-                            <div className="w-12 rounded-full">
-                                <Image src={getImageUrl()} width="100" height="100" alt="rohit avatar"/>
-                            </div>
+                            <Link className="w-12" href="/">
+                                <Image src={getImageUrl()} width="100" height="100" alt="rohit avatar" className="rounded-full"/>
+                            </Link>
                         </div>
                         <li><Link href="/about" className={`text-md ${setActiveClass(pathname, "/about")}`}>About me</Link></li>
                         <li>
@@ -32,7 +32,7 @@ export const MobileNavigation = () => {
                         <li>
                             <Link href="/projects" className={`text-md ${setActiveClass(pathname, "/projects")}`}>Projects</Link>
                         </li>
-                        <li><Link href="/projects" className={`text-md ${setActiveClass(pathname, "/books")}`}>Books</Link></li>
+                        <li><Link href="/books" className={`text-md ${setActiveClass(pathname, "/books")}`}>Books</Link></li>
 
                     </ul>
                 </div>

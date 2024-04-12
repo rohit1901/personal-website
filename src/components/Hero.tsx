@@ -49,7 +49,7 @@ export const Hero = () => {
                     </div>
                 </div>
                 <div className="hero-content text-left block w-full">
-                    <div className="w-3/4">
+                    <div className="w-full md:w-3/4 lg:w-3/4 xl:w-3/4 2xl:w-3/4">
                         <NetworkProfiles profiles={basics?.profiles}/>
                     </div>
                 </div>

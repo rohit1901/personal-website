@@ -70,7 +70,8 @@
     border-color: #E4E7EB;
 }
 
-.coding {
+.coding .command {
+    @apply text-xxs md:text-sm lg:text-sm xl:text-sm 2xl:text-sm !important;
 }
 
 .menu a {
