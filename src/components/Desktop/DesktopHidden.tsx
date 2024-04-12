@@ -5,7 +5,7 @@ type DesktopHiddenProps = {
 }
 export const DesktopHidden = ({className, children}: PropsWithChildren<DesktopHiddenProps>) => {
     return (
-        <div className={`block lg:hidden xl:hidden 2xl:hidden ${className}`}>
+        <div className={`block xl:hidden 2xl:hidden ${className}`}>
             {children}
         </div>
     )

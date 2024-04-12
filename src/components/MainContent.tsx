@@ -22,9 +22,9 @@ const JobsCard = {
 
 export const MainContent = () => {
     return (
-        <Section className="lg:flex-row flex-col justify-between">
+        <Section className="flex-col xl:flex-row 2xl:flex-row justify-between">
             <Posts/>
-            <aside className="flex flex-col lg:ml-2 lg:mt-0 mt-4">
+            <aside className="flex flex-col xl:ml-2 xl:mt-0 2xl:ml-2 2xl:mt-0 mt-4">
                 <SubstackCard/>
                 <WorkExperiences {...JobsCard} />
             </aside>

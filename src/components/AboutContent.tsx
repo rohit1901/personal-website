@@ -33,8 +33,8 @@ export const AboutContent = () => {
     if (loading) return <ContentLoader/>
     return (
         <Fragment>
-            <Section className="lg:flex-wrap flex-wrap-reverse">
-                <div className="flex flex-col lg:w-1/2">
+            <Section className="xl:flex-wrap 2xl:flex-wrap flex-wrap-reverse">
+                <div className="flex flex-col xl:w-1/2 2xl:w-1/2">
                     <h1 className="text-4xl font-bold my-5">I’m Rohit Khanduri. I live in Frankfurt am Main, where I design the future.</h1>
                     <div className="mt-6 space-y-7 text-base">
                         <p>I’ve loved making things for as long as I can remember, and wrote my first program when I was 6 years old, just two weeks
@@ -54,7 +54,7 @@ export const AboutContent = () => {
                             home so that the next generation of kids really can make it to orbit — from the comfort of their own backyards.</p>
                     </div>
                 </div>
-                {basics && <div className="lg:ml-auto mx-auto">
+                {basics && <div className="xl:ml-auto 2xl:ml-auto mx-auto">
                     <Link href="/">
                         {basics.image &&
                             <Image src={getImageUrl(basics.image)} alt="Rohit Khanduri" className="mask mask-squircle object-cover" height={400}

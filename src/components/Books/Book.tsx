@@ -31,7 +31,7 @@ export const Book = ({books, status}: BookProps) => {
     return <div className="collapse collapse-plus my-4">
         <input type="radio" name="my-accordion-1" defaultChecked={status === "IS_READING"}/>
         <h2 className="text-2xl font-bold tracking-tight collapse-title">{getReadingSectionHeading(status)}</h2>
-        <div className="flex flex-col lg:w-3/4 w-full collapse-content">
+        <div className="flex flex-col xl:w-3/4 2xl:w-3/4 w-full collapse-content">
             {
                 books.map(book => (
                     <div className="card card-side border my-2" key={book.title}>

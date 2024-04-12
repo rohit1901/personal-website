@@ -38,7 +38,7 @@ export const BooksContent = () => {
     if (loading) return <ContentLoader/>
     return (
         <Section className="flex-col">
-            <div className="flex flex-col lg:w-3/4 xl:w-3/4 2xl:w-3/4 w-full mb-10">
+            <div className="flex flex-col xl:w-3/4 2xl:w-3/4 w-full mb-10">
                 <h1 className="text-4xl font-bold tracking-tight w-3/4">Books that I’m reading, I've read, want to read, and a lot of other things
                     related to books.</h1>
                 <div className="mt-6 space-y-7 text-base">
