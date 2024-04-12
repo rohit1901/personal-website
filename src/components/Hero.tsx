@@ -32,8 +32,6 @@ export const Hero = () => {
         }).then(res => res.json())
             .then((data) => setBasics(data.basics)).catch(console.error)
             .finally(() => setLoading(false))
-        fetch("/api/literal/token").then(res => res.json())
-            .then((data) => console.log(data)).catch(console.error)
     }, [])
     if (loading) return <ContentLoader/>
     return (
@@ -51,7 +49,7 @@ export const Hero = () => {
                     </div>
                 </div>
                 <div className="hero-content text-left block w-full">
-                    <div className="w-3/4">
+                    <div className="w-full md:w-3/4 lg:w-3/4 xl:w-3/4 2xl:w-3/4">
                         <NetworkProfiles profiles={basics?.profiles}/>
                     </div>
                 </div>

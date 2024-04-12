@@ -32,6 +32,10 @@ const nextConfig = {
                 protocol: 'http',
                 hostname: '*.google.com',
             },
+            {
+                protocol: 'https',
+                hostname: '*.githubusercontent.com',
+            },
         ]
     }
 };

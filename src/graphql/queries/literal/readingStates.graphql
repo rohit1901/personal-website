@@ -4,6 +4,9 @@ query {
             title
             description
             cover
+            authors {
+                name
+            }
         }
         status
     }

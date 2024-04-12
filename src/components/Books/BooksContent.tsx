@@ -7,6 +7,7 @@ import {getBooks, getLiteralReadingStatusValues} from "@website/lib";
 import {Book} from "@website/components/Books/Book";
 import {DefaultLiteralToken, ILITERAL_GRAPHQL_URL, ILITERAL_TOKEN_URL, LITERAL_COOKIE_NAME} from "@website/constants";
 import {ContentLoader} from "@website/components/ContentLoader";
+import {Section} from "@website/components/Section";
 
 export const BooksContent = () => {
     const [value, setValue, removeValue] = useLocalStorage<LiteralToken>(LITERAL_COOKIE_NAME, DefaultLiteralToken)
@@ -36,8 +37,8 @@ export const BooksContent = () => {
     }, [pathname])
     if (loading) return <ContentLoader/>
     return (
-        <div className="flex flex-col h-full m-20">
-            <div className="flex flex-col w-3/4 mb-10">
+        <Section className="flex-col">
+            <div className="flex flex-col xl:w-3/4 2xl:w-3/4 w-full mb-10">
                 <h1 className="text-4xl font-bold tracking-tight w-3/4">Books that I’m reading, I've read, want to read, and a lot of other things
                     related to books.</h1>
                 <div className="mt-6 space-y-7 text-base">
@@ -48,6 +49,6 @@ export const BooksContent = () => {
             {getLiteralReadingStatusValues().map(status => (
                 <Book key={status} books={getBooks(readingStates, status)} status={status}/>
             ))}
-        </div>
+        </Section>
     )
 }

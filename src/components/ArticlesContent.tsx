@@ -1,10 +1,11 @@
 "use client"
 import {Posts} from "@website/components/Posts";
+import {Section} from "@website/components/Section";
 
 export const ArticlesContent = () => {
     return (
-        <div className="flex flex-col h-full m-20">
-            <div className="flex flex-col w-3/4 mb-10">
+        <Section className="flex-col">
+            <div className="flex flex-col lg:w-3/4 w-full mb-10">
                 <h1 className="text-4xl font-bold tracking-tight">Writing about the books I read, the things I learn, and the projects I
                     build.</h1>
                 <div className="mt-6 space-y-7 text-base">
@@ -13,6 +14,6 @@ export const ArticlesContent = () => {
                 </div>
             </div>
             <Posts/>
-        </div>
+        </Section>
     )
 }

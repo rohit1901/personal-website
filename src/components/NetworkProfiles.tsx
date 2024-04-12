@@ -7,15 +7,15 @@ import {BsSubstack} from "react-icons/bs";
 export const NetworkIcon = ({network}: Profile) => {
     switch (network) {
         case "Github":
-            return <FaGithub className="w-6 h-6 themed-icon"/>
+            return <FaGithub className="w-5 h-5 themed-icon"/>
         case "Twitter":
-            return <FaTwitter className="w-6 h-6 themed-icon"/>
+            return <FaTwitter className="w-5 h-5 themed-icon"/>
         case "Instagram":
-            return <FaInstagram className="w-6 h-6 themed-icon"/>
+            return <FaInstagram className="w-5 h-5 themed-icon"/>
         case "LinkedIn":
-            return <FaLinkedin className="w-6 h-6 themed-icon"/>
+            return <FaLinkedin className="w-5 h-5 themed-icon"/>
         case "Substack":
-            return <BsSubstack className="w-6 h-5 themed-icon"/>
+            return <BsSubstack className="w-5 h-5 themed-icon"/>
         default:
             return null
     }
@@ -26,7 +26,7 @@ type NetworkProfileProps = {
     showNetworks?: boolean
     className?: string
 }
-export const NetworkProfiles = ({profiles, showNetworks, className = "btn btn-circle mr-2"}: NetworkProfileProps) => {
+export const NetworkProfiles = ({profiles, showNetworks, className = "inline-flex rounded-full mr-6"}: NetworkProfileProps) => {
     if (!profiles) return null
     return (
         <Fragment>

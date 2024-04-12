@@ -1,6 +1,6 @@
-import {INSTAGRAM_MEDIA_URL} from "@website/constants";
+import {FALLBACK_IMAGE, INSTAGRAM_MEDIA_URL} from "@website/constants";
 import {DocumentNode} from "graphql";
-import {LiteralBook, LiteralReadingState, LiteralReadingStatus} from "@website/types";
+import {GitHubOwner, GitHubRepo, LiteralBook, LiteralReadingState, LiteralReadingStatus} from "@website/types";
 
 /**
  * This function formats the date to a human-readable format using the user's locale.
@@ -71,7 +71,6 @@ export const handleTheme = (t: string): void => {
  * @param src {string} - the src of the image
  */
 export const getImageUrl = (src?: string) => {
-    const FALLBACK_IMAGE = "/avatar.png";
     if (!src) {
         return FALLBACK_IMAGE;
     }
@@ -123,7 +122,7 @@ export const getReadingSectionHeading = (status: LiteralReadingStatus): string =
  * @returns {string} - the cover image of the book or the default avatar
  */
 export const getCoverImage = (cover?: string | undefined): string => {
-    return cover ?? "/avatar.png";
+    return cover ?? FALLBACK_IMAGE;
 }
 /**
  * Get the books based on the reading status
@@ -133,4 +132,23 @@ export const getCoverImage = (cover?: string | undefined): string => {
  */
 export const getBooks = (readingStates: LiteralReadingState[], status: LiteralReadingStatus): LiteralBook[] => {
     return readingStates.filter(state => state.status === status).map(state => state.book)
+}
+/**
+ * Transforms the GitHub data. The data is transformed by adding the login, avatar_url, and html_url to each item
+ * and splitting the title into title and description.
+ * @example transformGitHubData(data, {login: "test", avatar_url: "test", html_url: "test"}) => [{title: "test", description: "test", login: "test", avatar_url: "test", html_url: "test"}]
+ * @param data {GitHubRepo[]} - the GitHub data
+ * @param login {string | undefined} - the login
+ * @param avatar_url {string | undefined} - the avatar url
+ * @param html_url {string | undefined} - the html url
+ */
+export const transformGitHubData = (data: GitHubRepo[], {login, avatar_url, html_url}: GitHubOwner): GitHubRepo[] => {
+    return data.map(m => ({
+        ...m,
+        title: m.title.split(":")[0],
+        description: m.title.split(":")[1],
+        login,
+        avatar_url,
+        html_url
+    }));
 }
