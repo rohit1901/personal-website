@@ -2,7 +2,7 @@ import {LiteralReadingState, LiteralToken} from "@website/types";
 // External API Constants
 export const GITHUB_PUBLIC_REPOS_URL = "https://api.github.com/users/rohit1901/repos";
 export const INSTAGRAM_MEDIA_URL = "https://graph.instagram.com/me/media?fields=caption,media_url&access_token=";
-export const GRAPHQL_URL = "http://localhost:4000/graphql";
+export const GRAPHQL_URL = process.env.GRAPHQL_SERVER_HOST;
 
 // Internal API Constants
 export const ILITERAL_TOKEN_URL = "/api/literal/token";

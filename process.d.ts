@@ -38,5 +38,7 @@ declare namespace NodeJS {
         // Literal.club
         LITERAL_CLUB_EMAIL: string
         LITERAL_CLUB_AUTHORIZATION_TOKEN: string
+        // GraphQL Server
+        GRAPHQL_SERVER_HOST: string
     }
 }
