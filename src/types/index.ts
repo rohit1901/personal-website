@@ -239,6 +239,7 @@ export interface ResumeSchema {
          * List notable courses/subjects
          */
         courses?: string[];
+        url?: string;
         [k: string]: any;
     }[];
     /**

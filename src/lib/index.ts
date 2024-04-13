@@ -17,12 +17,13 @@ export const formatDate = (date: string): string => {
 }
 /**
  * This function formats the date to a human-readable format using the user's locale.
- * @param fromDate {string} - the from date to format
- * @param toDate {string} - the to date to format
+ * @param fromDate {string | undefined} - the from date to format
+ * @param toDate {string | undefined} - the to date to format
  * @returns {string} - the formatted date
  * @example getMMYYYYDate("01-2021", "12-2021") => "January 2021 - December 2021"
  */
-export const getMMYYYYDate = (fromDate: string, toDate?: string): string => {
+export const getMMYYYYDate = (fromDate?: string, toDate?: string): string => {
+    if (!fromDate) return ""
     const userLocale = navigator.language
     const from = new Date(`01-${fromDate}`).toLocaleDateString(userLocale, {
         month: 'short',

@@ -46,7 +46,7 @@ export const WorkExperiences = ({heading, button}: CardProps) => {
     }, [])
     if (loading) return <ContentLoader/>
     return (
-        <div className="group flex flex-col items-start rounded-2xl border p-6">
+        <div className="flex flex-col items-start rounded-2xl border p-6">
             <h2 className="flex font-semibold items-start">
                 <div className="rounded-full">{heading.icon}</div>
                 <span className="ml-3">{heading.text}</span>
@@ -54,12 +54,12 @@ export const WorkExperiences = ({heading, button}: CardProps) => {
             <ContentText className="mt-2 w-full">
                 {workExperience.map((c, i) => (
                     <div className="mt-6 flex flex-row" key={`c.image-${i}`}>
-                        <div className="w-auto md:w-2/3 lg:w-2/3 xl:w-2/3 2xl:w-2/3 flex flex-row items-center">
+                        <div className="w-2/3 sm:w-full flex flex-row items-center">
                             <Link href={c.url} className="mr-2">
                                 <Image src={getImageUrl(c.image)} width="100" height="100" alt="rohit avatar"
                                        className="rounded-full w-6 h-6"/>
                             </Link>
-                            <div className="flex flex-col ml-2">
+                            <div className="flex flex-col">
                                 <ContentText className=""><h3 className="w-full flex-none font-medium text-sm">{c.name}</h3></ContentText>
                                 <ContentText><p>{c.position}</p></ContentText>
                             </div>

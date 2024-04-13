@@ -1,7 +1,7 @@
 import {Runner} from "@website/components/Runner";
 import {Navbar} from "@website/components/Navbar";
 import {Footer} from "@website/components/Footer";
-import {ArticlesContent} from "@website/components/ArticlesContent";
+import {ArticlesContent} from "@website/components/Articles/ArticlesContent";
 
 export default function Articles() {
     return (

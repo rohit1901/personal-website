@@ -1,19 +1,19 @@
 "use client"
-import Image from 'next/image'
-import {FaEnvelope} from "react-icons/fa";
-import Link from "next/link";
-import {Fragment, useEffect, useState} from "react";
 import {ResumeSchema} from "@website/types";
-import {NetworkProfiles} from "@website/components/NetworkProfiles";
-import {ContentLoader} from "@website/components/ContentLoader";
-import {getGraphQLQueryStr, getImageUrl} from "@website/lib";
-import {AboutQuery} from "@website/constants/queries";
-import {Divider} from "@website/components/Divider";
-import {DesktopShow} from "@website/components/Desktop/DesktopShow";
-import {DesktopHidden} from "@website/components/Desktop/DesktopHidden";
 import {Section} from "@website/components/Section";
+import Link from "next/link";
+import Image from "next/image";
+import {getGraphQLQueryStr, getImageUrl} from "@website/lib";
+import {DesktopShow} from "@website/components/Desktop/DesktopShow";
+import {NetworkProfiles} from "@website/components/NetworkProfiles";
+import {Divider} from "@website/components/Divider";
+import {FaEnvelope} from "react-icons/fa";
+import {DesktopHidden} from "@website/components/Desktop/DesktopHidden";
+import {Fragment, useEffect, useState} from "react";
+import {AboutQuery} from "@website/constants";
+import {ContentLoader} from "@website/components/ContentLoader";
 
-export const AboutContent = () => {
+export const AboutHero = () => {
     const [loading, setLoading] = useState(false)
     const [basics, setBasics] = useState<ResumeSchema["basics"]>({})
     useEffect(() => {

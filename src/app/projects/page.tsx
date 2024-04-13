@@ -2,7 +2,7 @@
 import {Runner} from "@website/components/Runner";
 import {Navbar} from "@website/components/Navbar";
 import {Footer} from "@website/components/Footer";
-import {ProjectsContent} from "@website/components/ProjectsContent";
+import {ProjectsContent} from "@website/components/Projects/ProjectsContent";
 import {Section} from "@website/components/Section";
 
 export default function Projects() {

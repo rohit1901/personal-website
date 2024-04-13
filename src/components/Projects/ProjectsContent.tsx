@@ -1,5 +1,5 @@
 "use client"
-import {ProjectCard} from "@website/components/ProjectCard";
+import {ProjectCard} from "@website/components/Projects/ProjectCard";
 import {useEffect, useState} from "react";
 import {GitHubRepo} from "@website/types";
 import {ContentLoader} from "@website/components/ContentLoader";
