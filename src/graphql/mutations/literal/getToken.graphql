@@ -1,0 +1,7 @@
+mutation LiteralClubGetToken($appSecret: String!) {
+    getToken(appSecret: $appSecret) {
+        token
+        createdOn
+        expiresOn
+    }
+}

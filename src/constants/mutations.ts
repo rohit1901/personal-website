@@ -1,4 +1,6 @@
 import gql from "graphql-tag";
-import LiteralClubLogin from "@website/graphql/mutations/literal/login.graphql";
+import LiteralClubGetToken from "@website/graphql/mutations/literal/getToken.graphql";
+import LiteralClubReadingStates from "@website/graphql/mutations/literal/getReadingStates.graphql";
 
-export const LiteralClubLoginMutation = gql`${LiteralClubLogin}`
+export const LiteralClubTokenMutation = gql`${LiteralClubGetToken}`
+export const LiteralClubReadingStatesMutation = gql`${LiteralClubReadingStates}`

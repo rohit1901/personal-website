@@ -1,6 +1,7 @@
 import {NextApiRequest, NextApiResponse} from "next";
-import {GRAPHQL_URL, IS_DEV, LITERAL_GRAPHQL_URL, LiteralReadingListQuery} from "@website/constants";
+import {GRAPHQL_URL} from "@website/constants";
 import {getGraphQLQueryStr} from "@website/lib";
+import {LiteralClubReadingStatesMutation} from "@website/constants/mutations";
 
 `
 NOTE: This API route requires an access token.
@@ -11,16 +12,18 @@ Authorization: Bearer c29tZSBqd3QgY29udGVudA==
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     try {
         const token = req.body.token;
-        const GRes = await fetch(IS_DEV ? GRAPHQL_URL : LITERAL_GRAPHQL_URL, {
+        const GRes = await fetch(GRAPHQL_URL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`
             },
-            body: getGraphQLQueryStr(LiteralReadingListQuery)
+            body: getGraphQLQueryStr(LiteralClubReadingStatesMutation, {
+                token
+            })
         })
         const formattedGRes = await GRes.json();
-        res.status(200).json(formattedGRes.data.myReadingStates);
+        res.status(200).json(formattedGRes.data.getReadingStates);
     } catch (e) {
         res.status(500).json({error: e});
     }

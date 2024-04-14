@@ -12,7 +12,6 @@ import AllInterests from "@website/graphql/queries/allInterests.graphql";
 import AllReferences from "@website/graphql/queries/allReferences.graphql";
 import AllVolunteer from "@website/graphql/queries/allVolunteer.graphql";
 import AllCertificates from "@website/graphql/queries/allCertificates.graphql";
-import myReadingStates from "@website/graphql/queries/literal/readingStates.graphql";
 
 
 export const AboutQuery = gql`${AboutPageQuery}`
@@ -28,5 +27,3 @@ export const AllInterestsQuery = gql`${AllInterests}`
 export const AllReferencesQuery = gql`${AllReferences}`
 export const AllVolunteersQuery = gql`${AllVolunteer}`
 export const AllCertificatesQuery = gql`${AllCertificates}`
-
-export const LiteralReadingListQuery = gql`${myReadingStates}`

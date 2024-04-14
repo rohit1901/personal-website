@@ -1,18 +1,17 @@
 import {NextApiRequest, NextApiResponse} from "next";
-import {GRAPHQL_URL, IS_DEV, LITERAL_GRAPHQL_URL} from "@website/constants";
+import {GRAPHQL_URL} from "@website/constants";
 import {getGraphQLQueryStr} from "@website/lib";
-import {LiteralClubLoginMutation} from "@website/constants/mutations";
-
+import {LiteralClubTokenMutation} from "@website/constants/mutations";
+// TODO: implement this mutation in the server
 const variables = {
-    email: process.env.LITERAL_CLUB_EMAIL,
-    password: process.env.LITERAL_CLUB_AUTHORIZATION_TOKEN
+    appSecret: process.env.APP_SECRET,
 };
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     try {
-        const GRes = await fetch(IS_DEV ? GRAPHQL_URL : LITERAL_GRAPHQL_URL, {
+        const GRes = await fetch(GRAPHQL_URL, {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: getGraphQLQueryStr(LiteralClubLoginMutation, variables)
+            headers: {"Content-Type": "application/json", "Authorization": `Bearer ${process.env.APP_SECRET}`},
+            body: getGraphQLQueryStr(LiteralClubTokenMutation, variables)
         })
         const formattedGRes = await GRes.json();
         res.status(200).json(formattedGRes.data);

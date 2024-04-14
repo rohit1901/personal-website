@@ -16,7 +16,7 @@ export const ProjectCard = ({
     return (
         <div className="lg:mx-5 md:mx-5 xl:w-2/5 2xl:w-2/5 w-full mb-4">
             <div className="coding inverse-toggle px-5 pt-2 shadow-lg font-mono subpixel-antialiased
-              dark:bg-gray-800 bg-transparent pb-6 rounded-lg leading-normal overflow-hidden border">
+            bg-transparent pb-6 rounded-lg leading-normal overflow-hidden border">
                 <div className="top flex justify-between items-center">
                     <div className="flex">
                         <div className="h-3 w-3 bg-red-500 rounded-full"></div>

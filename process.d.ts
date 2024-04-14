@@ -40,5 +40,6 @@ declare namespace NodeJS {
         LITERAL_CLUB_AUTHORIZATION_TOKEN: string
         // GraphQL Server
         GRAPHQL_SERVER_HOST: string
+        APP_SECRET: string
     }
 }

@@ -1,40 +1,37 @@
 "use client"
 import {useEffect, useState} from "react";
-import {useLocalStorage} from "usehooks-ts";
 import {usePathname} from "next/navigation";
-import {LiteralReadingState, LiteralToken} from "@website/types";
+import {LiteralReadingState, LiteralSecrets} from "@website/types";
 import {getBooks, getLiteralReadingStatusValues} from "@website/lib";
 import {Book} from "@website/components/Books/Book";
-import {DefaultLiteralToken, ILITERAL_GRAPHQL_URL, ILITERAL_TOKEN_URL, LITERAL_COOKIE_NAME} from "@website/constants";
+import {DefaultLiteralToken, ILITERAL_GRAPHQL_URL, ILITERAL_TOKEN_URL} from "@website/constants";
 import {ContentLoader} from "@website/components/ContentLoader";
 import {Section} from "@website/components/Section";
 
 export const BooksContent = () => {
-    const [value, setValue, removeValue] = useLocalStorage<LiteralToken>(LITERAL_COOKIE_NAME, DefaultLiteralToken)
+    const [literalToken, setLiteralToken] = useState<LiteralSecrets>(DefaultLiteralToken)
     const [readingStates, setReadingStates] = useState<LiteralReadingState[]>([])
     const [loading, setLoading] = useState(false)
     const pathname = usePathname()
     useEffect(() => {
-        if (value.login.token !== "") return
         setLoading(true)
         fetch(ILITERAL_TOKEN_URL)
             .then(res => res.json())
-            .then(setValue)
+            .then((data) => setLiteralToken(data.getToken))
             .catch(console.error)
             .finally(() => setLoading(false))
     }, [])
     useEffect(() => {
-        if (value.login.token === "") return
         setLoading(true)
         fetch(ILITERAL_GRAPHQL_URL, {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({token: value.login.token})
+            body: JSON.stringify({token: literalToken.token})
         }).then(res => res.json())
-            .then(setReadingStates)
+            .then((data) => setReadingStates(data))
             .catch(console.error)
             .finally(() => setLoading(false))
-    }, [pathname])
+    }, [literalToken])
     if (loading) return <ContentLoader/>
     return (
         <Section className="flex-col">

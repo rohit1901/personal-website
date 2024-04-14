@@ -1,5 +1,5 @@
-schema: http://localhost:4000/graphql
+schema: http://localhost:4002/graphql
 documents: '**/*.graphql'
 extensions:
   endpoints:
-    default: http://localhost:4000/graphql
+    default: http://localhost:4002/graphql
