@@ -6,7 +6,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         const QUERY = req.body;
         const GRes = await fetch(GRAPHQL_URL, {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
+            headers: {"Content-Type": "application/json", "Authorization": `Bearer ${process.env.APP_SECRET}`},
             body: JSON.stringify(QUERY)
         })
         const formattedGRes = await GRes.json();

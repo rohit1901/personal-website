@@ -1,6 +1,6 @@
 import {FALLBACK_IMAGE, INSTAGRAM_MEDIA_URL} from "@website/constants";
 import {DocumentNode} from "graphql";
-import {GitHubOwner, GitHubRepo, LiteralBook, LiteralReadingState, LiteralReadingStatus} from "@website/types";
+import {LiteralBook, LiteralReadingState, LiteralReadingStatus} from "@website/types";
 
 /**
  * This function formats the date to a human-readable format using the user's locale.
@@ -17,12 +17,13 @@ export const formatDate = (date: string): string => {
 }
 /**
  * This function formats the date to a human-readable format using the user's locale.
- * @param fromDate {string} - the from date to format
- * @param toDate {string} - the to date to format
+ * @param fromDate {string | undefined} - the from date to format
+ * @param toDate {string | undefined} - the to date to format
  * @returns {string} - the formatted date
  * @example getMMYYYYDate("01-2021", "12-2021") => "January 2021 - December 2021"
  */
-export const getMMYYYYDate = (fromDate: string, toDate?: string): string => {
+export const getMMYYYYDate = (fromDate?: string, toDate?: string): string => {
+    if (!fromDate) return ""
     const userLocale = navigator.language
     const from = new Date(`01-${fromDate}`).toLocaleDateString(userLocale, {
         month: 'short',
@@ -131,24 +132,10 @@ export const getCoverImage = (cover?: string | undefined): string => {
  * @returns {LiteralBook[]} - the books based on the reading status
  */
 export const getBooks = (readingStates: LiteralReadingState[], status: LiteralReadingStatus): LiteralBook[] => {
-    return readingStates.filter(state => state.status === status).map(state => state.book)
+    return readingStates?.filter(state => state.status === status)?.map(state => state.book)
 }
 /**
- * Transforms the GitHub data. The data is transformed by adding the login, avatar_url, and html_url to each item
- * and splitting the title into title and description.
- * @example transformGitHubData(data, {login: "test", avatar_url: "test", html_url: "test"}) => [{title: "test", description: "test", login: "test", avatar_url: "test", html_url: "test"}]
- * @param data {GitHubRepo[]} - the GitHub data
- * @param login {string | undefined} - the login
- * @param avatar_url {string | undefined} - the avatar url
- * @param html_url {string | undefined} - the html url
+ * Checks if the environment is development or not
+ * @returns {boolean} - true if the environment is development, false otherwise
  */
-export const transformGitHubData = (data: GitHubRepo[], {login, avatar_url, html_url}: GitHubOwner): GitHubRepo[] => {
-    return data.map(m => ({
-        ...m,
-        title: m.title.split(":")[0],
-        description: m.title.split(":")[1],
-        login,
-        avatar_url,
-        html_url
-    }));
-}
+export const isDev = (): boolean => process.env.NODE_ENV === "development"

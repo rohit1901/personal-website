@@ -1,7 +1,7 @@
 import {Runner} from "@website/components/Runner";
 import {Navbar} from "@website/components/Navbar";
 import {Footer} from "@website/components/Footer";
-import {AboutContent} from "@website/components/AboutContent";
+import {AboutContent} from "@website/components/About/AboutContent";
 
 export default function About() {
     return (

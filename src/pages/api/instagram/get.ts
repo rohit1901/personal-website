@@ -1,11 +1,10 @@
 import {NextApiRequest, NextApiResponse} from "next";
-import {getInstagramUrl} from "@website/lib";
+import {getInstagramUrl, isDev} from "@website/lib";
 import {INSTAGRAM_DATA} from "@website/data";
-import {IS_DEV} from "@website/constants";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     try {
-        if (IS_DEV) {
+        if (isDev()) {
             res.status(200).json(INSTAGRAM_DATA.data);
             return;
         }

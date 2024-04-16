@@ -12,7 +12,9 @@ import AllInterests from "@website/graphql/queries/allInterests.graphql";
 import AllReferences from "@website/graphql/queries/allReferences.graphql";
 import AllVolunteer from "@website/graphql/queries/allVolunteer.graphql";
 import AllCertificates from "@website/graphql/queries/allCertificates.graphql";
-import myReadingStates from "@website/graphql/queries/literal/readingStates.graphql";
+import GetGitHubData from "@website/graphql/queries/gitHubRepos.graphql";
+import GetReadingStates from "@website/graphql/queries/getReadingStates.graphql";
+import GetLiteralToken from "@website/graphql/queries/getToken.graphql";
 
 
 export const AboutQuery = gql`${AboutPageQuery}`
@@ -29,4 +31,8 @@ export const AllReferencesQuery = gql`${AllReferences}`
 export const AllVolunteersQuery = gql`${AllVolunteer}`
 export const AllCertificatesQuery = gql`${AllCertificates}`
 
-export const LiteralReadingListQuery = gql`${myReadingStates}`
+
+export const GetGitHubDataQuery = gql`${GetGitHubData}`
+export const GetReadingStatesQuery = gql`${GetReadingStates}`
+
+export const GetLiteralTokenQuery = gql`${GetLiteralToken}`

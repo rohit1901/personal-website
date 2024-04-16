@@ -1,0 +1,12 @@
+query GetGitHubData {
+    gitHubRepos {
+        description
+        icon
+        image
+        title
+        url
+        login
+        avatar_url
+        html_url
+    }
+}

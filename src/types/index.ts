@@ -48,13 +48,10 @@ export type LiteralProfile = {
     handle: string
     image: string
 }
-export type LiteralToken = {
-    login: {
-        token: string
-        email: string
-        languages: string[]
-        profile: LiteralProfile
-    }
+export type LiteralSecrets = {
+    token: string
+    createdOn: Date
+    expiresOn: Date
 }
 export type BookAuthor = {
     name: string
@@ -239,6 +236,7 @@ export interface ResumeSchema {
          * List notable courses/subjects
          */
         courses?: string[];
+        url?: string;
         [k: string]: any;
     }[];
     /**
