@@ -34,11 +34,11 @@ export const BooksContent = () => {
     return (
         <Section className="flex-col">
             <div className="flex flex-col xl:w-3/4 2xl:w-3/4 w-full mb-10">
-                <h1 className="text-4xl font-bold tracking-tight w-3/4">Books that I’m reading, I've read, want to read, and a lot of other things
+                <h1 className="text-4xl font-bold tracking-tight w-3/4">Books that I&apos;m reading, I&apos;ve read, want to read, and a lot of other things
                     related to books.</h1>
                 <div className="mt-6 space-y-7 text-base">
-                    <span>Here are some of the books that I’ve read, am reading, or want to read.
-                        I’m always looking for new books to read, so if you have any recommendations, feel free to reach out to me.</span>
+                    <span>Here are some of the books that I&apos;ve read, am reading, or want to read.
+                        I&apos;m always looking for new books to read, so if you have any recommendations, feel free to reach out to me.</span>
                 </div>
             </div>
             {getLiteralReadingStatusValues().map(status => (
