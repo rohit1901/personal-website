@@ -1,6 +1,6 @@
 import {FALLBACK_IMAGE, INSTAGRAM_MEDIA_URL} from "@website/constants";
 import {DocumentNode} from "graphql";
-import {GitHubOwner, GitHubRepo, LiteralBook, LiteralReadingState, LiteralReadingStatus} from "@website/types";
+import {LiteralBook, LiteralReadingState, LiteralReadingStatus} from "@website/types";
 
 /**
  * This function formats the date to a human-readable format using the user's locale.
@@ -135,21 +135,7 @@ export const getBooks = (readingStates: LiteralReadingState[], status: LiteralRe
     return readingStates?.filter(state => state.status === status)?.map(state => state.book)
 }
 /**
- * Transforms the GitHub data. The data is transformed by adding the login, avatar_url, and html_url to each item
- * and splitting the title into title and description.
- * @example transformGitHubData(data, {login: "test", avatar_url: "test", html_url: "test"}) => [{title: "test", description: "test", login: "test", avatar_url: "test", html_url: "test"}]
- * @param data {GitHubRepo[]} - the GitHub data
- * @param login {string | undefined} - the login
- * @param avatar_url {string | undefined} - the avatar url
- * @param html_url {string | undefined} - the html url
+ * Checks if the environment is development or not
+ * @returns {boolean} - true if the environment is development, false otherwise
  */
-export const transformGitHubData = (data: GitHubRepo[], {login, avatar_url, html_url}: GitHubOwner): GitHubRepo[] => {
-    return data.map(m => ({
-        ...m,
-        title: m.title.split(":")[0],
-        description: m.title.split(":")[1],
-        login,
-        avatar_url,
-        html_url
-    }));
-}
+export const isDev = (): boolean => process.env.NODE_ENV === "development"
