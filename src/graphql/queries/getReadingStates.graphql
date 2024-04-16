@@ -1,5 +1,5 @@
-mutation LiteralClubReadingStates($token: String!) {
-    getReadingStates(token: $token) {
+query getReadingStates {
+    getReadingStates {
         book {
             title
             description

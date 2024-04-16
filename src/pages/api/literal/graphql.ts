@@ -1,29 +1,25 @@
 import {NextApiRequest, NextApiResponse} from "next";
-import {GRAPHQL_URL} from "@website/constants";
+import {GetReadingStatesQuery, GRAPHQL_URL} from "@website/constants";
 import {getGraphQLQueryStr} from "@website/lib";
-import {LiteralClubReadingStatesMutation} from "@website/constants/mutations";
 
 `
 NOTE: This API route requires an access token.
-The access token should be used as an Authorization header for queries or mutations that require it. An access token is valid for 6 months.
-Example Authorization header:
-Authorization: Bearer c29tZSBqd3QgY29udGVudA==
+The access token should be used as a X-Literal-Token header which is the token returned from the /api/literal/token route.
+The token validity is handled by the BE and the token is stored in the database.
 `
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     try {
-        const token = req.body.token;
         const GRes = await fetch(GRAPHQL_URL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
+                "Authorization": `Bearer ${process.env.APP_SECRET}`,
+                "x-literal-token": req.headers["x-literal-token"] as string
             },
-            body: getGraphQLQueryStr(LiteralClubReadingStatesMutation, {
-                token
-            })
+            body: getGraphQLQueryStr(GetReadingStatesQuery)
         })
         const formattedGRes = await GRes.json();
-        res.status(200).json(formattedGRes.data.getReadingStates);
+        res.status(200).json(formattedGRes.data);
     } catch (e) {
         res.status(500).json({error: e});
     }

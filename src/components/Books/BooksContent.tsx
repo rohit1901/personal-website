@@ -1,6 +1,5 @@
 "use client"
 import {useEffect, useState} from "react";
-import {usePathname} from "next/navigation";
 import {LiteralReadingState, LiteralSecrets} from "@website/types";
 import {getBooks, getLiteralReadingStatusValues} from "@website/lib";
 import {Book} from "@website/components/Books/Book";
@@ -12,23 +11,22 @@ export const BooksContent = () => {
     const [literalToken, setLiteralToken] = useState<LiteralSecrets>(DefaultLiteralToken)
     const [readingStates, setReadingStates] = useState<LiteralReadingState[]>([])
     const [loading, setLoading] = useState(false)
-    const pathname = usePathname()
     useEffect(() => {
         setLoading(true)
         fetch(ILITERAL_TOKEN_URL)
             .then(res => res.json())
-            .then((data) => setLiteralToken(data.getToken))
+            .then((data) => setLiteralToken(data.getLiteralToken))
             .catch(console.error)
             .finally(() => setLoading(false))
     }, [])
     useEffect(() => {
+        if (literalToken.token === "") return
         setLoading(true)
         fetch(ILITERAL_GRAPHQL_URL, {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({token: literalToken.token})
+            headers: {"Content-Type": "application/json", "x-literal-token": literalToken.token},
         }).then(res => res.json())
-            .then((data) => setReadingStates(data))
+            .then((data) => setReadingStates(data.getReadingStates))
             .catch(console.error)
             .finally(() => setLoading(false))
     }, [literalToken])

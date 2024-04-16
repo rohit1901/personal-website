@@ -132,7 +132,7 @@ export const getCoverImage = (cover?: string | undefined): string => {
  * @returns {LiteralBook[]} - the books based on the reading status
  */
 export const getBooks = (readingStates: LiteralReadingState[], status: LiteralReadingStatus): LiteralBook[] => {
-    return readingStates.filter(state => state.status === status).map(state => state.book)
+    return readingStates?.filter(state => state.status === status)?.map(state => state.book)
 }
 /**
  * Transforms the GitHub data. The data is transformed by adding the login, avatar_url, and html_url to each item
