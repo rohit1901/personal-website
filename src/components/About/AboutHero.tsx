@@ -35,23 +35,23 @@ export const AboutHero = () => {
         <Fragment>
             <Section className="xl:flex-wrap 2xl:flex-wrap flex-wrap-reverse">
                 <div className="flex flex-col xl:w-1/2 2xl:w-1/2">
-                    <h1 className="text-4xl font-bold my-5">I’m Rohit Khanduri. I live in Frankfurt am Main, where I design the future.</h1>
+                    <h1 className="text-4xl font-bold my-5">I’m Rohit Khanduri. Mathematician, Software Architect, and Accidental Poet.</h1>
                     <div className="mt-6 space-y-7 text-base">
-                        <p>I’ve loved making things for as long as I can remember, and wrote my first program when I was 6 years old, just two weeks
-                            after
-                            my mom brought home the brand new Macintosh LC 550 that I taught myself to type on.</p>
-                        <p>The only thing I loved more than computers as a kid was space. When I was 8, I climbed the 40-foot oak tree at the back of
-                            our
-                            yard while wearing my older sister’s motorcycle helmet, counted down from three, and jumped — hoping the tree was tall
-                            enough
-                            that with just a bit of momentum I’d be able to get to orbit.</p>
-                        <p>I spent the next few summers indoors working on a rocket design, while I recovered from the multiple surgeries it took to
-                            fix
-                            my badly broken legs. It took nine iterations, but when I was 15 I sent my dad’s Blackberry into orbit and was able to
-                            transmit a photo back down to our family computer from space.</p>
-                        <p>Today, I’m the founder of Planetaria, where we’re working on civilian space suits and manned shuttle kits you can assemble
-                            at
-                            home so that the next generation of kids really can make it to orbit — from the comfort of their own backyards.</p>
+                        <p>Hey there! 😊 I'm Rohit Khanduri, a software architect by profession and a mathematician by education.
+                            But let's be real, I was basically born with a calculator in my hand and a penchant for solving complex problems.
+                            🤓 Okay, maybe that's a bit dramatic, but I did ace my math exams in school (#nerd).</p>
+                        <p>Growing up in New Delhi, India, I had a typical 90s childhood filled with sports, music, and a healthy dose of mischief. 🏃‍♂️🎸
+                            I was the kid who would always try to sneak in a few extra questions during math class (#rebel),
+                            and my teachers would often find me doodling math problems in my notebook instead of taking notes (#distracted).</p>
+                        <p>But don't let my math geekery fool you – I also have a secret love for the arts. 🎨
+                            I was the drummer for a rock band (#drumroll please), and I even tried my hand at writing poetry (#poetlife).
+                            In fact, I once wrote a poem for my wife (then, girlfriend) that was so sappy and emotional, she thought I was depressed (#fail). 😅</p>
+                        <p>Now, as a software architect, I've turned my love for problem-solving and creativity into a career. 💻
+                            I've worked with some amazing clients and collaborated with talented developers to create some truly innovative software solutions.</p>
+                        <p>
+                            So, if you're looking for a software architect who can balance the technical and the creative, look no further! 🤝
+                            I'm your guy. Just don't ask me to solve any more math problems – my brain is still recovering from all that calculus. 😅😂
+                        </p>
                     </div>
                 </div>
                 {basics && <div className="xl:ml-auto 2xl:ml-auto mx-auto">
