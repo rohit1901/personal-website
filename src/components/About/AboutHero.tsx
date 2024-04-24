@@ -35,22 +35,24 @@ export const AboutHero = () => {
         <Fragment>
             <Section className="xl:flex-wrap 2xl:flex-wrap flex-wrap-reverse">
                 <div className="flex flex-col xl:w-1/2 2xl:w-1/2">
-                    <h1 className="text-4xl font-bold my-5">I’m Rohit Khanduri. Mathematician, Software Architect, and Accidental Poet.</h1>
+                    <h1 className="text-4xl font-bold my-5">I&apos;m Rohit Khanduri. Mathematician, Software Architect, and Accidental Poet.</h1>
                     <div className="mt-6 space-y-7 text-base">
-                        <p>Hey there! 😊 I'm Rohit Khanduri, a software architect by profession and a mathematician by education.
-                            But let's be real, I was basically born with a calculator in my hand and a penchant for solving complex problems.
-                            🤓 Okay, maybe that's a bit dramatic, but I did ace my math exams in school (#nerd).</p>
+                        <p>Hey there! 😊 I&apos;m Rohit Khanduri, a software architect by profession and a mathematician by education.
+                            But let&apos;s be real, I was basically born with a calculator in my hand and a penchant for solving complex problems.
+                            🤓 Okay, maybe that&apos;s a bit dramatic, but I did ace my math exams in school (#nerd).</p>
                         <p>Growing up in New Delhi, India, I had a typical 90s childhood filled with sports, music, and a healthy dose of mischief. 🏃‍♂️🎸
                             I was the kid who would always try to sneak in a few extra questions during math class (#rebel),
                             and my teachers would often find me doodling math problems in my notebook instead of taking notes (#distracted).</p>
-                        <p>But don't let my math geekery fool you – I also have a secret love for the arts. 🎨
+                        <p>But don&apos;t let my math geekery fool you – I also have a secret love for the arts. 🎨
                             I was the drummer for a rock band (#drumroll please), and I even tried my hand at writing poetry (#poetlife).
                             In fact, I once wrote a poem for my wife (then, girlfriend) that was so sappy and emotional, she thought I was depressed (#fail). 😅</p>
-                        <p>Now, as a software architect, I've turned my love for problem-solving and creativity into a career. 💻
-                            I've worked with some amazing clients and collaborated with talented developers to create some truly innovative software solutions.</p>
+                        <p>Now, as a software architect, I&apos;ve turned my love for problem-solving and creativity into a career. 💻
+                            I&apos;ve worked with some amazing clients and collaborated with talented developers to create some truly innovative
+                            software solutions.</p>
                         <p>
-                            So, if you're looking for a software architect who can balance the technical and the creative, look no further! 🤝
-                            I'm your guy. Just don't ask me to solve any more math problems – my brain is still recovering from all that calculus. 😅😂
+                            So, if you&apos;re looking for a software architect who can balance the technical and the creative, look no further! 🤝
+                            I&apos;m your guy. Just don&apos;t ask me to solve any more math problems – my brain is still recovering from all that
+                            calculus. 😅😂
                         </p>
                     </div>
                 </div>
