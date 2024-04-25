@@ -37,7 +37,7 @@ export const AboutHero = () => {
                 <div className="flex flex-col xl:w-1/2 2xl:w-1/2">
                     <h1 className="text-4xl font-bold my-5">I&apos;m Rohit Khanduri. Mathematician, Software Architect, and Accidental Poet.</h1>
                     <div className="mt-6 space-y-7 text-base">
-                        <p>Hey there! 😊 I&apos;m Rohit Khanduri, a software architect by profession and a mathematician by education.
+                        <p>Hey there! 😊 I&apos;m Rohit Khanduri, a Software Architect by profession and a mathematician by education.
                             But let&apos;s be real, I was basically born with a calculator in my hand and a penchant for solving complex problems.
                             🤓 Okay, maybe that&apos;s a bit dramatic, but I did ace my math exams in school (#nerd).</p>
                         <p>Growing up in New Delhi, India, I had a typical 90s childhood filled with sports, music, and a healthy dose of mischief. 🏃‍♂️🎸

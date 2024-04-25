@@ -5,7 +5,7 @@ import {Profile} from "@website/types";
 import {NetworkProfiles} from "@website/components/NetworkProfiles";
 import {ContentLoader} from "@website/components/ContentLoader";
 import {getGraphQLQueryStr, getImageUrl} from "@website/lib";
-import {AllBasicsQuery} from "@website/constants";
+import {AllBasicsQuery, PROFILE_PIC} from "@website/constants";
 
 type HeroProps = {
     name: string;
@@ -19,7 +19,7 @@ export const Hero = () => {
     const [basics, setBasics] = useState<HeroProps>({
         name: "",
         label: "",
-        image: "/portfolio/profile.pic.svg",
+        image: PROFILE_PIC,
         summary: "",
         profiles: []
     });
@@ -38,7 +38,7 @@ export const Hero = () => {
         <div className="flex flex-col m-10">
             <div className="avatar px-4 mb-10">
                 <div className="w-24 rounded-full">
-                    <Image src={getImageUrl(basics?.image)} width="100" height="100" alt="rohit avatar"/>
+                    <Image src={getImageUrl(PROFILE_PIC)} width="100" height="100" alt="rohit avatar"/>
                 </div>
             </div>
             <div className="hero flex flex-col items-start min-w-full">

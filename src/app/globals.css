@@ -25,7 +25,7 @@
     @apply text-cyan-500 !important;
 }
 
-[data-theme="black"] * {
+[data-theme="black"] :not(.menu a) {
     @apply text-gray-300 !important;
 }
 

@@ -1,15 +1,23 @@
 import {SubstackCard} from "@website/components/Home/SubstackCard";
-import {FaBriefcase, FaChevronDown} from "react-icons/fa";
+import {FaBriefcase} from "react-icons/fa";
 import {WorkExperiences} from "@website/components/Home/WorkExperiences";
 import {Posts} from "@website/components/Posts";
 import {Section} from "@website/components/Section";
+import {DE_RESUME, EN_RESUME} from "@website/constants";
+import {FaSquareArrowUpRight} from "react-icons/fa6";
 
 export const DownloadCV = () => {
     return (
-        <button className="action-button w-full mt-6 rounded-md text-sm">
-            <FaChevronDown className="w-3 h-3 animate-bounce"/>
-            <span className="ml-2">Download CV</span>
-        </button>
+        <div className="flex justify-center gap-2 w-full">
+            <a className="action-button mt-6 rounded-md text-sm" target="_blank" href={EN_RESUME}>
+                <FaSquareArrowUpRight className="w-3 h-3"/>
+                <span className="ml-2">Resume EN</span>
+            </a>
+            <a className="action-button mt-6 rounded-md text-sm" target="_blank" href={DE_RESUME}>
+                <FaSquareArrowUpRight className="w-3 h-3"/>
+                <span className="ml-2">Resume DE</span>
+            </a>
+        </div>
     )
 }
 const JobsCard = {

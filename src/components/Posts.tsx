@@ -3,12 +3,13 @@ import {useEffect, useState} from "react";
 import {FeedItem, RssToJSON} from "@website/types";
 import Link from "next/link";
 import {FaArrowRight} from "react-icons/fa";
-import {formatDate} from "@website/lib";
+import {formatDate, getBlogPosts} from "@website/lib";
 import {ContentLoader} from "@website/components/ContentLoader";
 import {usePathname} from "next/navigation";
 import {ContentText} from "@website/components/ContentText";
+import {SUBSTACK_FEED_URL} from "@website/constants";
 
-const FEED_URL = encodeURI("https://rohitkhanduri.substack.com/feed")
+const FEED_URL = encodeURI(SUBSTACK_FEED_URL)
 const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${FEED_URL}`
 export const Post = (item?: FeedItem) => {
     const pathname = usePathname()
@@ -36,6 +37,7 @@ export const Post = (item?: FeedItem) => {
 export const Posts = () => {
     const [loading, setLoading] = useState(false)
     const [substack, setSubstack] = useState<RssToJSON>()
+    const pathname = usePathname()
     useEffect(() => {
         setLoading(true)
         fetch(API_URL)
@@ -49,7 +51,7 @@ export const Posts = () => {
     if (loading) return <ContentLoader/>
     return (
         <aside className="lg:w-3/4 w-full flex flex-col space-y-10 mr-2 border-l justify-evenly">
-            {substack?.items.map((item, index) => (
+            {getBlogPosts(substack, pathname)?.map((item, index) => (
                 <Post key={`item.guid-${index}`} {...item}/>
             ))}
         </aside>

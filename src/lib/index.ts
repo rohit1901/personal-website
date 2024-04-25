@@ -1,6 +1,6 @@
 import {FALLBACK_IMAGE, INSTAGRAM_MEDIA_URL} from "@website/constants";
 import {DocumentNode} from "graphql";
-import {LiteralBook, LiteralReadingState, LiteralReadingStatus} from "@website/types";
+import {LiteralBook, LiteralReadingState, LiteralReadingStatus, RssToJSON} from "@website/types";
 
 /**
  * This function formats the date to a human-readable format using the user's locale.
@@ -139,3 +139,11 @@ export const getBooks = (readingStates: LiteralReadingState[], status: LiteralRe
  * @returns {boolean} - true if the environment is development, false otherwise
  */
 export const isDev = (): boolean => process.env.NODE_ENV === "development"
+
+/**
+ * Get the blog posts from the substack feed based on the path of the page.
+ * If the path is the home page, return the first 4 posts, otherwise return all posts.
+ * @param substack {RssToJSON} - the substack feed
+ * @param path {string | null} - the path of the page
+ */
+export const getBlogPosts = (substack?: RssToJSON, path?: string | null) => substack?.items.slice(0, path === "/" ? 4 : undefined)
