@@ -146,4 +146,4 @@ export const isDev = (): boolean => process.env.NODE_ENV === "development"
  * @param substack {RssToJSON} - the substack feed
  * @param path {string | null} - the path of the page
  */
-export const getBlogPosts = (substack?: RssToJSON, path?: string | null) => substack?.items.slice(0, path === "/" ? 4 : undefined)
+export const getBlogPosts = (substack?: RssToJSON, path?: string | null) => substack?.items?.slice(0, path === "/" ? 4 : undefined)
