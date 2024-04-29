@@ -1,4 +1,3 @@
-//TODO: Add Projects, interests, and skills
 export const INSTAGRAM_DATA = {
     data: [
         {

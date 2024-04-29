@@ -1,5 +1,5 @@
 "use client"
-import {ResumeSchema} from "@website/types";
+import {Basics, ResumeSchema} from "@website/types";
 import {Section} from "@website/components/Section";
 import Link from "next/link";
 import Image from "next/image";
@@ -10,12 +10,12 @@ import {Divider} from "@website/components/Divider";
 import {FaEnvelope} from "react-icons/fa";
 import {DesktopHidden} from "@website/components/Desktop/DesktopHidden";
 import {Fragment, useEffect, useState} from "react";
-import {AboutQuery} from "@website/constants";
+import {AboutQuery, defaultBasicProfile} from "@website/constants";
 import {ContentLoader} from "@website/components/ContentLoader";
 
 export const AboutHero = () => {
     const [loading, setLoading] = useState(false)
-    const [basics, setBasics] = useState<ResumeSchema["basics"]>({})
+    const [basics, setBasics] = useState<Basics>(defaultBasicProfile)
     useEffect(() => {
         setLoading(true)
         fetch("/api/resume/graphql", {

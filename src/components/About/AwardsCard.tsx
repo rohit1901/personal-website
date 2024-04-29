@@ -6,12 +6,12 @@ import {AllAwardsQuery} from "@website/constants";
 import {ContentText} from "@website/components/ContentText";
 import Link from "next/link";
 import {PhoneHidden} from "@website/components/Phone/PhoneHidden";
-import {FaAward, FaUserGraduate} from "react-icons/fa";
-import {ResumeSchema} from "@website/types";
+import {FaAward} from "react-icons/fa";
+import {Award} from "@website/types";
 
-export const Awards = () => {
+export const AwardsCard = () => {
     const [loading, setLoading] = useState(false)
-    const [awards, setAwards] = useState<ResumeSchema["awards"]>([])
+    const [awards, setAwards] = useState<Award[]>([])
     useEffect(() => {
         setLoading(true)
         fetch("/api/resume/graphql", {
@@ -20,12 +20,12 @@ export const Awards = () => {
             body: getGraphQLQueryStr(AllAwardsQuery)
         }).then(res => res.json())
             .then((data) => setAwards(data.awards)).catch(console.error)
-            .finally(() => setLoading(false))
+            .finally(() => setLoading(false));
     }, []);
     if (loading) return <ContentLoader/>
     return (
         <div className="rounded-2xl border p-6">
-            <h2 className="flex font-semibold items-start">
+            <h2 className="flex font-semibold items-baseline">
                 <div className="rounded-full"><FaAward/></div>
                 <span className="ml-3">Awards</span>
             </h2>

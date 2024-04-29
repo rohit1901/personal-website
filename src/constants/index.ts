@@ -1,4 +1,4 @@
-import {LiteralSecrets} from "@website/types";
+import {Basics, LiteralSecrets} from "@website/types";
 // External API Constants
 export const INSTAGRAM_MEDIA_URL = "https://graph.instagram.com/me/media?fields=caption,media_url&access_token=";
 export const SUBSTACK_FEED_URL = "https://rohitkhanduri.substack.com/feed";
@@ -16,6 +16,20 @@ export const DefaultLiteralToken: LiteralSecrets = {
     token: "",
     createdOn: new Date(),
     expiresOn: new Date()
+}
+export const defaultBasicProfile: Basics = {
+    phone: "", profiles: [], summary: "", url: "",
+    location: {
+        address: "",
+        city: "",
+        countryCode: "",
+        postalCode: "",
+        region: ""
+    },
+    name: "Rohit Khanduri",
+    label: "Software Architect",
+    image: "/avatar.png",
+    email: "rohit.khanduri@proton.me"
 }
 export const NO_DESCRIPTION = "Whoops! There's no description available."
 export const FALLBACK_IMAGE = "/avatar.png";

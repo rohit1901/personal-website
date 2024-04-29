@@ -1,6 +1,6 @@
 "use client"
 import {Fragment, useEffect, useState} from "react";
-import {ResumeSchema} from "@website/types";
+import {ResumeSchema, Volunteer} from "@website/types";
 import {getGraphQLQueryStr, getMMYYYYDate} from "@website/lib";
 import {AllVolunteersQuery} from "@website/constants";
 import {ContentText} from "@website/components/ContentText";
@@ -11,7 +11,7 @@ import {MdOutlineVolunteerActivism} from "react-icons/md";
 
 export const Volunteering = () => {
     const [loading, setLoading] = useState(false);
-    const [volunteering, setVolunteering] = useState<ResumeSchema["volunteer"]>([])
+    const [volunteering, setVolunteering] = useState<Volunteer[]>([])
     useEffect(() => {
         setLoading(true)
         fetch("/api/resume/graphql", {
@@ -25,7 +25,7 @@ export const Volunteering = () => {
     if (loading) return <ContentLoader/>
     return (
         <div className="rounded-2xl border p-6">
-            <h2 className="flex font-semibold items-start">
+            <h2 className="flex font-semibold items-baseline">
                 <div className="rounded-full"><MdOutlineVolunteerActivism/></div>
                 <span className="ml-3">Volunteering</span>
             </h2>

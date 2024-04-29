@@ -7,11 +7,11 @@ import {ContentText} from "@website/components/ContentText";
 import Link from "next/link";
 import {PhoneHidden} from "@website/components/Phone/PhoneHidden";
 import {FaUserGraduate} from "react-icons/fa";
-import {ResumeSchema} from "@website/types";
+import {Education} from "@website/types";
 
-export const Education = () => {
+export const EducationCard = () => {
     const [loading, setLoading] = useState(false)
-    const [education, setEducation] = useState<ResumeSchema["education"]>([])
+    const [education, setEducation] = useState<Education[]>([])
     useEffect(() => {
         setLoading(true)
         fetch("/api/resume/graphql", {
@@ -25,7 +25,7 @@ export const Education = () => {
     if (loading) return <ContentLoader/>
     return (
         <div className="rounded-2xl border p-6">
-            <h2 className="flex font-semibold items-start">
+            <h2 className="flex font-semibold items-baseline">
                 <div className="rounded-full"><FaUserGraduate/></div>
                 <span className="ml-3">Education</span>
             </h2>
