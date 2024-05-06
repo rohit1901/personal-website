@@ -71,7 +71,7 @@
 }
 
 .coding .command {
-    @apply text-xxs md:text-sm lg:text-sm xl:text-sm 2xl:text-sm !important;
+    @apply text-xs md:text-sm !important;
 }
 
 .menu a {

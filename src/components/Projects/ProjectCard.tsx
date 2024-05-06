@@ -9,23 +9,21 @@ export const ProjectCard = ({
                                 image,
                                 title,
                                 url,
-                                login,
                                 avatar_url,
                                 html_url
                             }: GitHubRepo) => {
     return (
-        <div className="lg:mx-5 md:mx-5 xl:w-2/5 2xl:w-2/5 w-full mb-4">
-            <div className="coding inverse-toggle px-5 pt-2 shadow-lg font-mono subpixel-antialiased
+        <div className="xl:w-2/5 md:mx-5 w-full mb-4">
+            <div className="coding inverse-toggle px-5 shadow-lg font-mono subpixel-antialiased
             bg-transparent pb-6 rounded-lg leading-normal overflow-hidden border">
-                <div className="top flex justify-between items-center">
-                    <div className="flex">
+                <div className="flex flex-col justify-between">
+                    <div className="flex my-6">
                         <div className="h-3 w-3 bg-red-500 rounded-full"></div>
                         <div className="ml-2 h-3 w-3 bg-orange-300 rounded-full"></div>
                         <div className="ml-2 h-3 w-3 bg-green-500 rounded-full"></div>
                     </div>
-                    <Link href={url}><img src={image} alt={title} className="w-12 h-12 mask mask-circle"/></Link>
                 </div>
-                <Divider/>
+                <Divider classNames="my-0"/>
                 <div className="mt-4 flex command">
                     <span className="text-green-400">github:~$</span>
                     <p className="flex-1 typing items-center pl-2">
@@ -49,10 +47,10 @@ export const ProjectCard = ({
                         <br/>
                     </p>
                 </div>
-                <Divider/>
+                <Divider classNames="mt-4"/>
                 {html_url && <Link className="flex flex-row items-center justify-between" href={html_url}>
                     <Image src={getCoverImage(avatar_url)} alt={title} className="w-8 h-8 mask mask-circle mr-4" width={20} height={20}/>
-                    <span className="command">{login}</span>
+                    <Image src={image} alt={title} className="w-12 h-12 mask mask-circle" width={20} height={20} loading="eager"/>
                 </Link>}
             </div>
         </div>
