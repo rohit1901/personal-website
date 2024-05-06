@@ -36,7 +36,7 @@ export const Hero = () => {
     if (loading) return <ContentLoader/>
     return (
         <div className="flex flex-col m-10">
-            <div className="avatar px-4 mb-10">
+            <div className="avatar px-4 mb-10 lg:sticky top-0 left-0 right-0 lg:z-50">
                 <div className="w-24 rounded-full">
                     <Image src={getImageUrl(PROFILE_PIC)} width="100" height="100" alt="rohit avatar"/>
                 </div>

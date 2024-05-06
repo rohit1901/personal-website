@@ -9,13 +9,15 @@ export const setActiveClass = (currentPath?: string | null, path?: string | null
 }
 export const Navbar = () => {
     return (
-        <div className="navbar my-4 px-8">
-            {/*Mobile Navigation*/}
-            <MobileNavigation/>
-            {/*Desktop Navigation*/}
-            <DesktopNavigation/>
-            <div className="navbar-end">
-                <ThemeToggle/>
+        <div className="sticky top-0 left-0 right-0 z-50" data-theme="">
+            <div className="navbar my-4 px-8">
+                {/*Mobile Navigation*/}
+                <MobileNavigation/>
+                {/*Desktop Navigation*/}
+                <DesktopNavigation/>
+                <div className="navbar-end">
+                    <ThemeToggle/>
+                </div>
             </div>
         </div>
     )
