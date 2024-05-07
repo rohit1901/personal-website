@@ -1,7 +1,7 @@
 import {Navbar} from "@website/components/Navbar";
-import {Hero} from "@website/components/Home/Hero";
+import Hero from "@website/components/Home/Hero";
 import {Carousel} from "@website/components/Home/Carousel";
-import {Runner} from "@website/components/Runner";
+import Runner from "@website/components/Runner";
 import {Footer} from "@website/components/Footer";
 import {MainContent} from "@website/components/Home/MainContent";
 // TODO: Readme

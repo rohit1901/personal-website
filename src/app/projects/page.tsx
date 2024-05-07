@@ -1,9 +1,8 @@
-"use client"
-import {Runner} from "@website/components/Runner";
+import Runner from "@website/components/Runner";
 import {Navbar} from "@website/components/Navbar";
 import {Footer} from "@website/components/Footer";
-import {ProjectsContent} from "@website/components/Projects/ProjectsContent";
-import {Section} from "@website/components/Section";
+import ProjectsContent from "@website/components/Projects/ProjectsContent";
+import Section from "@website/components/Section";
 
 export default function Projects() {
     return (

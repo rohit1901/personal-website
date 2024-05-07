@@ -1,36 +1,11 @@
-"use client"
-import {useEffect, useState} from "react";
-import {LiteralReadingState, LiteralSecrets} from "@website/types";
+import {LiteralReadingState} from "@website/types";
 import {getBooks, getLiteralReadingStatusValues} from "@website/lib";
 import {Book} from "@website/components/Books/Book";
-import {DefaultLiteralToken, ILITERAL_GRAPHQL_URL, ILITERAL_TOKEN_URL} from "@website/constants";
-import {ContentLoader} from "@website/components/ContentLoader";
-import {Section} from "@website/components/Section";
+import Section from "@website/components/Section";
+import {getLiteralReadingStates} from "@website/lib/fetchData";
 
-export const BooksContent = () => {
-    const [literalToken, setLiteralToken] = useState<LiteralSecrets>(DefaultLiteralToken)
-    const [readingStates, setReadingStates] = useState<LiteralReadingState[]>([])
-    const [loading, setLoading] = useState(false)
-    useEffect(() => {
-        setLoading(true)
-        fetch(ILITERAL_TOKEN_URL)
-            .then(res => res.json())
-            .then((data) => setLiteralToken(data.getLiteralToken))
-            .catch(console.error)
-            .finally(() => setLoading(false))
-    }, [])
-    useEffect(() => {
-        if (literalToken.token === "") return
-        setLoading(true)
-        fetch(ILITERAL_GRAPHQL_URL, {
-            method: "POST",
-            headers: {"Content-Type": "application/json", "x-literal-token": literalToken.token},
-        }).then(res => res.json())
-            .then((data) => setReadingStates(data.getReadingStates))
-            .catch(console.error)
-            .finally(() => setLoading(false))
-    }, [literalToken])
-    if (loading) return <ContentLoader/>
+export default async function BooksContent() {
+    const readingStates: LiteralReadingState[] = await getLiteralReadingStates();
     return (
         <Section className="flex-col">
             <div className="flex flex-col xl:w-3/4 2xl:w-3/4 w-full mb-10">

@@ -1,28 +1,14 @@
-"use client"
-import {Fragment, useEffect, useState} from "react";
-import {ResumeSchema, Volunteer} from "@website/types";
-import {getGraphQLQueryStr, getMMYYYYDate} from "@website/lib";
-import {AllVolunteersQuery} from "@website/constants";
+import {Fragment} from "react";
+import {Volunteer} from "@website/types";
+import {getMMYYYYDate} from "@website/lib";
 import {ContentText} from "@website/components/ContentText";
-import {ContentLoader} from "@website/components/ContentLoader";
 import Link from "next/link";
 import {PhoneHidden} from "@website/components/Phone/PhoneHidden";
 import {MdOutlineVolunteerActivism} from "react-icons/md";
+import {getVolunteering} from "@website/lib/fetchData";
 
-export const Volunteering = () => {
-    const [loading, setLoading] = useState(false);
-    const [volunteering, setVolunteering] = useState<Volunteer[]>([])
-    useEffect(() => {
-        setLoading(true)
-        fetch("/api/resume/graphql", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: getGraphQLQueryStr(AllVolunteersQuery)
-        }).then(res => res.json())
-            .then((data) => setVolunteering(data.volunteer)).catch(console.error)
-            .finally(() => setLoading(false))
-    }, [])
-    if (loading) return <ContentLoader/>
+export default async function Volunteering(): Promise<Volunteer[]> {
+    const volunteering = await getVolunteering()
     return (
         <div className="rounded-2xl border p-6">
             <h2 className="flex font-semibold items-baseline">

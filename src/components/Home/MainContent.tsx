@@ -1,8 +1,8 @@
 import {SubstackCard} from "@website/components/Home/SubstackCard";
 import {FaBriefcase} from "react-icons/fa";
-import {WorkExperiences} from "@website/components/Home/WorkExperiences";
+import WorkExperiences from "@website/components/Home/WorkExperiences";
 import {Posts} from "@website/components/Posts";
-import {Section} from "@website/components/Section";
+import Section from "@website/components/Section";
 import {DE_RESUME, EN_RESUME} from "@website/constants";
 import {FaSquareArrowUpRight} from "react-icons/fa6";
 

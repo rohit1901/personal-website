@@ -1,36 +1,17 @@
-"use client"
-import {Basics, ResumeSchema} from "@website/types";
-import {Section} from "@website/components/Section";
+import Section from "@website/components/Section";
 import Link from "next/link";
 import Image from "next/image";
-import {getGraphQLQueryStr, getImageUrl} from "@website/lib";
+import {getImageUrl} from "@website/lib";
 import {DesktopShow} from "@website/components/Desktop/DesktopShow";
 import {NetworkProfiles} from "@website/components/NetworkProfiles";
 import {Divider} from "@website/components/Divider";
 import {FaEnvelope} from "react-icons/fa";
 import {DesktopHidden} from "@website/components/Desktop/DesktopHidden";
-import {Fragment, useEffect, useState} from "react";
-import {AboutQuery, defaultBasicProfile} from "@website/constants";
-import {ContentLoader} from "@website/components/ContentLoader";
+import {Fragment} from "react";
+import {getAboutQuery} from "@website/lib/fetchData";
 
-export const AboutHero = () => {
-    const [loading, setLoading] = useState(false)
-    const [basics, setBasics] = useState<Basics>(defaultBasicProfile)
-    useEffect(() => {
-        setLoading(true)
-        fetch("/api/resume/graphql", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: getGraphQLQueryStr(AboutQuery)
-        }).then(res => res.json())
-            .then((data) => {
-                setBasics(data.basics)
-            })
-            .catch(console.error)
-            .finally(() => setLoading(false))
-
-    }, [])
-    if (loading) return <ContentLoader/>
+export default async function AboutHero() {
+    const basics = await getAboutQuery()
     return (
         <Fragment>
             <Section className="xl:flex-wrap 2xl:flex-wrap flex-wrap-reverse">

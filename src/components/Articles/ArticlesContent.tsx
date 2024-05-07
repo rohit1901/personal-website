@@ -1,8 +1,7 @@
-"use client"
 import {Posts} from "@website/components/Posts";
-import {Section} from "@website/components/Section";
+import Section from "@website/components/Section";
 
-export const ArticlesContent = () => {
+export default function ArticlesContent() {
     return (
         <Section className="flex-col">
             <div className="flex flex-col lg:w-3/4 w-full mb-10">
