@@ -13,7 +13,7 @@ import {
     GRAPHQL_URL
 } from "@website/constants";
 
-import {Basics, Education, LiteralReadingState, LiteralSecrets, Volunteer, Work} from "@website/types";
+import {Award, Basics, Education, LiteralReadingState, LiteralSecrets, Volunteer, Work} from "@website/types";
 
 export async function getResumeBasics(): Promise<Basics> {
     const basicsRaw = await fetch(GRAPHQL_URL, {
@@ -65,7 +65,7 @@ export async function getVolunteering(): Promise<Volunteer[]> {
     return volunteer
 }
 
-export async function getAwards(): Promise<Volunteer[]> {
+export async function getAwards(): Promise<Award[]> {
     const basicsRaw = await fetch(GRAPHQL_URL, {
         method: "POST",
         headers: {"Content-Type": "application/json", "Authorization": `Bearer ${process.env.APP_SECRET}`},
