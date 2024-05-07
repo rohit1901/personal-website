@@ -154,3 +154,13 @@ export const isDev = (): boolean => process.env.NODE_ENV === "development"
  * @param path {string | null} - the path of the page
  */
 export const getBlogPosts = (substack?: RssToJSON, path?: string | null) => substack?.items?.slice(0, path === "/" ? 4 : undefined)
+/**
+ * Sets the active class based on the current path.
+ * @param currentPath {string | null} - the current path
+ * @param path {string | null} - the path
+ */
+export const setActiveClass = (currentPath?: string | null, path?: string | null) => {
+    if (currentPath === path) {
+        return "text-cyan-500"
+    }
+}

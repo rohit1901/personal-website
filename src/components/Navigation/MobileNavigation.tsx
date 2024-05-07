@@ -2,9 +2,8 @@
 import {CgMenuLeft} from "react-icons/cg";
 import Image from "next/image";
 import Link from "next/link";
-import {setActiveClass} from "@website/components/Navbar";
 import {usePathname} from "next/navigation";
-import {getImageUrl} from "@website/lib";
+import {getImageUrl, setActiveClass} from "@website/lib";
 
 export const MobileNavigation = () => {
     const pathname = usePathname()
