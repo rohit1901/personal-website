@@ -7,7 +7,7 @@ import {PhoneHidden} from "@website/components/Phone/PhoneHidden";
 import {MdOutlineVolunteerActivism} from "react-icons/md";
 import {getVolunteering} from "@website/lib/fetchData";
 
-export default async function Volunteering(): Promise<Volunteer[]> {
+export default async function Volunteering() {
     const volunteering = await getVolunteering()
     return (
         <div className="rounded-2xl border p-6">
