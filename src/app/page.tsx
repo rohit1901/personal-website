@@ -4,7 +4,6 @@ import {Carousel} from "@website/components/Home/Carousel";
 import Runner from "@website/components/Runner";
 import {Footer} from "@website/components/Footer";
 import {MainContent} from "@website/components/Home/MainContent";
-// TODO: Readme
 // TODO: CI/CD, Heroku, GitHub Actions
 export default async function Home() {
     return (
