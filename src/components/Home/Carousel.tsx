@@ -11,7 +11,7 @@ export const Carousel = () => {
         fetch("/api/instagram/get")
             .then(response => response.json())
             .then(data => {
-                setMedia(data.slice(0, 6))
+                setMedia(data)
             }).catch(console.error)
             .finally(() => setLoading(false))
     }, [])

@@ -9,9 +9,7 @@ export const DesktopNavigation = () => {
     return (
         <div className="navbar-center hidden lg:flex border rounded-full mx-auto">
             <ul className="menu menu-horizontal px-1">
-                <li>
-                    <HomeNavigationItem pathname={pathname}/>
-                </li>
+                <HomeNavigationItem pathname={pathname} />
                 <li><Link href="/about" className={`text-md ${setActiveClass(pathname, "/about")}`}>About me</Link></li>
                 <li>
                     <Link href="/articles" className={`text-md ${setActiveClass(pathname, "/articles")}`}>Articles</Link>

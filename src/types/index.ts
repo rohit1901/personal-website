@@ -38,8 +38,9 @@ export type RssToJSON = {
     status: "ok" | "error" | "loading" | "unknown" | "timeout" | "invalid" | "missing"
 }
 export type InstagramMedia = {
-    caption: string,
-    media_url: string,
+    caption?: string,
+    media_url?: string,
+    id: string
 }
 export type LiteralProfile = {
     id: string

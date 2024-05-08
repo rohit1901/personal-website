@@ -12,7 +12,7 @@ export const Footer = () => {
         <footer className="footer p-10 flex lg:flex-row flex-col justify-between border-t" id="footer">
             <nav className="flex flex-row mx-auto lg:mx-0">
                 <DesktopShow>
-                    <HomeNavigationItem pathname={pathname}/>
+                    <HomeNavigationItem pathname={pathname} src="foot"/>
                 </DesktopShow>
                 <Link href="/about" className={`link link-hover mr-2 ${setActiveClass(pathname, "/about")}`}>About Me</Link>
                 <Link href="/articles" className={`link link-hover mr-2 ${setActiveClass(pathname, "/articles")}`}>Articles</Link>

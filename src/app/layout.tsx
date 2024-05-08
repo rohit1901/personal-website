@@ -1,8 +1,9 @@
 import type {Metadata} from "next";
 import "./globals.css";
-import {ReactNode} from "react";
+import {ReactNode, Suspense} from "react";
 import {Outfit} from "next/font/google";
 import "@theme-toggles/react/css/Classic.css"
+import {ContentLoader} from "@website/components/ContentLoader";
 
 const outfit = Outfit({subsets: ["latin"]});
 
@@ -18,7 +19,11 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" data-theme="">
-        <body className={`overflow-x-hidden ${outfit.className}`} id="body">{children}</body>
+        <body className={`overflow-x-hidden ${outfit.className}`} id="body">
+        <Suspense fallback={<ContentLoader/>}>
+            {children}
+        </Suspense>
+        </body>
         </html>
     );
 }

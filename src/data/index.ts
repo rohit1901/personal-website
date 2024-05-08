@@ -1,32 +1,32 @@
 export const INSTAGRAM_DATA = {
     data: [
         {
-            caption: "Sunset over the ocean",
+            caption: "#random",
             media_url: "https://assets.lummi.ai/assets/QmWx4CwWRHisJCMeMSLR2VxGZ3u4Qfn5Sprwd7tumUDcee?auto=format&w=1500",
             id: "1"
         },
         {
-            caption: "Astronaut on Mars",
+            caption: "#random",
             media_url: "https://assets.lummi.ai/assets/QmRPpZpZqmcuxcn8RbbaiWqvBJ43c1TrQQC5BJLdxtZgab?auto=format&w=1500",
             id: "2"
         },
         {
-            caption: "City skyline",
+            caption: "#random",
             media_url: "https://assets.lummi.ai/assets/QmfGQ8Yj3rNEfw1NuJRYn2CL34DgZHQzqnDYokprX3gdRb?auto=format&w=1500",
             id: "3"
         },
         {
-            caption: "Autumn leaves",
+            caption: "#random",
             media_url: "https://assets.lummi.ai/assets/QmckRy8F2SJsM7Wu71EpTeMGeinRL9RA8GqteXiTrjH7hF?auto=format&w=1500",
             id: "4"
         },
         {
-            caption: "Reading a book by the window",
+            caption: "#random",
             media_url: "https://assets.lummi.ai/assets/QmZ9aB1t2WLE2pjcjsEpdCMjWMSQxTL1ZyvL2j7XXNAnmu?auto=format&w=1500",
             id: "5"
         },
         {
-            caption: "Milky Way galaxy",
+            caption: "#random",
             media_url: "https://assets.lummi.ai/assets/QmZH96cn42FjDFUZtVMatkJB5BaDcdoDZhANma2KfPiLwE?auto=format&w=1500",
             id: "6"
         },
