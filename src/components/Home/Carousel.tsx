@@ -23,7 +23,7 @@ export const Carousel = () => {
             {media?.map((m, i) => (
                 <div className="carousel-item mr-2" key={m.media_url}>
                     <img src={m.media_url} alt={`instagram profile image-${i}`} className="object-cover rounded-lg" loading="lazy"
-                           width={300} height={400}/>
+                         width={300} height={400}/>
                 </div>
             ))}
         </div>

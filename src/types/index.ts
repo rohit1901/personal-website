@@ -67,6 +67,7 @@ export type LiteralReadingState = {
     book: LiteralBook,
     status: LiteralReadingStatus,
 }
+
 /**
  * @see https://jsonresume.org/schema/
  * JSON Resume Schema types

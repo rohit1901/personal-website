@@ -21,17 +21,20 @@ export default async function AboutHero() {
                         <p>Hey there! 😊 I&apos;m Rohit Khanduri, a Software Architect by profession and a mathematician by education.
                             But let&apos;s be real, I was basically born with a calculator in my hand and a penchant for solving complex problems.
                             🤓 Okay, maybe that&apos;s a bit dramatic, but I did ace my math exams in school (#nerd).</p>
-                        <p>Growing up in New Delhi, India, I had a typical 90s childhood filled with sports, music, and a healthy dose of mischief. 🏃🏽‍♂️️🎸
+                        <p>Growing up in New Delhi, India, I had a typical 90s childhood filled with sports, music, and a healthy dose of mischief.
+                            🏃🏽‍♂️️🎸
                             I was the kid who would always try to sneak in a few extra questions during math class (#rebel),
                             and my teachers would often find me doodling math problems in my notebook instead of taking notes (#distracted).</p>
                         <p>But don&apos;t let my math geekery fool you – I also have a secret love for the arts. 🎨
                             I was the drummer for a rock band (#drumroll please), and I even tried my hand at writing poetry (#poetlife).
-                            In fact, I once wrote a poem for my wife (then, girlfriend) that was so sappy and emotional, she thought I was depressed (#fail). 😅</p>
+                            In fact, I once wrote a poem for my wife (then, girlfriend) that was so sappy and emotional, she thought I was depressed
+                            (#fail). 😅</p>
                         <p>Now, as a software architect, I&apos;ve turned my love for problem-solving and creativity into a career. 💻
                             I&apos;ve worked with some amazing clients and collaborated with talented developers to create some truly innovative
                             software solutions.</p>
                         <p>
-                            So, if you&apos;re looking for a software architect who can balance the technical and the creative, look no further! 🫱🏼‍🫲🏻
+                            So, if you&apos;re looking for a software architect who can balance the technical and the creative, look no further!
+                            🫱🏼‍🫲🏻
                             I&apos;m your guy. Just don&apos;t ask me to solve any more math problems – my brain is still recovering from all that
                             calculus. 😅😂
                         </p>

@@ -85,18 +85,18 @@ export async function getCertifications(): Promise<Certificate[]> {
     return certificates
 }
 
-export async function getLiteralToken(): Promise<LiteralSecrets> {
+export async function fetchLiteralToken(): Promise<LiteralSecrets> {
     const GRes = await fetch(GRAPHQL_URL, {
         method: "POST",
         headers: {"Content-Type": "application/json", "Authorization": `Bearer ${process.env.APP_SECRET}`},
         body: getGraphQLQueryStr(GetLiteralTokenQuery)
     })
     const formattedGRes = await GRes.json();
-    return formattedGRes.data
+    return formattedGRes.data.getLiteralToken
 }
 
 export async function getLiteralReadingStates(): Promise<LiteralReadingState[]> {
-    const literalSecrets = await getLiteralToken()
+    const literalSecrets = await fetchLiteralToken()
     const GRes = await fetch(GRAPHQL_URL, {
         method: "POST",
         headers: {

@@ -1,5 +1,4 @@
 import {Fragment} from "react";
-import {Volunteer} from "@website/types";
 import {getMMYYYYDate} from "@website/lib";
 import {ContentText} from "@website/components/ContentText";
 import Link from "next/link";

@@ -160,7 +160,6 @@ export const getBlogPosts = (substack?: RssToJSON, path?: string | null) => subs
  * @param path {string | null} - the path
  */
 export const setActiveClass = (currentPath?: string | null, path?: string | null) => {
-    if (currentPath === path) {
-        return "text-cyan-500"
-    }
+    if (currentPath !== path) return "";
+    return "active"
 }

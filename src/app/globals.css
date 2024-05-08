@@ -78,6 +78,10 @@
     @apply hover:bg-transparent hover:text-cyan-500 focus:bg-transparent focus:text-cyan-500 !important;
 }
 
+.menu a.active, .footer a.active {
+    @apply bg-transparent text-cyan-500 !important;
+}
+
 .loader {
     width: fit-content;
     font-weight: bold;
