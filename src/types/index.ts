@@ -107,6 +107,8 @@ export interface Work {
     endDate: string;
     summary: string;
     highlights: string[];
+    image?: string;
+    date?: string;
 }
 
 export interface Volunteer {

@@ -1,12 +1,10 @@
-"use client"
-import {ReactNode, useEffect, useState} from "react";
+import {ReactNode} from "react";
 import Image from "next/image";
-import {getGraphQLQueryStr, getImageUrl, getMMYYYYDate} from "@website/lib";
+import {getImageUrl} from "@website/lib";
 import Link from "next/link";
-import {ContentLoader} from "@website/components/ContentLoader";
-import {AllWorkExperienceQuery} from "@website/constants";
 import {ContentText} from "@website/components/ContentText";
 import {PhoneHidden} from "@website/components/Phone/PhoneHidden";
+import {getResumeWork} from "@website/lib/fetchData";
 
 type CardHeading = {
     icon: ReactNode;
@@ -24,27 +22,8 @@ type CardProps = {
     content?: CardContent[]
     button?: ReactNode;
 }
-export const WorkExperiences = ({heading, button}: CardProps) => {
-    const [loading, setLoading] = useState(false)
-    const [workExperience, setWorkExperience] = useState<CardContent[]>([])
-    useEffect(() => {
-        setLoading(true)
-        fetch("/api/resume/graphql", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: getGraphQLQueryStr(AllWorkExperienceQuery)
-        }).then(res => res.json())
-            .then(data => {
-                const parsedData = data.work
-                const formattedData: CardContent[] = parsedData.map((d: any) => ({
-                    ...d,
-                    date: getMMYYYYDate(d.startDate, d.endDate)
-                }))
-                setWorkExperience(formattedData ?? [])
-            }).catch(console.error)
-            .finally(() => setLoading(false))
-    }, [])
-    if (loading) return <ContentLoader/>
+export default async function WorkExperiences({heading, button}: CardProps) {
+    const workExperience = await getResumeWork()
     return (
         <div className="flex flex-col items-start rounded-2xl border p-6">
             <h2 className="flex font-semibold items-start">
@@ -52,7 +31,7 @@ export const WorkExperiences = ({heading, button}: CardProps) => {
                 <span className="ml-3">{heading.text}</span>
             </h2>
             <ContentText className="mt-2 w-full">
-                {workExperience.map((c, i) => (
+                {workExperience?.map((c, i) => (
                     <div className="mt-6 flex flex-row" key={`c.image-${i}`}>
                         <div className="w-2/3 sm:w-full flex flex-row items-center">
                             <Link href={c.url} className="mr-2">

@@ -1,29 +1,11 @@
-"use client"
-import {useEffect, useState} from "react";
-import {Certificate} from "@website/types";
-import {getGraphQLQueryStr} from "@website/lib";
-import {AllCertificatesQuery} from "@website/constants";
 import {ContentText} from "@website/components/ContentText";
 import Link from "next/link";
 import {PhoneHidden} from "@website/components/Phone/PhoneHidden";
-import {ContentLoader} from "@website/components/ContentLoader";
 import {GrCertificate} from "react-icons/gr";
+import {getCertifications} from "@website/lib/fetchData";
 
-export const CertificationsCard = () => {
-    const [loading, setLoading] = useState(false);
-    const [certificates, setCertificates] = useState<Certificate[]>([]);
-    useEffect(() => {
-        fetch("/api/resume/graphql", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: getGraphQLQueryStr(AllCertificatesQuery)
-        }).then(res => res.json())
-            .then((data) => {
-                setCertificates(data.certificates);
-            }).catch(console.error)
-            .finally(() => setLoading(false));
-    }, []);
-    if (loading) return <ContentLoader/>
+export default async function CertificationsCard() {
+    const certificates = await getCertifications()
     return (<div className="rounded-2xl border p-6">
         <h2 className="flex font-semibold items-baseline">
             <div className="rounded-full"><GrCertificate/></div>

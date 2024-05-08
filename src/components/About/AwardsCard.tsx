@@ -1,28 +1,11 @@
-"use client"
-import {useEffect, useState} from "react";
-import {ContentLoader} from "@website/components/ContentLoader";
-import {getGraphQLQueryStr} from "@website/lib";
-import {AllAwardsQuery} from "@website/constants";
 import {ContentText} from "@website/components/ContentText";
 import Link from "next/link";
 import {PhoneHidden} from "@website/components/Phone/PhoneHidden";
 import {FaAward} from "react-icons/fa";
-import {Award} from "@website/types";
+import {getAwards} from "@website/lib/fetchData";
 
-export const AwardsCard = () => {
-    const [loading, setLoading] = useState(false)
-    const [awards, setAwards] = useState<Award[]>([])
-    useEffect(() => {
-        setLoading(true)
-        fetch("/api/resume/graphql", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: getGraphQLQueryStr(AllAwardsQuery)
-        }).then(res => res.json())
-            .then((data) => setAwards(data.awards)).catch(console.error)
-            .finally(() => setLoading(false));
-    }, []);
-    if (loading) return <ContentLoader/>
+export default async function AwardsCard() {
+    const awards = await getAwards()
     return (
         <div className="rounded-2xl border p-6">
             <h2 className="flex font-semibold items-baseline">

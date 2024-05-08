@@ -1,6 +1,13 @@
-import {FALLBACK_IMAGE, INSTAGRAM_MEDIA_URL} from "@website/constants";
+import {DEFAULT_LOCALE, FALLBACK_IMAGE, INSTAGRAM_MEDIA_URL} from "@website/constants";
 import {DocumentNode} from "graphql";
 import {LiteralBook, LiteralReadingState, LiteralReadingStatus, RssToJSON} from "@website/types";
+
+export const getUserLocale = (): string => {
+    if (typeof window !== "undefined") {
+        return window.navigator.language
+    }
+    return DEFAULT_LOCALE
+}
 
 /**
  * This function formats the date to a human-readable format using the user's locale.
@@ -8,7 +15,7 @@ import {LiteralBook, LiteralReadingState, LiteralReadingStatus, RssToJSON} from 
  * @returns {string} - the formatted date
  */
 export const formatDate = (date: string): string => {
-    const userLocale = navigator.language
+    const userLocale = getUserLocale()
     return new Date(date).toLocaleDateString(userLocale, {
         year: 'numeric',
         month: 'long',
@@ -24,7 +31,7 @@ export const formatDate = (date: string): string => {
  */
 export const getMMYYYYDate = (fromDate?: string, toDate?: string): string => {
     if (!fromDate) return ""
-    const userLocale = navigator.language
+    const userLocale = getUserLocale()
     const from = new Date(`01-${fromDate}`).toLocaleDateString(userLocale, {
         month: 'short',
         year: 'numeric'
@@ -147,3 +154,13 @@ export const isDev = (): boolean => process.env.NODE_ENV === "development"
  * @param path {string | null} - the path of the page
  */
 export const getBlogPosts = (substack?: RssToJSON, path?: string | null) => substack?.items?.slice(0, path === "/" ? 4 : undefined)
+/**
+ * Sets the active class based on the current path.
+ * @param currentPath {string | null} - the current path
+ * @param path {string | null} - the path
+ */
+export const setActiveClass = (currentPath?: string | null, path?: string | null) => {
+    if (currentPath === path) {
+        return "text-cyan-500"
+    }
+}

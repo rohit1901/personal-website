@@ -1,11 +1,9 @@
-"use client";
 import Image from "next/image";
-import {useEffect, useState} from "react";
 import {Profile} from "@website/types";
 import {NetworkProfiles} from "@website/components/NetworkProfiles";
-import {ContentLoader} from "@website/components/ContentLoader";
-import {getGraphQLQueryStr, getImageUrl} from "@website/lib";
-import {AllBasicsQuery, PROFILE_PIC} from "@website/constants";
+import {getImageUrl} from "@website/lib";
+import {PROFILE_PIC} from "@website/constants";
+import {getResumeBasics} from "@website/lib/fetchData";
 
 type HeroProps = {
     name: string;
@@ -14,26 +12,8 @@ type HeroProps = {
     summary: string;
     profiles: Profile[]
 }
-export const Hero = () => {
-    const [loading, setLoading] = useState(false);
-    const [basics, setBasics] = useState<HeroProps>({
-        name: "",
-        label: "",
-        image: PROFILE_PIC,
-        summary: "",
-        profiles: []
-    });
-    useEffect(() => {
-        setLoading(true)
-        fetch("/api/resume/graphql", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: getGraphQLQueryStr(AllBasicsQuery)
-        }).then(res => res.json())
-            .then((data) => setBasics(data.basics)).catch(console.error)
-            .finally(() => setLoading(false))
-    }, [])
-    if (loading) return <ContentLoader/>
+export default async function Hero() {
+    const basics: HeroProps = await getResumeBasics();
     return (
         <div className="flex flex-col m-10">
             <div className="avatar px-4 mb-10 lg:sticky top-0 left-0 right-0 lg:z-50">

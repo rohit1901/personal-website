@@ -1,28 +1,12 @@
-"use client"
-import {useEffect, useState} from "react";
-import {ContentLoader} from "@website/components/ContentLoader";
-import {getGraphQLQueryStr, getMMYYYYDate} from "@website/lib";
-import {AllEducationQuery} from "@website/constants";
+import {getMMYYYYDate} from "@website/lib";
 import {ContentText} from "@website/components/ContentText";
 import Link from "next/link";
 import {PhoneHidden} from "@website/components/Phone/PhoneHidden";
 import {FaUserGraduate} from "react-icons/fa";
-import {Education} from "@website/types";
+import {getResumeEducation} from "@website/lib/fetchData";
 
-export const EducationCard = () => {
-    const [loading, setLoading] = useState(false)
-    const [education, setEducation] = useState<Education[]>([])
-    useEffect(() => {
-        setLoading(true)
-        fetch("/api/resume/graphql", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: getGraphQLQueryStr(AllEducationQuery)
-        }).then(res => res.json())
-            .then((data) => setEducation(data.education)).catch(console.error)
-            .finally(() => setLoading(false))
-    }, []);
-    if (loading) return <ContentLoader/>
+export default async function EducationCard() {
+    const education = await getResumeEducation()
     return (
         <div className="rounded-2xl border p-6">
             <h2 className="flex font-semibold items-baseline">
