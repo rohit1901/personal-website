@@ -24,22 +24,22 @@ This repository is the home of my personal website, where I showcase my projects
 Ready to dive in? Follow these steps to get my personal website running on your local machine:
 
 1. Clone the repository:
-```
-git clone https://github.com/rohit1901/personal-website.git
-```
-2. Install the dependencies:[index.html](..%2Ffamily-landing-page%2Fsrc%2Findex.html)
-```
-cd personal-website
-npm install
-```
+    ```
+    git clone https://github.com/rohit1901/personal-website.git
+    ```
+2. Install the dependencies:
+    ```
+    cd personal-website
+    npm install
+    ```
 3. Start the development server:
-```
-npm run dev
-```
+    ```
+    npm run dev
+    ```
 4. Open your web browser and navigate to `http://localhost:3000`.
 
 ### Deployment
-My personal website is hosted on Heroku, a popular cloud platform for deploying web applications. You can visit the live site at [https://rohit-personal-website.herokuapp.com/](https://rohit-personal-website.herokuapp.com/).
+My personal website is hosted on Heroku, a popular cloud platform for deploying web applications. You can visit the live site at [https://www.rohit.khanduri.de/).
 
 ### Contributing
 If you spot any issues or have ideas to make my website even more awesome, I'd love to hear from you! Feel free to open an issue or submit a pull request. Your contributions are always welcome.
