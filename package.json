@@ -16,9 +16,11 @@
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.0.1",
-    "usehooks-ts": "^3.1.0"
+    "usehooks-ts": "^3.1.0",
+    "xml2js": "^0.6.2"
   },
   "devDependencies": {
+    "@types/xml2js": "^0.4.14",
     "@types/fetch-meta-tags": "^1.0.2",
     "@types/node": "^20",
     "@types/react": "^18",

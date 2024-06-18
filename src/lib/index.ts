@@ -1,6 +1,7 @@
 import {DEFAULT_LOCALE, FALLBACK_IMAGE, INSTAGRAM_MEDIA_URL} from "@website/constants";
 import {DocumentNode} from "graphql";
-import {LiteralBook, LiteralReadingState, LiteralReadingStatus, RssToJSON} from "@website/types";
+import {InstagramError, LiteralBook, LiteralReadingState, LiteralReadingStatus} from "@website/types";
+import {SubstackItem} from "@website/types/substack.types";
 
 export const getUserLocale = (): string => {
     if (typeof window !== "undefined") {
@@ -150,10 +151,10 @@ export const isDev = (): boolean => process.env.NODE_ENV === "development"
 /**
  * Get the blog posts from the substack feed based on the path of the page.
  * If the path is the home page, return the first 4 posts, otherwise return all posts.
- * @param substack {RssToJSON} - the substack feed
+ * @param items
  * @param path {string | null} - the path of the page
  */
-export const getBlogPosts = (substack?: RssToJSON, path?: string | null) => substack?.items?.slice(0, path === "/" ? 4 : undefined)
+export const getBlogPosts = (items?: SubstackItem[], path?: string | null) => items?.slice(0, path === "/" ? 4 : undefined)
 /**
  * Sets the active class based on the current path.
  * @param currentPath {string | null} - the current path
@@ -162,4 +163,17 @@ export const getBlogPosts = (substack?: RssToJSON, path?: string | null) => subs
 export const setActiveClass = (currentPath?: string | null, path?: string | null) => {
     if (currentPath !== path) return "";
     return "active"
+}
+/**
+ * Typeguard which checks whether the input object is of type InstagramError
+ * @param instagramObj
+ */
+export const isInstagramError = (instagramObj: any): instagramObj is InstagramError => {
+    if (typeof instagramObj !== "object") return false
+    if (instagramObj.hasOwnProperty("error")) {
+        const errorObj = instagramObj.error
+        return errorObj.hasOwnProperty("code") &&
+            errorObj.hasOwnProperty("message") && errorObj.hasOwnProperty("type") && errorObj.hasOwnProperty("fbtrace_id")
+    }
+    return false
 }

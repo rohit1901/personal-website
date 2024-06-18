@@ -1,17 +1,16 @@
 "use client"
 import {useEffect, useState} from "react";
-import {FeedItem, RssToJSON} from "@website/types";
 import Link from "next/link";
 import {FaArrowRight} from "react-icons/fa";
 import {formatDate, getBlogPosts} from "@website/lib";
 import {ContentLoader} from "@website/components/ContentLoader";
 import {usePathname} from "next/navigation";
 import {ContentText} from "@website/components/ContentText";
+import {getFeedByLink, getPosts, getSubstackFeed} from "@website/lib/substack";
 import {SUBSTACK_FEED_URL} from "@website/constants";
+import {SubstackItem} from "@website/types/substack.types";
 
-const FEED_URL = encodeURI(SUBSTACK_FEED_URL)
-const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${FEED_URL}`
-export const Post = (item?: FeedItem) => {
+export const Post = (item?: SubstackItem) => {
     const pathname = usePathname()
     if (!item) return null
     return (
@@ -36,17 +35,18 @@ export const Post = (item?: FeedItem) => {
 }
 export const Posts = () => {
     const [loading, setLoading] = useState(false)
-    const [substack, setSubstack] = useState<RssToJSON>()
+    const [substack, setSubstack] = useState<SubstackItem[]>()
     const pathname = usePathname()
     useEffect(() => {
         setLoading(true)
-        fetch(API_URL)
-            .then(res => res.json())
-            .then(data => {
-                setSubstack(data)
-            })
-            .catch(err => console.error(err))
-            .finally(() => setLoading(false))
+        getSubstackFeed(`${SUBSTACK_FEED_URL}/feed`, (err, res) => {
+            if (err) console.error(err)
+            const feedChannel = getFeedByLink(res, SUBSTACK_FEED_URL)
+            const posts = getPosts(feedChannel)
+            setSubstack(posts)
+        })
+            .catch((err) => console.error(err))
+            .finally(() => setLoading(false));
     }, [])
     if (loading) return <ContentLoader/>
     return (

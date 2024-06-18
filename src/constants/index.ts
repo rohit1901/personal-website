@@ -1,6 +1,6 @@
 // External API Constants
 export const INSTAGRAM_MEDIA_URL = "https://graph.instagram.com/me/media?fields=caption,media_url&access_token=";
-export const SUBSTACK_FEED_URL = "https://rohitkhanduri.substack.com/feed";
+export const SUBSTACK_FEED_URL = "https://rohitkhanduri.substack.com";
 export const GRAPHQL_URL = `${process.env.GRAPHQL_SERVER_HOST}/graphql`
 
 // RESUME Links

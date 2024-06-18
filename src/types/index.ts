@@ -1,26 +1,3 @@
-export type Feed = {
-    author: string,
-    description: string,
-    image: string,
-    link: string,
-    title: string
-    url: string
-}
-export type FeedItem = {
-    author: string,
-    categories: string[],
-    content: string,
-    description: string,
-    enclosure: {
-        link: string
-        type: string
-    },
-    guid: string,
-    link: string,
-    pubDate: string,
-    thumbnail: string,
-    title: string
-}
 export type GitHubRepo = {
     description: string,
     icon: string,
@@ -31,16 +8,16 @@ export type GitHubRepo = {
     avatar_url?: string,
     html_url?: string
 }
-export type GitHubOwner = Pick<GitHubRepo, "login" | "avatar_url" | "html_url">
-export type RssToJSON = {
-    feed: Feed,
-    items: FeedItem[],
-    status: "ok" | "error" | "loading" | "unknown" | "timeout" | "invalid" | "missing"
-}
 export type InstagramMedia = {
     caption?: string,
     media_url?: string,
     id: string
+}
+export type InstagramError = {
+    code: number,
+    message: string,
+    type: string
+    fbtrace_id: string
 }
 export type LiteralProfile = {
     id: string
