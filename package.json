@@ -20,11 +20,11 @@
     "xml2js": "^0.6.2"
   },
   "devDependencies": {
-    "@types/xml2js": "^0.4.14",
     "@types/fetch-meta-tags": "^1.0.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/xml2js": "^0.4.14",
     "autoprefixer": "^10.0.1",
     "daisyui": "^4.10.1",
     "eslint": "^8",

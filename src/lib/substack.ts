@@ -2,7 +2,8 @@ import * as parser from "xml2js"
 import {isRawFeed, isRawFeedChannel} from "@website/lib/substack.typeguards";
 import {RawFeedChannel, RawItem, SubstackItem} from "@website/types/substack.types";
 
-const CORS_PROXY = "https://api.allorigins.win/get?url=";
+//const CORS_PROXY = "https://api.allorigins.win/get?url=";
+const CORS_PROXY = "https://corsproxy.io/?";
 
 // Internal API
 
@@ -13,7 +14,7 @@ const getRawXMLSubstackFeed = async (feedUrl: string) => {
                 feedUrl
             )}`
         )
-        if (promise.ok) return promise.json()
+        if (promise.ok) return promise.text()
     } catch (e) {
         throw new Error("Error occurred fetching Feed from Substack", {
             cause: e
@@ -45,8 +46,8 @@ const transformRawItem = (item: RawItem): SubstackItem => {
 export const getSubstackFeed: (feedUrl: string, callback: (err: (Error | null), result: any) => void) => Promise<void> = async (feedUrl: string, callback: (err: Error | null, result: any) => void): Promise<void> => {
     try {
         const rawXML = await getRawXMLSubstackFeed(feedUrl)
-        if (!rawXML || !rawXML.hasOwnProperty("contents")) throw new Error("Substack Feed does not have a valid XML")
-        await parseXML(rawXML.contents, callback)
+        if (!rawXML) throw new Error("Substack Feed does not have a valid XML")
+        await parseXML(rawXML, callback)
     } catch (e) {
         throw new Error("Error occurred fetching Substack Feed", {
             cause: e

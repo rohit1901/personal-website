@@ -39,9 +39,13 @@ export const Posts = () => {
     const pathname = usePathname()
     useEffect(() => {
         setLoading(true)
-        getSubstackFeed(`${SUBSTACK_FEED_URL}/feed`, (err, res) => {
-            if (err) console.error(err)
-            const feedChannel = getFeedByLink(res, SUBSTACK_FEED_URL)
+        /*getSubstackFeed("https://www.goodreads.com/review/list_rss/161866901-rohit-khanduri?shelf=read", (err, rawRes) => {
+            if (err) throw err
+            console.log(rawRes)
+        }).catch((err) => console.error(err))*/
+        getSubstackFeed(`${SUBSTACK_FEED_URL}/feed`, (err, rawRes) => {
+            if (err) throw err
+            const feedChannel = getFeedByLink(rawRes, SUBSTACK_FEED_URL)
             const posts = getPosts(feedChannel)
             setSubstack(posts)
         })
