@@ -178,3 +178,9 @@ export interface ResumeSchema {
     references: Reference[];
     projects: Project[];
 }
+
+export type EmailPayload = {
+    to: string
+    subject: string
+    html: string
+}

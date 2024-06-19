@@ -7,6 +7,7 @@ export const Carousel = () => {
     const [loading, setLoading] = useState(false);
     const [media, setMedia] = useState<InstagramMedia[]>([])
     useEffect(() => {
+        if (media.length > 0) return
         setLoading(true)
         fetch("/api/instagram/get")
             .then(response => response.json())

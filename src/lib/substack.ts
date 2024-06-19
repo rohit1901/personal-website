@@ -21,7 +21,7 @@ const getRawXMLSubstackFeed = async (feedUrl: string) => {
         })
     }
 }
-const parseXML = async (xml: string, callback: (err: Error | null, result: any) => void) => {
+const parseXML = async (xml = "", callback: (err: Error | null, result: any) => void) => {
     try {
         parser.parseString(xml, callback)
     } catch (e) {
@@ -43,10 +43,9 @@ const transformRawItem = (item: RawItem): SubstackItem => {
 
 // Public API
 
-export const getSubstackFeed: (feedUrl: string, callback: (err: (Error | null), result: any) => void) => Promise<void> = async (feedUrl: string, callback: (err: Error | null, result: any) => void): Promise<void> => {
+export const getSubstackFeed = async (feedUrl: string, callback: (err: Error | null, result: any) => void): Promise<void> => {
     try {
         const rawXML = await getRawXMLSubstackFeed(feedUrl)
-        if (!rawXML) throw new Error("Substack Feed does not have a valid XML")
         await parseXML(rawXML, callback)
     } catch (e) {
         throw new Error("Error occurred fetching Substack Feed", {

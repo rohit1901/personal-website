@@ -41,5 +41,12 @@ declare namespace NodeJS {
         // GraphQL Server
         GRAPHQL_SERVER_HOST: string
         APP_SECRET: string
+        // Email options
+        SMTP_FROM_EMAIL: string
+        SMTP_TO_EMAIL: string
+        SMTP_USER: string
+        SMTP_PASSWORD: string
+        SMTP_HOST: string
+        SMTP_PORT: string
     }
 }
