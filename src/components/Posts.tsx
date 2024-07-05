@@ -6,9 +6,8 @@ import {formatDate, getBlogPosts} from "@website/lib";
 import {ContentLoader} from "@website/components/ContentLoader";
 import {usePathname} from "next/navigation";
 import {ContentText} from "@website/components/ContentText";
-import {getFeedByLink, getPosts, getSubstackFeed} from "@website/lib/substack";
 import {SUBSTACK_FEED_URL} from "@website/constants";
-import {SubstackItem} from "@website/types/substack.types";
+import {getFeedByLink, getPosts, getSubstackFeed, SubstackItem} from "substack-feed-api";
 
 export const Post = (item?: SubstackItem) => {
     const pathname = usePathname()

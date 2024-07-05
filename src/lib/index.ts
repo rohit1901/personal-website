@@ -1,7 +1,7 @@
 import {DEFAULT_LOCALE, FALLBACK_IMAGE, INSTAGRAM_MEDIA_URL} from "@website/constants";
 import {DocumentNode} from "graphql";
 import {InstagramError, LiteralBook, LiteralReadingState, LiteralReadingStatus} from "@website/types";
-import {SubstackItem} from "@website/types/substack.types";
+import {SubstackItem} from "substack-feed-api";
 
 export const getUserLocale = (): string => {
     if (typeof window !== "undefined") {
