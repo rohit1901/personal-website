@@ -1,0 +1,9 @@
+query GetSubstackRawData {
+    getSubstackRawData {
+        title
+        description
+        link
+        pubDate
+        content
+    }
+}
