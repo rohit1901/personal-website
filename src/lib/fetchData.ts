@@ -6,11 +6,12 @@ import {
   AllEducationQuery,
   AllVolunteersQuery,
   AllWorkExperienceQuery,
+  GRAPHQL_URL,
   GetGitHubDataQuery,
+  GetGoodreadsBooksQuery,
   GetLiteralTokenQuery,
   GetReadingStatesQuery,
   GetSubstackFeedQuery,
-  GRAPHQL_URL,
 } from "@website/constants";
 import { getGraphQLQueryStr } from "@website/lib/index";
 
@@ -174,7 +175,6 @@ export async function getGitHubRepos(): Promise<any> {
 }
 
 export async function getSubstackFeed() {
-  console.log(GRAPHQL_URL);
   const GRes = await fetch(GRAPHQL_URL, {
     method: "POST",
     headers: {
@@ -185,4 +185,19 @@ export async function getSubstackFeed() {
   });
   const formattedGRes = await GRes.json();
   return formattedGRes.data.getSubstackRawData;
+}
+
+export async function getGoodreadsBooks() {
+  const GRes = await fetch(GRAPHQL_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${process.env.APP_SECRET}`,
+    },
+    body: getGraphQLQueryStr(GetGoodreadsBooksQuery),
+  });
+  const formattedGRes = await GRes.json();
+  const booksWithStatus: LiteralReadingState[] =
+    formattedGRes.data.getGoodreadsBooks;
+  return booksWithStatus;
 }

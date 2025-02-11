@@ -1,21 +1,22 @@
-import gql from "graphql-tag";
 import AboutPageQuery from "@website/graphql/queries/about.graphql";
-import AllBasics from "@website/graphql/queries/allBasics.graphql";
-import AllWorkExperience from "@website/graphql/queries/allWorkExperience.graphql";
-import AllProjects from "@website/graphql/queries/allProjects.graphql";
-import AllSkills from "@website/graphql/queries/allSkills.graphql";
-import AllEducation from "@website/graphql/queries/allEducation.graphql";
 import AllAwards from "@website/graphql/queries/allAwards.graphql";
-import AllPublications from "@website/graphql/queries/allPublications.graphql";
-import AllLanguages from "@website/graphql/queries/allLanguages.graphql";
-import AllInterests from "@website/graphql/queries/allInterests.graphql";
-import AllReferences from "@website/graphql/queries/allReferences.graphql";
-import AllVolunteer from "@website/graphql/queries/allVolunteer.graphql";
+import AllBasics from "@website/graphql/queries/allBasics.graphql";
 import AllCertificates from "@website/graphql/queries/allCertificates.graphql";
-import GetGitHubData from "@website/graphql/queries/gitHubRepos.graphql";
+import AllEducation from "@website/graphql/queries/allEducation.graphql";
+import AllInterests from "@website/graphql/queries/allInterests.graphql";
+import AllLanguages from "@website/graphql/queries/allLanguages.graphql";
+import AllProjects from "@website/graphql/queries/allProjects.graphql";
+import AllPublications from "@website/graphql/queries/allPublications.graphql";
+import AllReferences from "@website/graphql/queries/allReferences.graphql";
+import AllSkills from "@website/graphql/queries/allSkills.graphql";
+import AllVolunteer from "@website/graphql/queries/allVolunteer.graphql";
+import AllWorkExperience from "@website/graphql/queries/allWorkExperience.graphql";
 import GetReadingStates from "@website/graphql/queries/getReadingStates.graphql";
 import GetLiteralToken from "@website/graphql/queries/getToken.graphql";
+import GetGitHubData from "@website/graphql/queries/gitHubRepos.graphql";
+import GetGoodreadsBooks from "@website/graphql/queries/goodreadsBooks.graphql";
 import GetSubstackRawData from "@website/graphql/queries/substackFeed.graphql";
+import gql from "graphql-tag";
 
 export const AboutQuery = gql`
   ${AboutPageQuery}
@@ -70,4 +71,8 @@ export const GetLiteralTokenQuery = gql`
 
 export const GetSubstackFeedQuery = gql`
   ${GetSubstackRawData}
+`;
+
+export const GetGoodreadsBooksQuery = gql`
+  ${GetGoodreadsBooks}
 `;

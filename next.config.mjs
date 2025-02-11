@@ -39,6 +39,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "*.githubassets.com",
       },
+      {
+        protocol: "https",
+        hostname: "*.gr-assets.com",
+      },
     ],
   },
 };
