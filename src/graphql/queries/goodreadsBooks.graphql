@@ -1,0 +1,13 @@
+query GetGoodreadsBooks {
+    getGoodreadsBooks {
+        book {
+            title
+            description
+            cover
+            authors {
+                name
+            }
+        }
+        status
+    }
+}
