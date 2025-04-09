@@ -48,6 +48,6 @@ If you spot any issues or have ideas to make my website even more awesome, I'd l
 You can reach me at:
 - Email: [rohit.khanduri@proton.me](mailto:rohit.khanduri@proton.me)
 - LinkedIn: [Rohit Khanduri](https://www.linkedin.com/in/rohit-khanduri-9098b84a/)
-- Twitter: [@JohnnyD78310768](https://twitter.com/JohnnyD78310768)
+- Bluesky: [@drama-j.bsky.social](https://bsky.app/profile/drama-j.bsky.social)
 
 Let's build something amazing together! 🚀
