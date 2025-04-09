@@ -180,6 +180,7 @@ export async function getSubstackFeed() {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${process.env.APP_SECRET}`,
+      cache: "no-store",
     },
     body: getGraphQLQueryStr(GetSubstackFeedQuery),
   });
@@ -195,6 +196,7 @@ export async function getGoodreadsBooks() {
       Authorization: `Bearer ${process.env.APP_SECRET}`,
     },
     body: getGraphQLQueryStr(GetGoodreadsBooksQuery),
+    cache: "no-store",
   });
   const formattedGRes = await GRes.json();
   const booksWithStatus: LiteralReadingState[] =
