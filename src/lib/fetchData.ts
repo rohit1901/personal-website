@@ -192,12 +192,11 @@ export async function getGoodreadsBooks() {
   const GRes = await fetch(GRAPHQL_URL, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.APP_SECRET}`,
+      "Content-Type": "application/json"
     },
     body: getGraphQLQueryStr(GetGoodreadsBooksQuery),
     cache: "no-store",
-  });
+  })
   const formattedGRes = await GRes.json();
   const booksWithStatus: LiteralReadingState[] =
     formattedGRes.data.getGoodreadsBooks;

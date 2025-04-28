@@ -4,6 +4,8 @@ import {ReactNode, Suspense} from "react";
 import {Outfit} from "next/font/google";
 import "@theme-toggles/react/css/Classic.css"
 import {ContentLoader} from "@website/components/ContentLoader";
+import { auth0 } from "@website/lib/auth0";
+
 
 const outfit = Outfit({subsets: ["latin"]});
 
