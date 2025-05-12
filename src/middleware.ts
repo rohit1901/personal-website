@@ -10,7 +10,6 @@ export async function middleware(request: NextRequest) {
   if (auth0Cookie) {
     // pass the cookie to the request headers as Authorization
     request.headers.set("Authorization", `Bearer ${auth0Cookie}`);
-    console.log("request.headers", request.headers.get("Authorization"));
     return NextResponse.next();
   }
   // if the cookie is not present, call the getToken function to get a new token

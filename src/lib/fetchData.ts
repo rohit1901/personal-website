@@ -25,6 +25,7 @@ import {
   Volunteer,
   Work,
 } from "@website/types";
+import { getToken } from "./auth0";
 
 export async function getResumeBasics(): Promise<Basics> {
   const basicsRaw = await fetch(GRAPHQL_URL, {
@@ -192,7 +193,7 @@ export async function getGoodreadsBooks() {
   const GRes = await fetch(GRAPHQL_URL, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
     body: getGraphQLQueryStr(GetGoodreadsBooksQuery),
     cache: "no-store",
