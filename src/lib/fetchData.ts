@@ -25,6 +25,7 @@ import {
   Volunteer,
   Work,
 } from "@website/types";
+import { getToken } from "./auth0";
 
 export async function getResumeBasics(): Promise<Basics> {
   const basicsRaw = await fetch(GRAPHQL_URL, {
@@ -193,11 +194,10 @@ export async function getGoodreadsBooks() {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.APP_SECRET}`,
     },
     body: getGraphQLQueryStr(GetGoodreadsBooksQuery),
     cache: "no-store",
-  });
+  })
   const formattedGRes = await GRes.json();
   const booksWithStatus: LiteralReadingState[] =
     formattedGRes.data.getGoodreadsBooks;
