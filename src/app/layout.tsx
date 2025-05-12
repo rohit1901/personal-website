@@ -7,6 +7,7 @@ import {ContentLoader} from "@website/components/ContentLoader";
 import { auth0 } from "@website/lib/auth0";
 
 
+
 const outfit = Outfit({subsets: ["latin"]});
 
 export const metadata: Metadata = {
