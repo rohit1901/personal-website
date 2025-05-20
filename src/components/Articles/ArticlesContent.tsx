@@ -1,9 +1,7 @@
 import { Posts } from "@website/components/Posts";
 import Section from "@website/components/Section";
-import { getSubstackFeed } from "@website/lib/fetchData";
 
 export default async function ArticlesContent() {
-  const substackData = await getSubstackFeed();
   return (
     <Section className="flex-col">
       <div className="flex flex-col lg:w-3/4 w-full mb-10">
