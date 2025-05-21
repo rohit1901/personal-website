@@ -26,6 +26,7 @@ import {
   Volunteer,
   Work,
 } from "@website/types";
+import { getM2MToken } from "./auth0";
 
 // --- Helper function ---
 async function fetchGraphQL<T = any>(
@@ -33,9 +34,7 @@ async function fetchGraphQL<T = any>(
   extraHeaders: Record<string, string> = {},
   options: RequestInit = {},
 ): Promise<T> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  const tokenResp = await fetch(`${baseUrl}/api/auth0/get`);
-  const { token } = await tokenResp.json();
+  const token = await getM2MToken();
   if (!token) {
     throw new Error("Failed to fetch token");
   }
