@@ -1,6 +1,6 @@
-import SMTPTransport from 'nodemailer/lib/smtp-transport'
-import {EmailPayload} from "@website/types";
-import nodemailer from 'nodemailer'
+import SMTPTransport from "nodemailer/lib/smtp-transport";
+import { EmailPayload } from "@website/types";
+import nodemailer from "nodemailer";
 
 const emailTemplate = `
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -162,28 +162,28 @@ const emailTemplate = `
 </body>
 
 </html>
-`
+`;
 const smtpOptions: SMTPTransport.Options = {
-    host: process.env.SMTP_HOST,
-    port: parseInt(process.env.SMTP_PORT ?? '000'),
-    secure: true,
-    auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASSWORD,
-    },
-}
+  host: process.env.SMTP_HOST,
+  port: parseInt(process.env.SMTP_PORT ?? "000"),
+  secure: true,
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASSWORD,
+  },
+};
 const emailData: EmailPayload = {
-    to: process.env.SMTP_TO_EMAIL,
-    subject: 'rohit.khanduri.de -> Your Instagram Tester Secret has expired!',
-    html: emailTemplate,
-}
+  to: process.env.SMTP_TO_EMAIL,
+  subject: "rohit.khanduri.de -> Your Instagram Tester Secret has expired!",
+  html: emailTemplate,
+};
 export const sendEmail = async () => {
-    const transporter = nodemailer.createTransport({
-        ...smtpOptions,
-    })
+  const transporter = nodemailer.createTransport({
+    ...smtpOptions,
+  });
 
-    return await transporter.sendMail({
-        from: process.env.SMTP_FROM_EMAIL,
-        ...emailData,
-    })
-}
+  return await transporter.sendMail({
+    from: process.env.SMTP_FROM_EMAIL,
+    ...emailData,
+  });
+};

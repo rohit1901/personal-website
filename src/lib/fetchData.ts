@@ -14,6 +14,7 @@ import {
   GetSubstackFeedQuery,
 } from "@website/constants";
 import { getGraphQLQueryStr } from "@website/lib/index";
+import { DocumentNode } from "graphql";
 
 import {
   Award,
@@ -25,181 +26,121 @@ import {
   Volunteer,
   Work,
 } from "@website/types";
-import { getToken } from "./auth0";
+
+// --- Helper function ---
+async function fetchGraphQL<T = any>(
+  query: DocumentNode,
+  extraHeaders: Record<string, string> = {},
+  options: RequestInit = {},
+): Promise<T> {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const tokenResp = await fetch(`${baseUrl}/api/auth0/get`);
+  const { token } = await tokenResp.json();
+  if (!token) {
+    throw new Error("Failed to fetch token");
+  }
+  const headers: HeadersInit = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+    ...extraHeaders,
+  };
+  const response = await fetch(GRAPHQL_URL, {
+    method: "POST",
+    headers,
+    body: getGraphQLQueryStr(query),
+    ...options,
+  });
+  if (!response.ok) {
+    throw new Error(`GraphQL request failed: ${response.statusText}`);
+  }
+  return response.json();
+}
+
+// --- Data fetching functions ---
 
 export async function getResumeBasics(): Promise<Basics> {
-  const basicsRaw = await fetch(GRAPHQL_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.APP_SECRET}`,
-    },
-    body: getGraphQLQueryStr(AllBasicsQuery),
-  });
   const {
     data: { basics },
-  } = await basicsRaw.json();
+  } = await fetchGraphQL(AllBasicsQuery);
   return basics;
 }
 
 export async function getAboutQuery(): Promise<Basics> {
-  const basicsRaw = await fetch(GRAPHQL_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.APP_SECRET}`,
-    },
-    body: getGraphQLQueryStr(AboutQuery),
-  });
   const {
     data: { basics },
-  } = await basicsRaw.json();
+  } = await fetchGraphQL(AboutQuery);
   return basics;
 }
 
 export async function getResumeWork(): Promise<Work[]> {
-  const basicsRaw = await fetch(GRAPHQL_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.APP_SECRET}`,
-    },
-    body: getGraphQLQueryStr(AllWorkExperienceQuery),
-  });
   const {
     data: { work },
-  } = await basicsRaw.json();
+  } = await fetchGraphQL(AllWorkExperienceQuery);
   return work;
 }
 
 export async function getResumeEducation(): Promise<Education[]> {
-  const basicsRaw = await fetch(GRAPHQL_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.APP_SECRET}`,
-    },
-    body: getGraphQLQueryStr(AllEducationQuery),
-  });
   const {
     data: { education },
-  } = await basicsRaw.json();
+  } = await fetchGraphQL(AllEducationQuery);
   return education;
 }
 
 export async function getVolunteering(): Promise<Volunteer[]> {
-  const basicsRaw = await fetch(GRAPHQL_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.APP_SECRET}`,
-    },
-    body: getGraphQLQueryStr(AllVolunteersQuery),
-  });
   const {
     data: { volunteer },
-  } = await basicsRaw.json();
+  } = await fetchGraphQL(AllVolunteersQuery);
   return volunteer;
 }
 
 export async function getAwards(): Promise<Award[]> {
-  const basicsRaw = await fetch(GRAPHQL_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.APP_SECRET}`,
-    },
-    body: getGraphQLQueryStr(AllAwardsQuery),
-  });
   const {
     data: { awards },
-  } = await basicsRaw.json();
+  } = await fetchGraphQL(AllAwardsQuery);
   return awards;
 }
 
 export async function getCertifications(): Promise<Certificate[]> {
-  const basicsRaw = await fetch(GRAPHQL_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.APP_SECRET}`,
-    },
-    body: getGraphQLQueryStr(AllCertificatesQuery),
-  });
   const {
     data: { certificates },
-  } = await basicsRaw.json();
+  } = await fetchGraphQL(AllCertificatesQuery);
   return certificates;
 }
 
 export async function fetchLiteralToken(): Promise<LiteralSecrets> {
-  const GRes = await fetch(GRAPHQL_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.APP_SECRET}`,
-    },
-    body: getGraphQLQueryStr(GetLiteralTokenQuery),
-  });
-  const formattedGRes = await GRes.json();
-  return formattedGRes.data.getLiteralToken;
+  const {
+    data: { getLiteralToken },
+  } = await fetchGraphQL(GetLiteralTokenQuery);
+  return getLiteralToken;
 }
 
 export async function getLiteralReadingStates(): Promise<
   LiteralReadingState[]
 > {
   const literalSecrets = await fetchLiteralToken();
-  const GRes = await fetch(GRAPHQL_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.APP_SECRET}`,
-      "x-literal-token": literalSecrets.token,
-    },
-    body: getGraphQLQueryStr(GetReadingStatesQuery),
+  const { data } = await fetchGraphQL(GetReadingStatesQuery, {
+    "x-literal-token": literalSecrets.token,
   });
-  const formattedGRes = await GRes.json();
-  return formattedGRes?.data?.getReadingStates ?? [];
+  return data?.getReadingStates ?? [];
 }
 
 export async function getGitHubRepos(): Promise<any> {
-  const GRes = await fetch(GRAPHQL_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.APP_SECRET}`,
-    },
-    body: getGraphQLQueryStr(GetGitHubDataQuery),
-  });
-  const formattedGRes = await GRes.json();
-  return formattedGRes.data.gitHubRepos;
+  const {
+    data: { gitHubRepos },
+  } = await fetchGraphQL(GetGitHubDataQuery);
+  return gitHubRepos;
 }
 
 export async function getSubstackFeed() {
-  const GRes = await fetch(GRAPHQL_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.APP_SECRET}`,
-      cache: "no-store",
-    },
-    body: getGraphQLQueryStr(GetSubstackFeedQuery),
-  });
-  const formattedGRes = await GRes.json();
-  return formattedGRes.data.getSubstackRawData;
+  const {
+    data: { getSubstackRawData },
+  } = await fetchGraphQL(GetSubstackFeedQuery);
+  return getSubstackRawData;
 }
 
 export async function getGoodreadsBooks() {
-  const GRes = await fetch(GRAPHQL_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: getGraphQLQueryStr(GetGoodreadsBooksQuery),
-    cache: "no-store",
-  })
-  const formattedGRes = await GRes.json();
-  const booksWithStatus: LiteralReadingState[] =
-    formattedGRes.data.getGoodreadsBooks;
-  return booksWithStatus;
+  const {
+    data: { getGoodreadsBooks },
+  } = await fetchGraphQL(GetGoodreadsBooksQuery);
+  return getGoodreadsBooks;
 }
