@@ -5,6 +5,8 @@ import {Posts} from "@website/components/Posts";
 import Section from "@website/components/Section";
 import {DE_RESUME, EN_RESUME} from "@website/constants";
 import {FaSquareArrowUpRight} from "react-icons/fa6";
+import { SubstackItem } from "substack-feed-api";
+import { getSubstackFeed } from "@website/lib/fetchData";
 
 export const DownloadCV = () => {
     return (
@@ -28,10 +30,11 @@ const JobsCard = {
     button: <DownloadCV/>
 }
 
-export const MainContent = () => {
+export const MainContent = async () => {
+    const feed: SubstackItem[] = await getSubstackFeed();
     return (
         <Section className="flex-col xl:flex-row 2xl:flex-row justify-between">
-            <Posts/>
+            <Posts feed={feed} />
             <aside className="flex flex-col xl:ml-2 xl:mt-0 2xl:ml-2 2xl:mt-0 mt-4">
                 <SubstackCard/>
                 <WorkExperiences {...JobsCard} />

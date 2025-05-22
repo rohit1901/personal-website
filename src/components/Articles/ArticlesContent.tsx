@@ -1,7 +1,10 @@
 import { Posts } from "@website/components/Posts";
 import Section from "@website/components/Section";
+import { getSubstackFeed } from "@website/lib/fetchData";
+import { SubstackItem } from "substack-feed-api";
 
 export default async function ArticlesContent() {
+  const feed: SubstackItem[] = await getSubstackFeed();
   return (
     <Section className="flex-col">
       <div className="flex flex-col lg:w-3/4 w-full mb-10">
@@ -17,7 +20,7 @@ export default async function ArticlesContent() {
           </span>
         </div>
       </div>
-      <Posts />
+      <Posts feed={feed} />
     </Section>
   );
 }

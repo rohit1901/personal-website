@@ -38,21 +38,12 @@ export const Post = (item?: SubstackItem) => {
     </ContentText>
   );
 };
-export const Posts = () => {
-  const [loading, setLoading] = useState(false);
-  const [substack, setSubstack] = useState<SubstackItem[]>();
+// TODO: See the BooksContent server component. See ./Books/BooksContent.tsx BooksContent.tsx
+export const Posts = ({ feed }: { feed?: SubstackItem[] }) => {
   const pathname = usePathname();
-  useEffect(() => {
-    setLoading(true);
-    getSubstackFeed()
-      .then((res) => setSubstack(res as SubstackItem[]))
-      .catch((err) => console.error(err))
-      .finally(() => setLoading(false));
-  }, []);
-  if (loading) return <ContentLoader />;
   return (
     <aside className="lg:w-3/4 w-full flex flex-col space-y-10 mr-2 border-l justify-evenly">
-      {getBlogPosts(substack, pathname)?.map((item, index) => (
+      {getBlogPosts(feed, pathname)?.map((item, index) => (
         <Post key={`item.guid-${index}`} {...item} />
       ))}
     </aside>

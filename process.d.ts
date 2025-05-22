@@ -8,6 +8,7 @@ declare namespace NodeJS {
     AUTH0_CLIENT_ID: string;
     AUTH0_CLIENT_SECRET: string;
     AUTH0_AUDIENCE: string;
+    AUTH0_SCOPE: string;
     // AWS Cognito
     NEXT_PUBLIC_AWS_USER_POOL_ID: string;
     NEXT_PUBLIC_AWS_USER_POOL_APP_CLIENT_ID: string;

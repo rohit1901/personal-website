@@ -27,6 +27,7 @@ import {
   Work,
 } from "@website/types";
 import { getM2MToken } from "./auth0";
+import { SubstackItem } from "substack-feed-api";
 
 // --- Helper function ---
 async function fetchGraphQL<T = any>(
@@ -134,7 +135,7 @@ export async function getSubstackFeed() {
   const {
     data: { getSubstackRawData },
   } = await fetchGraphQL(GetSubstackFeedQuery);
-  return getSubstackRawData;
+  return getSubstackRawData as SubstackItem[];
 }
 
 export async function getGoodreadsBooks() {
