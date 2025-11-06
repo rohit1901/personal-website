@@ -1,43 +1,32 @@
-"use client"
-import React, {useEffect, useRef} from 'react';
-import {useScript} from "usehooks-ts";
-import {usePathname} from "next/navigation";
+"use client";
+import React, { useEffect, useRef } from "react";
+import { useScript } from "usehooks-ts";
+/**
+ * Supascribe Embed Widget
+    <!-- Subscribe embed code -->
+    <div data-supascribe-embed-id="449499337144" data-supascribe-subscribe></div>
 
+
+    <!-- Supascribe Script -->
+    <script src="https://js.supascribe.com/v1/loader/ZRx5S40b53OdCHsvruh3WhbhPez2.js" async></script>
+ */
 
 export const SubstackWidget = () => {
-    const status = useScript(`https://substackapi.com/widget.js`, {
-        removeOnUnmount: true,
-        id: 'custom-substack-script',
-    })
-    const pathname = usePathname()
-    const customSubstackRef = useRef<HTMLDivElement>(null);
-    useEffect(() => {
-        if (!window) return;
-        // @ts-ignore
-        window.CustomSubstackWidget = {
-            substackUrl: "rohitkhanduri.substack.com",
-            placeholder: "example@host.com",
-            buttonText: "Subscribe",
-        };
-    }, [pathname]);
+  const status = useScript(
+    `https://js.supascribe.com/v1/loader/ZRx5S40b53OdCHsvruh3WhbhPez2.js`,
+    {
+      removeOnUnmount: true,
+      id: "custom-substack-script",
+    },
+  );
+  const customSubstackRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        if (status === 'ready') {
-            const forms = customSubstackRef.current?.getElementsByTagName('form')
-            if (!forms) {
-                console.error('No forms found in custom substack widget')
-                return
-            }
-            const customSubstackForm = Array.from(forms)
-                .find((form) => form.className === "custom-substack-widget csw-theme-default")
-            if (!customSubstackForm) {
-                console.error('No custom substack form found')
-                return
-            }
-            customSubstackForm.classList.remove("custom-substack-widget", "csw-theme-default");
-        }
-    }, [status])
-    return (
-        <div id="custom-substack-embed" className="w-full" ref={customSubstackRef}></div>
-    );
+  return (
+    <div
+      data-supascribe-embed-id="449499337144"
+      data-supascribe-subscribe
+      className="w-full"
+      ref={customSubstackRef}
+    ></div>
+  );
 };

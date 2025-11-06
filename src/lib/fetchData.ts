@@ -35,7 +35,8 @@ async function fetchGraphQL<T = any>(
   extraHeaders: Record<string, string> = {},
   options: RequestInit = {},
 ): Promise<T> {
-  const token = await getM2MToken();
+  const token =
+    process.env.NODE_ENV === "production" ? await getM2MToken() : true;
   if (!token) {
     throw new Error("Failed to fetch token");
   }
