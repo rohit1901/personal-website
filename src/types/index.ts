@@ -165,7 +165,7 @@ export interface Project {
 }
 
 export interface ResumeSchema {
-  basics: Basics;
+  basicInformation: Basics;
   work: Work[];
   volunteer: Volunteer[];
   education: Education[];

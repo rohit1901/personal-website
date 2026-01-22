@@ -1,0 +1,253 @@
+query GetResumes {
+  resumes {
+    id
+    title
+    basicInformation {
+      id
+      name
+      label
+      image {
+        id
+        src
+        alt
+        width
+        height
+        fill
+        type {
+          id
+          label
+        }
+        preview
+      }
+      email
+      phone
+      url
+      summary
+      location {
+        id
+        address
+        postalCode
+        city
+        countryCode
+        region
+        language {
+          id
+          label
+          value
+        }
+      }
+      profiles {
+        id
+        network
+        username
+        url
+        language {
+          id
+          label
+          value
+        }
+      }
+      profilesCount
+      language {
+        id
+        label
+        value
+      }
+    }
+    work {
+      id
+      name
+      position
+      url
+      startDate
+      endDate
+      summary
+      highlights
+      image {
+        id
+        src
+        alt
+        width
+        height
+        fill
+        type {
+          id
+          label
+        }
+        preview
+      }
+      language {
+        id
+        label
+        value
+      }
+    }
+    workCount
+    volunteer {
+      id
+      organization
+      position
+      url
+      startDate
+      endDate
+      summary
+      highlights
+      language {
+        id
+        label
+        value
+      }
+    }
+    volunteerCount
+    education {
+      id
+      institution
+      url
+      area
+      studyType
+      startDate
+      endDate
+      score
+      courses
+      language {
+        id
+        label
+        value
+      }
+    }
+    educationCount
+    awards {
+      id
+      title
+      date
+      awarder
+      summary
+      url
+      language {
+        id
+        label
+        value
+      }
+    }
+    awardsCount
+    certificates {
+      id
+      title
+      description
+      image {
+        id
+        src
+        alt
+        width
+        height
+        fill
+        type {
+          id
+          label
+        }
+        preview
+      }
+      link
+      language {
+        id
+        label
+        value
+      }
+    }
+    certificatesCount
+    publications {
+      id
+      name
+      publisher
+      releaseDate
+      url
+      summary
+      language {
+        id
+        label
+        value
+      }
+    }
+    publicationsCount
+    skills {
+      id
+      name
+      level
+      keywords
+      language {
+        id
+        label
+        value
+      }
+    }
+    skillsCount
+    resumeLanguages {
+      id
+      language
+      fluency
+      uiLanguage {
+        id
+        label
+        value
+      }
+    }
+    resumeLanguagesCount
+    interests {
+      id
+      name
+      keywords
+      language {
+        id
+        label
+        value
+      }
+    }
+    interestsCount
+    references {
+      id
+      name
+      reference
+      language {
+        id
+        label
+        value
+      }
+    }
+    referencesCount
+    projects {
+      id
+      name
+      startDate
+      endDate
+      description
+      highlights
+      url
+      image {
+        id
+        src
+        alt
+        width
+        height
+        fill
+        type {
+          id
+          label
+        }
+        preview
+      }
+      language {
+        id
+        label
+        value
+      }
+    }
+    projectsCount
+    language {
+      id
+      label
+      value
+    }
+    createdAt
+    updatedAt
+  }
+}

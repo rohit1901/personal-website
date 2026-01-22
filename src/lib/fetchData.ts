@@ -12,6 +12,7 @@ import {
   GetLiteralTokenQuery,
   GetReadingStatesQuery,
   GetSubstackFeedQuery,
+  GetResumesQuery,
 } from "@website/constants";
 import { getGraphQLQueryStr } from "@website/lib/index";
 import { DocumentNode } from "graphql";
@@ -23,6 +24,7 @@ import {
   Education,
   LiteralReadingState,
   LiteralSecrets,
+  ResumeSchema,
   Volunteer,
   Work,
 } from "@website/types";
@@ -58,6 +60,13 @@ async function fetchGraphQL<T = any>(
 }
 
 // --- Data fetching functions ---
+
+export async function getResumes(): Promise<ResumeSchema[]> {
+  const {
+    data: { resumes },
+  } = await fetchGraphQL(GetResumesQuery);
+  return resumes;
+}
 
 export async function getResumeBasics(): Promise<Basics> {
   const {
