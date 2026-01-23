@@ -9,18 +9,18 @@ import { getResumes } from "@website/lib/fetchData";
 
 export default async function Home() {
   const resumes: ResumeSchema[] = await getResumes();
-  const { basicInformation } = resumes?.[0] ?? {};
+  const resume = resumes?.[0] ?? {};
 
   return (
     <main className="min-w-screen min-h-screen flex-auto">
       <div className="flex flex-col mx-auto h-auto min-h-full">
         <Runner>
           <Navbar />
-          <Hero basics={basicInformation} />
+          <Hero basics={resume.basicInformation} />
         </Runner>
         <Carousel />
         <Runner>
-          {/*<MainContent />*/}
+          <MainContent resume={resume} />
           <Footer />
         </Runner>
       </div>

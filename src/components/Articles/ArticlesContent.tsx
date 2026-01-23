@@ -1,10 +1,26 @@
 import { Posts } from "@website/components/Posts";
 import Section from "@website/components/Section";
-import { getSubstackFeed } from "@website/lib/fetchData";
-import { SubstackItem } from "substack-feed-api";
-
+import {
+  SubstackItem,
+  getSubstackFeed,
+  getPosts,
+  getFeedByLink,
+} from "substack-feed-api";
+export const SUBSTACK_FEED_URL = "https://rohitkhanduri.substack.com";
+export const getSubstackPosts = async () => {
+  try {
+    const uriComponent = `${SUBSTACK_FEED_URL}/feed`;
+    //const rawRes = await getSubstackFeed(uriComponent);
+    const rawRes = await fetch(uriComponent);
+    const z = await rawRes.text();
+    console.log(z);
+    return getPosts(getFeedByLink(z, SUBSTACK_FEED_URL));
+  } catch (error: unknown) {
+    console.error(error);
+  }
+};
 export default async function ArticlesContent() {
-  const feed: SubstackItem[] = await getSubstackFeed();
+  const feed = await getSubstackPosts();
   return (
     <Section className="flex-col">
       <div className="flex flex-col lg:w-3/4 w-full mb-10">

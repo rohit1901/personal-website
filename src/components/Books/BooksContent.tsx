@@ -3,9 +3,9 @@ import Section from "@website/components/Section";
 import { getBooks, getLiteralReadingStatusValues } from "@website/lib";
 import { getGoodreadsBooks } from "@website/lib/fetchData";
 import { LiteralReadingState } from "@website/types";
-
+// TODO: fix goodreads api
 export default async function BooksContent() {
-  const readingStates: LiteralReadingState[] = await getGoodreadsBooks();
+  const readingStates: LiteralReadingState[] = [];
   return (
     <Section className="flex-col">
       <div className="flex flex-col xl:w-3/4 2xl:w-3/4 w-full mb-10">

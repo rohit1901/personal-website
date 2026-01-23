@@ -17,6 +17,22 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "d1ljophloyhryl.cloudfront.net",
+      },
+      {
+        protocol: "https",
+        hostname: "d1.awsstatic.com",
+      },
+      {
+        protocol: "https",
+        hostname: "images.credly.com",
+      },
+      {
+        protocol: "https",
+        hostname: "app.skillsclub.com",
+      },
+      {
+        protocol: "https",
         hostname: "daisyui.com",
       },
       {

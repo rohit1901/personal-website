@@ -14,10 +14,10 @@ export default async function Hero({ basics }: HeroProps) {
       <div className="avatar px-4 mb-10 lg:sticky top-0 left-0 right-0 lg:z-50">
         <div className="w-24 rounded-full">
           <Image
-            src={getImageUrl(PROFILE_PIC)}
-            width="100"
-            height="100"
-            alt="rohit avatar"
+            src={basics.image?.src}
+            width={basics.image?.width}
+            height={basics.image?.height}
+            alt={basics.image?.alt}
           />
         </div>
       </div>
