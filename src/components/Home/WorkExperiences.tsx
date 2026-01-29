@@ -4,8 +4,8 @@ import { getImageUrl } from "@website/lib";
 import Link from "next/link";
 import { ContentText } from "@website/components/ContentText";
 import { PhoneHidden } from "@website/components/Phone/PhoneHidden";
-import { getResumeWork } from "@website/lib/fetchData";
 import { ResumeSchema } from "@website/types";
+import AvatarPlaceholder from "../AvatarPlaceholder";
 
 type CardHeading = {
   icon: ReactNode;
@@ -43,13 +43,7 @@ export default async function WorkExperiences({
           <div className="mt-6 flex flex-row" key={`c.image-${i}`}>
             <div className="w-2/3 sm:w-full flex flex-row items-center">
               <Link href={c.url} className="mr-2">
-                <Image
-                  src={getImageUrl(c.image)}
-                  width="100"
-                  height="100"
-                  alt="rohit avatar"
-                  className="rounded-full w-6 h-6"
-                />
+                <AvatarPlaceholder text={c.name} size="xs" />
               </Link>
               <div className="flex flex-col">
                 <ContentText className="">

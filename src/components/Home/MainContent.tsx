@@ -6,9 +6,8 @@ import Section from "@website/components/Section";
 import { DE_RESUME, EN_RESUME } from "@website/constants";
 import { FaSquareArrowUpRight } from "react-icons/fa6";
 import { SubstackItem } from "substack-feed-api";
-import { getSubstackFeed } from "@website/lib/fetchData";
 import { ResumeSchema } from "@website/types";
-import { getSubstackPosts } from "../Articles/ArticlesContent";
+import { getSubstackPosts } from "@website/components/Articles/ArticlesContent";
 
 export const DownloadCV = () => {
   return (

@@ -13,7 +13,7 @@ export const DE_RESUME =
 
 export const NO_DESCRIPTION = "Whoops! There's no description available.";
 export const FALLBACK_IMAGE = "/avatar.png";
-export const PROFILE_PIC = "/portfolio/profile.pic.svg";
+export const PROFILE_PIC = "/assets/resume/avatar.png";
 export const DEFAULT_LOCALE = "en-US";
 
 export * from "./queries";

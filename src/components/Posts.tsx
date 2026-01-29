@@ -1,11 +1,8 @@
 "use client";
-import { ContentLoader } from "@website/components/ContentLoader";
 import { ContentText } from "@website/components/ContentText";
 import { formatDate, getBlogPosts } from "@website/lib";
-import { getSubstackFeed } from "@website/lib/fetchData";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { SubstackItem } from "substack-feed-api";
 

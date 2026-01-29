@@ -3,8 +3,7 @@ import { ContentText } from "@website/components/ContentText";
 import Link from "next/link";
 import { PhoneHidden } from "@website/components/Phone/PhoneHidden";
 import { FaUserGraduate } from "react-icons/fa";
-import { getResumeEducation } from "@website/lib/fetchData";
-import { AboutContentProps } from "./AboutContent";
+import { AboutContentProps } from "@website/components/About/AboutContent";
 
 export default async function EducationCard({ resume }: AboutContentProps) {
   const education = resume?.education;

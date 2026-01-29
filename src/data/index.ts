@@ -3,7 +3,7 @@ import {
   GoodreadsRaw,
   GoodreadsReadingState,
   GoodreadsReadingStatus,
-} from "@website/lib/rss-parser/goodreads";
+} from "@website/lib/rss-feed-parser/goodreads";
 import { SubstackItem } from "substack-feed-api";
 
 export const INSTAGRAM_DATA = {

@@ -1,14 +1,12 @@
 import Section from "@website/components/Section";
 import Link from "next/link";
 import Image from "next/image";
-import { getImageUrl } from "@website/lib";
 import { DesktopShow } from "@website/components/Desktop/DesktopShow";
 import { NetworkProfiles } from "@website/components/NetworkProfiles";
 import { Divider } from "@website/components/Divider";
 import { FaEnvelope } from "react-icons/fa";
 import { DesktopHidden } from "@website/components/Desktop/DesktopHidden";
 import { Fragment } from "react";
-import { getAboutQuery } from "@website/lib/fetchData";
 import { AboutContentProps } from "./AboutContent";
 
 export default async function AboutHero({ resume }: AboutContentProps) {

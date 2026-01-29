@@ -1,9 +1,8 @@
 import Image from "next/image";
-import { Profile, ResumeSchema } from "@website/types";
+import { ResumeSchema } from "@website/types";
 import { NetworkProfiles } from "@website/components/NetworkProfiles";
-import { getImageUrl } from "@website/lib";
 import { PROFILE_PIC } from "@website/constants";
-import { getResumeBasics, getResumes } from "@website/lib/fetchData";
+import { getImageUrl } from "@website/lib";
 
 type HeroProps = {
   basics: ResumeSchema["basicInformation"];
@@ -14,7 +13,7 @@ export default async function Hero({ basics }: HeroProps) {
       <div className="avatar px-4 mb-10 lg:sticky top-0 left-0 right-0 lg:z-50">
         <div className="w-24 rounded-full">
           <Image
-            src={basics.image?.src}
+            src={getImageUrl(PROFILE_PIC)}
             width={basics.image?.width}
             height={basics.image?.height}
             alt={basics.image?.alt}

@@ -2,8 +2,7 @@ import { ContentText } from "@website/components/ContentText";
 import Link from "next/link";
 import { PhoneHidden } from "@website/components/Phone/PhoneHidden";
 import { GrCertificate } from "react-icons/gr";
-import { getCertifications } from "@website/lib/fetchData";
-import { AboutContentProps } from "./AboutContent";
+import { AboutContentProps } from "@website/components/About/AboutContent";
 import { Certificate } from "@website/types";
 import Image from "next/image";
 

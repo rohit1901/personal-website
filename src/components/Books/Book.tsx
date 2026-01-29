@@ -8,7 +8,7 @@ import {
 import {
   GoodreadsBook,
   GoodreadsReadingStatus,
-} from "@website/lib/rss-parser/goodreads";
+} from "@website/lib/rss-feed-parser/goodreads";
 import Image from "next/image";
 
 type BookProps = {

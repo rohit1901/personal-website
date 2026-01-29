@@ -4,8 +4,7 @@ import { ContentText } from "@website/components/ContentText";
 import Link from "next/link";
 import { PhoneHidden } from "@website/components/Phone/PhoneHidden";
 import { MdOutlineVolunteerActivism } from "react-icons/md";
-import { getVolunteering } from "@website/lib/fetchData";
-import { AboutContentProps } from "./AboutContent";
+import { AboutContentProps } from "@website/components/About/AboutContent";
 // TODO: fix image, dates, and highlights
 export default async function Volunteering({ resume }: AboutContentProps) {
   const volunteering = resume?.volunteer;
