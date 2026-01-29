@@ -1,11 +1,17 @@
 import { Book } from "@website/components/Books/Book";
 import Section from "@website/components/Section";
-import { getBooks, getLiteralReadingStatusValues } from "@website/lib";
-import { getGoodreadsBooks } from "@website/lib/fetchData";
-import { LiteralReadingState } from "@website/types";
-
+import { GOODREADS_FEED_URL } from "@website/constants";
+import { GOODREADS_DATA } from "@website/data";
+import {
+  READING_STATES,
+  parseGoodreadsRss,
+} from "@website/lib/rss-feed-parser/goodreads";
 export default async function BooksContent() {
-  const readingStates: LiteralReadingState[] = await getGoodreadsBooks();
+  const goodreadsRawFeed = await fetch(GOODREADS_FEED_URL);
+  const goodreadsStates = parseGoodreadsRss(await goodreadsRawFeed.text(), {
+    fallback: GOODREADS_DATA,
+  });
+
   return (
     <Section className="flex-col">
       <div className="flex flex-col xl:w-3/4 2xl:w-3/4 w-full mb-10">
@@ -21,11 +27,13 @@ export default async function BooksContent() {
           </span>
         </div>
       </div>
-      {getLiteralReadingStatusValues().map((status) => (
+      {READING_STATES.map((readingState) => (
         <Book
-          key={status}
-          books={getBooks(readingStates, status)}
-          status={status}
+          key={readingState}
+          books={goodreadsStates
+            .filter((state) => readingState === state.status)
+            .map((state) => state.book)}
+          status={readingState}
         />
       ))}
     </Section>

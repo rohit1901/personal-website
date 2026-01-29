@@ -1,19 +1,43 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
-  webpack: (config) => {
-    config.module.rules.push({
-      test: /\.(graphql|gql)/,
-      exclude: /node_modules/,
-      loader: "graphql-tag/loader",
-    });
-    return config;
+  turbopack: {
+    rules: {
+      "*.graphql": {
+        loaders: ["graphql-tag/loader"],
+        as: "*.js",
+      },
+      "*.gql": {
+        loaders: ["graphql-tag/loader"],
+        as: "*.js",
+      },
+    },
   },
   images: {
     remotePatterns: [
       {
         protocol: "https",
         hostname: "d28xxvmjntstuh.cloudfront.net",
+      },
+      {
+        protocol: "https",
+        hostname: "assets.lummi.ai",
+      },
+      {
+        protocol: "https",
+        hostname: "d1ljophloyhryl.cloudfront.net",
+      },
+      {
+        protocol: "https",
+        hostname: "d1.awsstatic.com",
+      },
+      {
+        protocol: "https",
+        hostname: "images.credly.com",
+      },
+      {
+        protocol: "https",
+        hostname: "app.skillsclub.com",
       },
       {
         protocol: "https",

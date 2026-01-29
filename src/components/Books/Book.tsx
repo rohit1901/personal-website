@@ -5,14 +5,17 @@ import {
   getReadingSectionHeading,
   stripHtmlTags,
 } from "@website/lib";
-import { LiteralBook, LiteralReadingStatus } from "@website/types";
+import {
+  GoodreadsBook,
+  GoodreadsReadingStatus,
+} from "@website/lib/rss-feed-parser/goodreads";
 import Image from "next/image";
 
 type BookProps = {
-  books: LiteralBook[];
-  status: LiteralReadingStatus;
+  books: GoodreadsBook[];
+  status: GoodreadsReadingStatus;
 };
-const getCommaSeparatedAuthors = (authors: LiteralBook["authors"]) => {
+const getCommaSeparatedAuthors = (authors: GoodreadsBook["authors"]) => {
   return authors?.map((author, i) => (
     <span key={`${author.name}-${i}`} className="mr-2">
       {author.name}
@@ -23,7 +26,7 @@ const getCommaSeparatedAuthors = (authors: LiteralBook["authors"]) => {
 const CommaSeparatedAuthors = ({
   authors,
 }: {
-  authors: LiteralBook["authors"];
+  authors: GoodreadsBook["authors"];
 }) => {
   return (
     <div className="inline-flex font-semibold italic">

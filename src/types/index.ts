@@ -1,3 +1,5 @@
+import { ImageProps } from "next/image";
+
 export type GitHubRepo = {
   description: string;
   icon: string;
@@ -69,7 +71,7 @@ export interface Profile {
 export interface Basics {
   name: string;
   label: string;
-  image: string;
+  image: ImageProps;
   email: string;
   phone: string;
   url: string;
@@ -120,10 +122,10 @@ export interface Award {
 }
 
 export interface Certificate {
-  name: string;
-  date: string;
-  issuer: string;
-  url: string;
+  title: string;
+  description: string;
+  link: string;
+  image: ImageProps;
 }
 
 export interface Publication {
@@ -165,7 +167,7 @@ export interface Project {
 }
 
 export interface ResumeSchema {
-  basics: Basics;
+  basicInformation: Basics;
   work: Work[];
   volunteer: Volunteer[];
   education: Education[];
