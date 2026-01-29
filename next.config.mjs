@@ -17,6 +17,10 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "assets.lummi.ai",
+      },
+      {
+        protocol: "https",
         hostname: "d1ljophloyhryl.cloudfront.net",
       },
       {

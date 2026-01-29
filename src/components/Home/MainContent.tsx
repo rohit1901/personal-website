@@ -8,6 +8,7 @@ import { FaSquareArrowUpRight } from "react-icons/fa6";
 import { SubstackItem } from "substack-feed-api";
 import { getSubstackFeed } from "@website/lib/fetchData";
 import { ResumeSchema } from "@website/types";
+import { getSubstackPosts } from "../Articles/ArticlesContent";
 
 export const DownloadCV = () => {
   return (
@@ -45,9 +46,11 @@ interface MainContentProps {
 }
 
 export const MainContent = async ({ resume }: MainContentProps) => {
-  // const feed: SubstackItem[] = await getSubstackFeed();
-  // TODO: Implement substack feed fetching
-  const feed: SubstackItem[] = [];
+  const feed = await getSubstackPosts();
+  if (!feed) {
+    // NOTE: this will be handled by the parent component and will never be reached
+    return null;
+  }
   return (
     <Section className="flex-col xl:flex-row 2xl:flex-row justify-between">
       <Posts feed={feed} />

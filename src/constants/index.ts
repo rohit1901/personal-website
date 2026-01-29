@@ -2,6 +2,8 @@
 export const INSTAGRAM_MEDIA_URL =
   "https://graph.instagram.com/me/media?fields=caption,media_url&access_token=";
 export const SUBSTACK_FEED_URL = "https://rohitkhanduri.substack.com";
+export const GOODREADS_FEED_URL =
+  "https://www.goodreads.com/review/list_rss/161866901?key=i4wH3ZD_K1LIZ7duOLVsiUWcyhW-fGCsox5koyQTJIUuwzwO&shelf=%23ALL%23";
 export const GRAPHQL_URL = `${process.env.NEXT_PUBLIC_GRAPHQL_SERVER_HOST}/api/graphql`;
 // RESUME Links
 export const EN_RESUME =

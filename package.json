@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@theme-toggles/react": "^4.1.0",
+    "cheerio": "^1.2.0",
     "fetch-meta-tags": "^1.0.12",
     "graphql-tag": "^2.12.6",
     "next": "^15.3.1",
