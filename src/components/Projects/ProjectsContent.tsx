@@ -28,11 +28,11 @@ export const transformGitHubData = (
     avatar_url,
     html_url,
   }));
-export const getGitHubRawData = async () => {
+const getGitHubRawData = async () => {
   const raw = await fetch(GITHUB_PUBLIC_REPOS_URL);
   return await raw.json();
 };
-export const getGitHubRepos = async () => {
+const getGitHubRepos = async () => {
   const data = await getGitHubRawData();
   if (!data || 0 === data.length || data.message) {
     throw new Error(
