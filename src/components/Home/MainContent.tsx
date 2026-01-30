@@ -32,7 +32,7 @@ export const DownloadCV = () => {
   );
 };
 
-const JobsCard = {
+export const JobsCard = {
   heading: {
     icon: <FaBriefcase className="w-5 h-5 text-gray-400" />,
     text: "Work Experience",

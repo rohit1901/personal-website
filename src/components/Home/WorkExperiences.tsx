@@ -22,6 +22,7 @@ type CardProps = {
   heading: CardHeading;
   content?: CardContent[];
   button?: ReactNode;
+  description?: boolean;
 };
 type WorkExperienceProps = {
   resume: ResumeSchema;
@@ -30,6 +31,7 @@ export default async function WorkExperiences({
   heading,
   button,
   resume,
+  description = false,
 }: WorkExperienceProps) {
   const workExperience = resume.work;
   return (
@@ -54,6 +56,11 @@ export default async function WorkExperiences({
                 <ContentText>
                   <p>{c.position}</p>
                 </ContentText>
+                {description && c.summary && (
+                  <ContentText>
+                    <p className="text-sm text-gray-500">{c.summary}</p>
+                  </ContentText>
+                )}
               </div>
             </div>
             <PhoneHidden className="w-1/3 text-right">

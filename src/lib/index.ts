@@ -3,14 +3,14 @@ import {
   FALLBACK_IMAGE,
   INSTAGRAM_MEDIA_URL,
 } from "@website/constants";
-import {
-  InstagramError,
-  LiteralBook,
-  LiteralReadingState,
-  LiteralReadingStatus,
-} from "@website/types";
+import { InstagramError } from "@website/types";
 import { DocumentNode } from "graphql";
-import { SubstackItem } from "substack-feed-api";
+import {
+  GoodreadsBook,
+  GoodreadsReadingState,
+  GoodreadsReadingStatus,
+  SubstackItem,
+} from "substack-feed-api";
 
 export const getUserLocale = (): string => {
   if (typeof window !== "undefined") {
@@ -122,7 +122,7 @@ export const getGraphQLQueryStr = (
  * @returns {Array<LiteralReadingStatus>} - the reading status values
  */
 export const getLiteralReadingStatusValues =
-  (): Array<LiteralReadingStatus> => {
+  (): Array<GoodreadsReadingStatus> => {
     return ["IS_READING", "FINISHED", "WANTS_TO_READ"];
   };
 /**
@@ -131,7 +131,7 @@ export const getLiteralReadingStatusValues =
  * @returns {string} - the reading section heading
  */
 export const getReadingSectionHeading = (
-  status: LiteralReadingStatus,
+  status: GoodreadsReadingStatus,
 ): string => {
   switch (status) {
     case "IS_READING":
@@ -157,9 +157,9 @@ export const getCoverImage = (cover?: string | undefined): string => {
  * @returns {LiteralBook[]} - the books based on the reading status
  */
 export const getBooks = (
-  readingStates: LiteralReadingState[],
-  status: LiteralReadingStatus,
-): LiteralBook[] => {
+  readingStates: GoodreadsReadingState[],
+  status: GoodreadsReadingStatus,
+): GoodreadsBook[] => {
   return readingStates
     ?.filter((state) => state.status === status)
     ?.map((state) => state.book);

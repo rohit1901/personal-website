@@ -1,3 +1,4 @@
+import { ResumeSchema } from "@website/types";
 import { GoodreadsRaw, SubstackItem } from "substack-feed-api";
 
 export const INSTAGRAM_DATA = {
@@ -1155,5 +1156,614 @@ export const GOODREADS_DATA: GoodreadsRaw[] = [
       "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1611844095l/56790170.jpg",
     author: "Michael   Lewis",
     shelves: "to-read",
+  },
+];
+export const RESUME_DATA: ResumeSchema[] = [
+  {
+    id: "1",
+    title: "Rohit Khanduri - Software Architect Resume",
+    basicInformation: {
+      id: "1",
+      name: "Rohit Khanduri",
+      label: "Software Architect",
+      image: {
+        id: "14",
+        src: "https://d1ljophloyhryl.cloudfront.net/assets/resume/profile-pic.jpeg",
+        alt: "Resume Photo",
+        width: 150,
+        height: 150,
+        fill: false,
+        type: {
+          id: "8",
+          label: "resume",
+        },
+        preview:
+          "https://d1ljophloyhryl.cloudfront.net/assets/resume/profile-pic.jpeg",
+      },
+      email: "rohit.khanduri@hotmail.com",
+      phone: "",
+      url: "https://www.rohit.khanduri.de",
+      summary:
+        "As a seasoned software architect with over a decade of experience in software development,\n    I bring a wealth of expertise in crafting innovative solutions that bridge the gap between technical and creative aspects of software design.\n    With a strong foundation in mathematics and a proven track record of successful project delivery,\n    I am well-versed in agile methodologies and have honed my skills in leading diverse software teams across international borders.\n    My passion for problem-solving and creativity has allowed me to excel in my career,\n    and I am always eager to take on new challenges and collaborate with like-minded professionals.\n    When I'm not working on the latest software solution, you can find me reading, doodling math problems or moving my body.\n    Let's connect and explore how we can work together to drive the evolution of the tech landscape!",
+      location: {
+        id: "1",
+        address: "Frankfurt am Main, Germany",
+        postalCode: "60326",
+        city: "Frankfurt am Main",
+        countryCode: "DE",
+        region: "Hessen",
+        language: {
+          id: "1",
+          label: "English",
+          value: "en-US",
+        },
+      },
+      profiles: [
+        {
+          id: "1",
+          network: "LinkedIn",
+          username: "rohit-khanduri-9098b84a",
+          url: "https://www.linkedin.com/in/rohit-khanduri-9098b84a/",
+          language: {
+            id: "1",
+            label: "English",
+            value: "en-US",
+          },
+        },
+        {
+          id: "2",
+          network: "GitHub",
+          username: "rohit1901",
+          url: "https://github.com/rohit1901",
+          language: {
+            id: "1",
+            label: "English",
+            value: "en-US",
+          },
+        },
+        {
+          id: "3",
+          network: "Twitter",
+          username: "JohnnyD78310768",
+          url: "https://twitter.com/JohnnyD78310768",
+          language: {
+            id: "1",
+            label: "English",
+            value: "en-US",
+          },
+        },
+        {
+          id: "4",
+          network: "Instagram",
+          username: "johnny.drama.chase",
+          url: "https://www.instagram.com/johnny.drama.chase/",
+          language: {
+            id: "1",
+            label: "English",
+            value: "en-US",
+          },
+        },
+        {
+          id: "5",
+          network: "Other",
+          username: "rohitkhanduri",
+          url: "https://rohitkhanduri.substack.com/",
+          language: {
+            id: "1",
+            label: "English",
+            value: "en-US",
+          },
+        },
+      ],
+      profilesCount: 5,
+      language: {
+        id: "1",
+        label: "English",
+        value: "en-US",
+      },
+    },
+    work: [
+      {
+        id: "1",
+        name: "Adesso SE",
+        position: "Software Architect",
+        url: "https://www.adesso.de/",
+        startDate: "2020-07-31T22:00:00.000Z",
+        endDate: "2025-02-28T23:00:00.000Z",
+        summary:
+          "As a Software Architect and a Consultant, I am responsible for the design and implementation of Software Solutions for our clients. I am also responsible for the technical leadership of the development team and occassionally review the architecture of the existing systems.",
+        highlights:
+          "A part of the Adesso Talent Pool as a high potential employee\nSuccessfully led the development of new microservice architectures for clients\nMentored junior developers and interns\nConducted workshops and training sessions for the various teams",
+        language: {
+          id: "1",
+          label: "English",
+          value: "en-US",
+        },
+      },
+      {
+        id: "2",
+        name: "Finatix GmbH",
+        position: "Software Engineer (Working Student)",
+        url: "https://www.finatix.de/",
+        startDate: "2019-08-31T22:00:00.000Z",
+        endDate: "2020-06-30T22:00:00.000Z",
+        summary:
+          "As a Software Engineer, I was responsible for the development of new features for the existing software solutions. I was also responsible for the maintenance of the existing software solutions.",
+        highlights:
+          "Developed new features for the existing software solutions\nMaintained the existing software solutions",
+
+        language: {
+          id: "1",
+          label: "English",
+          value: "en-US",
+        },
+      },
+      {
+        id: "3",
+        name: "Peak Performance Apps GmbH",
+        position: "Software Engineer (Working Student)",
+        url: "https://appsfactory.de/",
+        startDate: "2019-04-30T22:00:00.000Z",
+        endDate: "2019-07-31T22:00:00.000Z",
+        summary:
+          "As a Software Engineer, I was responsible for the development of new features for the existing software solutions. I was also responsible for the maintenance of the existing software solutions.",
+        highlights:
+          "Developed new features for the existing software solutions\nMaintained the existing software solutions",
+
+        language: {
+          id: "1",
+          label: "English",
+          value: "en-US",
+        },
+      },
+      {
+        id: "4",
+        name: "Appsfactory GmbH",
+        position: "Software Engineer (Working Student)",
+        url: "https://appsfactory.de/",
+        startDate: "2017-11-30T23:00:00.000Z",
+        endDate: "2019-03-31T22:00:00.000Z",
+        summary:
+          "As a Software Engineer, I was responsible for the development of new features for the existing software solutions. I was also responsible for the maintenance of the existing software solutions.",
+        highlights:
+          "Developed new features for the existing software solutions\nMaintained the existing software solutions",
+
+        language: {
+          id: "1",
+          label: "English",
+          value: "en-US",
+        },
+      },
+      {
+        id: "5",
+        name: "Iris Software Inc.",
+        position: "Team Lead/ Software Engineer",
+        url: "https://www.ssa-infosystems.com/",
+        startDate: "2016-08-31T22:00:00.000Z",
+        endDate: "2017-09-30T22:00:00.000Z",
+        summary:
+          "As a Team Lead, I was responsible for the development of new features for the existing software solutions, mentoring junior developers and interns, conducting workshops and training sessions for the various teams. Conducted code reviews and was responsible for the technical leadership of the development team.",
+        highlights:
+          "Frontend (UI) Team Lead for 11 frontend developers\nMaking technical decisions\nResponsible for developing new features\nResponsible for upgrading Angular version from 1 to 2\nConducting code reviews and quality checks\nRegular and direct customer communication",
+
+        language: {
+          id: "1",
+          label: "English",
+          value: "en-US",
+        },
+      },
+      {
+        id: "6",
+        name: "Virtusa Corp.",
+        position: "Business Analyst/ Software Engineer",
+        url: "https://www.virtusa.com/",
+        startDate: "2015-01-31T23:00:00.000Z",
+        endDate: "2016-07-31T22:00:00.000Z",
+        summary:
+          "As a Business Analyst, I was responsible for the requirement gathering, preparing the requirement documents, preparing the wireframes, preparing the user stories, preparing the acceptance criteria and conducting the UAT. As a Software Engineer, I was responsible for the development of new features for the existing software solutions.",
+        highlights:
+          "Planning and execution of business and requirement analyses\nSoftware development of new functionalities\nDeveloping complete functionalities from Java REST endpoints to fully functional AngularJS components.",
+
+        language: {
+          id: "1",
+          label: "English",
+          value: "en-US",
+        },
+      },
+      {
+        id: "7",
+        name: "Genpact",
+        position: "Software Engineer",
+        url: "https://www.genpact.com/",
+        startDate: "2013-10-31T23:00:00.000Z",
+        endDate: "2014-12-31T23:00:00.000Z",
+        summary:
+          "As a Software Engineer, I was responsible for the development of new features for the existing software solutions.",
+        highlights:
+          "Developing new features for the existing software solutions\nDeveloping new functionalities in Calypso",
+
+        language: {
+          id: "1",
+          label: "English",
+          value: "en-US",
+        },
+      },
+      {
+        id: "8",
+        name: "NEC",
+        position: "L3 Support Engineer/ Software Engineer",
+        url: "https://in.nec.com/",
+        startDate: "2012-07-31T22:00:00.000Z",
+        endDate: "2013-09-30T22:00:00.000Z",
+        summary:
+          "As a L3 Support Engineer, I was responsible for the support of the existing software solutions. As a Software Engineer, I was responsible for the development of new features for the existing software solutions.",
+        highlights:
+          "Supporting the existing software solutions\nDeveloping new features for the existing software solutions",
+
+        language: {
+          id: "1",
+          label: "English",
+          value: "en-US",
+        },
+      },
+    ],
+    workCount: 8,
+    volunteer: [
+      {
+        id: "1",
+        organization: "Robin Hood Army",
+        position: "Volunteer",
+        url: "https://robinhoodarmy.com/",
+        startDate: "2014-07-31T22:00:00.000Z",
+        endDate: "2017-06-30T22:00:00.000Z",
+        summary:
+          "As a Volunteer, I was responsible for the distribution of food to the needy people.",
+        highlights:
+          "Distributed food to the needy people\nConducted food distribution drives",
+        language: {
+          id: "1",
+          label: "English",
+          value: "en-US",
+        },
+      },
+    ],
+    volunteerCount: 1,
+    education: [
+      {
+        id: "1",
+        institution: "Hochschule Mittweida | University of Applied Sciences",
+        url: "https://www.hs-mittweida.de/",
+        area: "Applied Mathematics for Network and Data Science",
+        studyType: "Master",
+        startDate: "2017-09-30T22:00:00.000Z",
+        endDate: "2019-08-31T22:00:00.000Z",
+        score: "",
+        courses: "",
+        language: {
+          id: "1",
+          label: "English",
+          value: "en-US",
+        },
+      },
+      {
+        id: "2",
+        institution: "Gautam Buddh Technical University",
+        url: "https://aktu.ac.in/",
+        area: "Computer Science",
+        studyType: "Bachelor",
+        startDate: "2008-07-31T22:00:00.000Z",
+        endDate: "2012-05-31T22:00:00.000Z",
+        score: "",
+        courses: "",
+        language: {
+          id: "1",
+          label: "English",
+          value: "en-US",
+        },
+      },
+    ],
+    educationCount: 2,
+    awards: [
+      {
+        id: "1",
+        title: "Adesso Talent Pool",
+        date: "2020-07-31T22:00:00.000Z",
+        awarder: "Adesso SE",
+        summary:
+          "Adesso Talent Pool is an exclusive program designed to recognize and reward employees\n                for their exceptional work performance and strong work ethics.\n                This exclusive promotion initiative aimed to identify and appreciate individuals with\n                the potential to propel the company forward, offering unique opportunities for networking and professional growth within adesso.",
+        url: "",
+        language: {
+          id: "1",
+          label: "English",
+          value: "en-US",
+        },
+      },
+      {
+        id: "2",
+        title: "Certificate of Appreciation",
+        date: "2017-06-30T22:00:00.000Z",
+        awarder: "SSA Infosystems Pvt. Ltd.",
+        summary:
+          "Certificate of Appreciation is an award that is granted to employees\n                who've worked exceptionally well and have won accolades from the client.",
+        url: "",
+        language: {
+          id: "1",
+          label: "English",
+          value: "en-US",
+        },
+      },
+      {
+        id: "3",
+        title: "Round of Applause",
+        date: "2017-06-30T22:00:00.000Z",
+        awarder: "SSA Infosystems Pvt. Ltd.",
+        summary:
+          "Round of Applause is an award that is granted to employees who've worked exceptionally well in a particular month.",
+        url: "",
+        language: {
+          id: "1",
+          label: "English",
+          value: "en-US",
+        },
+      },
+      {
+        id: "4",
+        title: "Top Talent",
+        date: "2015-07-31T22:00:00.000Z",
+        awarder: "Virtusa Corp.",
+        summary: "Top Talent for the successful completion of the project.",
+        url: "",
+        language: {
+          id: "1",
+          label: "English",
+          value: "en-US",
+        },
+      },
+    ],
+    awardsCount: 4,
+    certificates: [
+      {
+        id: "1",
+        title:
+          "iSAQB® Certified Professional for Software Architecture - Advanced Level (CPSA-A)",
+        description:
+          "Advanced expertise in software architecture principles and practices.",
+        image: {
+          id: "1",
+          src: "https://d1ljophloyhryl.cloudfront.net/assets/certifications/cpsa.a.png",
+          alt: "CPSA-A certification badge",
+          width: 200,
+          height: 200,
+          fill: false,
+          type: {
+            id: "2",
+            label: "certification",
+          },
+          preview:
+            "https://d1ljophloyhryl.cloudfront.net/assets/certifications/cpsa.a.png",
+        },
+        link: "",
+        language: {
+          id: "1",
+          label: "English",
+          value: "en-US",
+        },
+      },
+      {
+        id: "2",
+        title:
+          "iSAQB® Certified Professional for Software Architecture - Foundation Level (CPSA-F)",
+        description:
+          "Fundamental knowledge of software architecture concepts and methodologies.",
+        image: {
+          id: "2",
+          src: "https://app.skillsclub.com/participants/115738/credentials/217564-2301-CPSAFL-223971-EN.png?ngsw-bypass=true&v=1716371214&Expires=1837082997&Signature=duhUg5dapPCYABZlu903zk~WlmPt75Sap-7sFkFgk0Cxd51gSm7lf4XBuR4SM8fU5ephShR50oFamcrsxF23t9E5yuCjSYC0FL1Oeujv7z1BkujgoVK37pdYCYPPlfeW7DepRSYJeAlIYejTrjxq2gsHYHHpOpqBhekyMCVbJ0HPov6B0FNuQtJ9Jr8eH9kAyxwxuAV5AWtT3T5Xfhw33V6zVU55sGWvYEW5i70T24kEodo2FZgVVMOgWsJK4QgjhdlVzMAwVCKrOJshKA33CY48kdPe6DQy26PnbFIoV-j9k6124QIBwLC4X66Gw3R9pMpBLVn6ym3nppBozizmnw__&Key-Pair-Id=APKAJGVOLYFJFHV5FSSQ",
+          alt: "CPSA-F certification badge",
+          width: 200,
+          height: 200,
+          fill: false,
+          type: {
+            id: "2",
+            label: "certification",
+          },
+          preview:
+            "https://app.skillsclub.com/participants/115738/credentials/217564-2301-CPSAFL-223971-EN.png?ngsw-bypass=true&v=1716371214&Expires=1837082997&Signature=duhUg5dapPCYABZlu903zk~WlmPt75Sap-7sFkFgk0Cxd51gSm7lf4XBuR4SM8fU5ephShR50oFamcrsxF23t9E5yuCjSYC0FL1Oeujv7z1BkujgoVK37pdYCYPPlfeW7DepRSYJeAlIYejTrjxq2gsHYHHpOpqBhekyMCVbJ0HPov6B0FNuQtJ9Jr8eH9kAyxwxuAV5AWtT3T5Xfhw33V6zVU55sGWvYEW5i70T24kEodo2FZgVVMOgWsJK4QgjhdlVzMAwVCKrOJshKA33CY48kdPe6DQy26PnbFIoV-j9k6124QIBwLC4X66Gw3R9pMpBLVn6ym3nppBozizmnw__&Key-Pair-Id=APKAJGVOLYFJFHV5FSSQ",
+        },
+        link: "https://app.skillsclub.com/credential/28340-f57d08ae92c30e28a0c2850516e8fec9616ac7473feba42e7c4a2e62585c44c0?locale=en&badge=true",
+        language: {
+          id: "1",
+          label: "English",
+          value: "en-US",
+        },
+      },
+      {
+        id: "3",
+        title: "Apollo Certified Graph Developer - Professional",
+        description:
+          "Certified skills in GraphQL development and Apollo client/server technologies.",
+        image: {
+          id: "3",
+          src: "https://res.cloudinary.com/apollographql/image/upload/v1654200365/odyssey/certifications/graph_professional_badge.svg",
+          alt: "Apollo Graph Professional certification badge",
+          width: 200,
+          height: 200,
+          fill: false,
+          type: {
+            id: "2",
+            label: "certification",
+          },
+          preview:
+            "https://res.cloudinary.com/apollographql/image/upload/v1654200365/odyssey/certifications/graph_professional_badge.svg",
+        },
+        link: "https://www.apollographql.com/tutorials/certifications/d5356f71-0760-4701-ae67-8b56c425c89a",
+        language: {
+          id: "1",
+          label: "English",
+          value: "en-US",
+        },
+      },
+      {
+        id: "4",
+        title: "Apollo Certified Graph Developer - Associate",
+        description:
+          "Certified skills in GraphQL development and Apollo client/server technologies.",
+        image: {
+          id: "4",
+          src: "https://res.cloudinary.com/apollographql/image/upload/v1632844693/badge_sfsiin.svg",
+          alt: "Apollo Graph Associate certification badge",
+          width: 200,
+          height: 200,
+          fill: false,
+          type: {
+            id: "2",
+            label: "certification",
+          },
+          preview:
+            "https://res.cloudinary.com/apollographql/image/upload/v1632844693/badge_sfsiin.svg",
+        },
+        link: "https://www.apollographql.com/tutorials/certifications/3ad7e4dd-4b29-46f2-8e65-6e5706e0c067",
+        language: {
+          id: "1",
+          label: "English",
+          value: "en-US",
+        },
+      },
+      {
+        id: "5",
+        title: "Git Certified Specialist by GitKraken",
+        description:
+          "Expertise in Git version control and collaboration workflows.",
+        image: {
+          id: "5",
+          src: "https://d1ljophloyhryl.cloudfront.net/assets/certifications/gitkraken.svg",
+          alt: "GitKraken Git certification badge",
+          width: 200,
+          height: 200,
+          fill: false,
+          type: {
+            id: "2",
+            label: "certification",
+          },
+          preview:
+            "https://d1ljophloyhryl.cloudfront.net/assets/certifications/gitkraken.svg",
+        },
+        link: "https://cdn.filestackcontent.com/dq8NILlGROaJpp4bxYlC?policy=eyJjYWxsIjpbInJlYWQiXSwiZXhwaXJ5IjoxNzUwNjg3MzIwLCJwYXRoIjoiLyJ9&signature=3180d99a6f24a049042e2341f449f4e35a12688f261859fa6dfd88cac212d230",
+        language: {
+          id: "1",
+          label: "English",
+          value: "en-US",
+        },
+      },
+      {
+        id: "6",
+        title: "AWS Certified Developer - Associate",
+        description:
+          "Demonstrates proficiency in developing and maintaining applications on AWS.",
+        image: {
+          id: "6",
+          src: "https://d1.awsstatic.com/certification/badges/AWS-Certified-Developer-Associate_badge_150x150.a8973e238efb2d1b0b24f5282e1ad87eb554e6ef.png",
+          alt: "AWS Certified Developer badge",
+          width: 200,
+          height: 200,
+          fill: false,
+          type: {
+            id: "2",
+            label: "certification",
+          },
+          preview:
+            "https://d1.awsstatic.com/certification/badges/AWS-Certified-Developer-Associate_badge_150x150.a8973e238efb2d1b0b24f5282e1ad87eb554e6ef.png",
+        },
+        link: "",
+        language: {
+          id: "1",
+          label: "English",
+          value: "en-US",
+        },
+      },
+      {
+        id: "7",
+        title: "AWS Certified Solutions Architect - Associate",
+        description:
+          "Demonstrates proficiency in architecting applications on AWS.",
+        image: {
+          id: "7",
+          src: "https://images.credly.com/size/680x680/images/0e284c3f-5164-4b21-8660-0d84737941bc/image.png",
+          alt: "AWS Solutions Architect Professional badge",
+          width: 200,
+          height: 200,
+          fill: false,
+          type: {
+            id: "2",
+            label: "certification",
+          },
+          preview:
+            "https://images.credly.com/size/680x680/images/0e284c3f-5164-4b21-8660-0d84737941bc/image.png",
+        },
+        link: "",
+        language: {
+          id: "1",
+          label: "English",
+          value: "en-US",
+        },
+      },
+    ],
+    certificatesCount: 7,
+    publications: [
+      {
+        id: "1",
+        name: "Fraud Detection using Machine Learning",
+        publisher: "Hochschule Mittweida",
+        releaseDate: "2018-11-30T23:00:00.000Z",
+        url: "https://monami.hs-mittweida.de/frontdoor/index/index/year/2023/docId/13759",
+        summary:
+          "Fraud detection is a critical issue in the financial sector.\n                This paper presents a machine learning approach to detect fraud in the financial sector.",
+        language: {
+          id: "1",
+          label: "English",
+          value: "en-US",
+        },
+      },
+    ],
+    publicationsCount: 1,
+    skills: [],
+    skillsCount: 0,
+    resumeLanguages: [
+      {
+        id: "1",
+        language: "English",
+        fluency: "Professional Working",
+        uiLanguage: null,
+      },
+      {
+        id: "2",
+        language: "German",
+        fluency: "Elementary",
+        uiLanguage: null,
+      },
+      {
+        id: "3",
+        language: "Hindi",
+        fluency: "Native",
+        uiLanguage: {
+          id: "5",
+          label: "Hindi",
+          value: "en-IN",
+        },
+      },
+    ],
+    resumeLanguagesCount: 3,
+    interests: [],
+    interestsCount: 0,
+    references: [],
+    referencesCount: 0,
+    projects: [],
+    projectsCount: 0,
+    language: {
+      id: "1",
+      label: "English",
+      value: "en-US",
+    },
+    createdAt: "2026-01-29T15:37:09.991Z",
+    updatedAt: "2026-01-29T15:37:09.991Z",
   },
 ];
