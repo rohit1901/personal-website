@@ -1,7 +1,7 @@
 import { Posts } from "@website/components/Posts";
 import Section from "@website/components/Section";
 import { SUBSTACK_FEED_URL } from "@website/constants";
-import { parseSubstackRss } from "@website/lib/rss-feed-parser/substack";
+import { parseSubstackRss } from "substack-feed-api";
 import { SUBSTACK_DATA } from "@website/data";
 
 export const getSubstackPosts = async () => {

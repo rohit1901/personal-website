@@ -1,10 +1,4 @@
-import {
-  GoodreadsBook,
-  GoodreadsRaw,
-  GoodreadsReadingState,
-  GoodreadsReadingStatus,
-} from "@website/lib/rss-feed-parser/goodreads";
-import { SubstackItem } from "substack-feed-api";
+import { GoodreadsRaw, SubstackItem } from "substack-feed-api";
 
 export const INSTAGRAM_DATA = {
   data: [

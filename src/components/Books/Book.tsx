@@ -5,10 +5,7 @@ import {
   getReadingSectionHeading,
   stripHtmlTags,
 } from "@website/lib";
-import {
-  GoodreadsBook,
-  GoodreadsReadingStatus,
-} from "@website/lib/rss-feed-parser/goodreads";
+import { GoodreadsBook, GoodreadsReadingStatus } from "substack-feed-api";
 import Image from "next/image";
 
 type BookProps = {

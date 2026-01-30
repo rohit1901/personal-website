@@ -2,10 +2,7 @@ import { Book } from "@website/components/Books/Book";
 import Section from "@website/components/Section";
 import { GOODREADS_FEED_URL } from "@website/constants";
 import { GOODREADS_DATA } from "@website/data";
-import {
-  READING_STATES,
-  parseGoodreadsRss,
-} from "@website/lib/rss-feed-parser/goodreads";
+import { READING_STATES, parseGoodreadsRss } from "substack-feed-api";
 export default async function BooksContent() {
   const goodreadsRawFeed = await fetch(GOODREADS_FEED_URL);
   const goodreadsStates = parseGoodreadsRss(await goodreadsRawFeed.text(), {
