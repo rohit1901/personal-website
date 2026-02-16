@@ -62,7 +62,11 @@ query GetResumes {
       startDate
       endDate
       summary
-      highlights
+      highlights {
+        id
+        value
+      }
+      highlightsCount
       image {
         id
         src
