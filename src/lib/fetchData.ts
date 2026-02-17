@@ -33,3 +33,8 @@ export async function getResumes(): Promise<ResumeSchema[]> {
   } = await fetchGraphQL(GetResumesQuery);
   return resumes;
 }
+
+export const getEnglishResume = async () => {
+  const resumes = await getResumes();
+  return resumes.find((resume) => resume.language?.label === "English");
+};

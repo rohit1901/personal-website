@@ -5,11 +5,13 @@ import Runner from "@website/components/Runner";
 import { Footer } from "@website/components/Footer";
 import { MainContent } from "@website/components/Home/MainContent";
 import { ResumeSchema } from "@website/types";
-import { getResumes } from "@website/lib/fetchData";
+import { getEnglishResume, getResumes } from "@website/lib/fetchData";
 
 export default async function Home() {
-  const resumes: ResumeSchema[] = await getResumes();
-  const resume = resumes?.[0] ?? {};
+  const resume: ResumeSchema | undefined = await getEnglishResume();
+  if (!resume) {
+    return null;
+  }
 
   return (
     <main className="min-w-screen min-h-screen flex-auto">

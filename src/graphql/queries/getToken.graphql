@@ -1,7 +1,0 @@
-query GetToken {
-    getLiteralToken {
-        token
-        createdOn
-        expiresOn
-    }
-}

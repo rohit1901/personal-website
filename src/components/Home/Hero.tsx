@@ -10,8 +10,8 @@ type HeroProps = {
 export default async function Hero({ basics }: HeroProps) {
   return (
     <div className="flex flex-col m-10">
-      <div className="avatar px-4 mb-10 lg:sticky top-0 left-0 right-0 lg:z-50">
-        <div className="w-24 rounded-full">
+      <div className="avatar p-4 lg:sticky top-0 left-0 right-0 lg:z-50">
+        <div className="w-20 rounded-full">
           <Image
             src={getImageUrl(PROFILE_PIC)}
             width={basics.image?.width}

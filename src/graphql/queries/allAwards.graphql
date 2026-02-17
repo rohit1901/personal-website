@@ -1,9 +1,0 @@
-query AllAwards {
-    awards {
-        __typename
-        title
-        date
-        awarder
-        summary
-    }
-}

@@ -1,7 +1,0 @@
-query AllInterests {
-    interests {
-        __typename
-        name
-        keywords
-    }
-}

@@ -1,7 +1,0 @@
-query AllReferences {
-    references {
-        __typename
-        name
-        reference
-    }
-}
