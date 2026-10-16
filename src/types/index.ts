@@ -1,26 +1,4 @@
-import { ImageProps } from "next/image";
 export type Maybe<T> = T | null | undefined;
-export type GitHubRepo = {
-  description: string;
-  icon: string;
-  image: string;
-  title: string;
-  url: string;
-  login?: string;
-  avatar_url?: string;
-  html_url?: string;
-};
-export type InstagramMedia = {
-  caption?: string;
-  media_url?: string;
-  id: string;
-};
-export type InstagramError = {
-  code: number;
-  message: string;
-  type: string;
-  fbtrace_id: string;
-};
 export type Slug = {
   label: "resume" | "navigation" | "about" | "certification";
   id: string;
@@ -214,9 +192,3 @@ export interface ResumeSchema {
   createdAt: string;
   updatedAt: string;
 }
-
-export type EmailPayload = {
-  to: string;
-  subject: string;
-  html: string;
-};

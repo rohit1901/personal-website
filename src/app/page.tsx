@@ -1,31 +1,28 @@
-import { Navbar } from "@website/components/Navbar";
-import Hero from "@website/components/Home/Hero";
-import { Carousel } from "@website/components/Home/Carousel";
-import Runner from "@website/components/Runner";
-import { Footer } from "@website/components/Footer";
-import { MainContent } from "@website/components/Home/MainContent";
-import { ResumeSchema } from "@website/types";
-import { getEnglishResume, getResumes } from "@website/lib/fetchData";
+import { Hero } from "@website/components/Home/Hero";
+import { SelectedWork } from "@website/components/Home/SelectedWork";
+import { Capabilities } from "@website/components/Home/Capabilities";
+import { Writing } from "@website/components/Home/Writing";
+import { ContactCta } from "@website/components/Home/ContactCta";
+import { getFeaturedProjects } from "@website/content/projects";
+import { getArticles } from "@website/lib/server/articles";
+import { getEnglishResume } from "@website/lib/server/resume";
+import { toArticle } from "@website/types/article";
 
 export default async function Home() {
-  const resume: ResumeSchema | undefined = await getEnglishResume();
-  if (!resume) {
-    return null;
-  }
+  const featuredProjects = getFeaturedProjects();
+  const [articles, resume] = await Promise.all([
+    getArticles(),
+    getEnglishResume(),
+  ]);
+  const topArticles = articles.map(toArticle).slice(0, 3);
 
   return (
-    <main className="min-w-screen min-h-screen flex-auto">
-      <div className="flex flex-col mx-auto h-auto min-h-full">
-        <Runner>
-          <Navbar />
-          <Hero basics={resume.basicInformation} />
-        </Runner>
-        <Carousel />
-        <Runner>
-          <MainContent resume={resume} />
-          <Footer />
-        </Runner>
-      </div>
-    </main>
+    <>
+      <Hero image={resume?.basicInformation?.image} />
+      <SelectedWork projects={featuredProjects} />
+      <Capabilities />
+      <Writing articles={topArticles} />
+      <ContactCta />
+    </>
   );
 }

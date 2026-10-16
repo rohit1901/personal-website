@@ -1,107 +1,203 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-#custom-substack-embed form {
-    @apply flex flex-row justify-between;
+
+/*
+ * Design tokens (semantic). Values are HSL channel triplets so Tailwind can
+ * compose them via `hsl(var(--token))`. These are the single source of truth
+ * for the design system.
+ */
+@layer base {
+  :root {
+    --background: 210 40% 99%;
+    --foreground: 222 47% 11%;
+
+    --surface: 210 38% 97%;
+    --surface-foreground: 222 47% 11%;
+
+    --muted: 214 32% 95%;
+    --muted-foreground: 215 16% 42%;
+
+    --border: 214 25% 90%;
+    --input: 214 25% 90%;
+
+    --accent: 221 83% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Secondary stops stay within the dark-blue family: royal blue → indigo →
+       deep navy, so gradients never drift into green/cyan. */
+    --accent-2: 230 74% 53%;
+    --accent-2-foreground: 0 0% 100%;
+    --accent-3: 240 60% 42%;
+
+    --ring: 221 83% 50%;
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 152 55% 34%;
+
+    --radius: 0.75rem;
+
+    /* Gradient ramps. Single source of truth — consumed by both the design
+       tokens and the Tailwind utilities so the palette stays in one place. */
+    --gradient-accent: linear-gradient(
+      120deg,
+      hsl(var(--accent)) 0%,
+      hsl(var(--accent-2)) 52%,
+      hsl(var(--accent-3)) 100%
+    );
+    --gradient-soft: radial-gradient(
+      120% 120% at 15% 0%,
+      hsl(var(--accent) / 0.16) 0%,
+      hsl(var(--accent-2) / 0.12) 42%,
+      transparent 72%
+    );
+
+    color-scheme: light;
+  }
+
+  .dark {
+    --background: 222 47% 7%;
+    --foreground: 210 40% 96%;
+
+    --surface: 222 40% 11%;
+    --surface-foreground: 210 40% 96%;
+
+    --muted: 217 33% 16%;
+    --muted-foreground: 215 20% 66%;
+
+    --border: 217 33% 21%;
+    --input: 217 33% 21%;
+
+    --accent: 217 91% 62%;
+    --accent-foreground: 222 47% 8%;
+
+    --accent-2: 228 84% 68%;
+    --accent-2-foreground: 222 47% 8%;
+    --accent-3: 244 72% 74%;
+
+    --ring: 217 91% 62%;
+    --destructive: 0 62% 52%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 152 45% 46%;
+
+    --gradient-accent: linear-gradient(
+      120deg,
+      hsl(var(--accent)) 0%,
+      hsl(var(--accent-2)) 52%,
+      hsl(var(--accent-3)) 100%
+    );
+    --gradient-soft: radial-gradient(
+      120% 120% at 15% 0%,
+      hsl(var(--accent) / 0.22) 0%,
+      hsl(var(--accent-2) / 0.18) 42%,
+      transparent 72%
+    );
+
+    color-scheme: dark;
+  }
 }
 
-#custom-substack-embed form > input {
-    @apply input input-bordered mr-2 w-full;
+@layer components {
+  /* Page width and rhythm primitives. */
+  .ds-container {
+    @apply mx-auto w-full max-w-content px-5 sm:px-6 lg:px-8;
+  }
+
+  .ds-prose {
+    @apply max-w-[68ch] text-base leading-relaxed text-muted-foreground;
+  }
+
+  /* Gradient-filled heading text. Uses `background-clip: text`, so the
+     foreground colour is only a fallback for unsupported browsers. */
+  .ds-gradient-text {
+    background-image: var(--gradient-accent);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    @apply animate-gradient-pan;
+  }
+
+  /* Animated aurora wash behind hero-style sections. Decorative only — keep
+     it out of the accessibility tree. */
+  .ds-aurora {
+    background-image: var(--gradient-soft);
+    @apply animate-aurora pointer-events-none;
+  }
 }
 
-[data-theme="garden"] .post {
-    @apply hover:bg-gray-100 !important;
-}
+@layer utilities {
+  /* Gradient border that only appears on hover/focus, drawn via a masked
+     gradient ring so it respects the element's own background. */
+  .gradient-ring {
+    position: relative;
+  }
+  .gradient-ring::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background-image: var(--gradient-accent);
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+  .gradient-ring:hover::after,
+  .gradient-ring:focus-within::after {
+    opacity: 1;
+  }
 
-[data-theme="black"] .post {
-    @apply hover:bg-gray-800 !important;
-}
+  /* Small gradient accent bar used under section headings. */
+  .gradient-bar {
+    background-image: var(--gradient-accent);
+    @apply h-0.5 w-12 rounded-full;
+  }
 
-[data-theme="garden"] #custom-substack-embed form > button {
-    @apply btn btn-neutral rounded-md text-sm;
-}
+  .text-gradient {
+    background-image: var(--gradient-accent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 
-[data-theme="garden"] .read-article-link, [data-theme="garden"] .read-article-link svg > path {
-    @apply text-cyan-500 !important;
-}
-
-[data-theme="black"] :not(.menu a) {
-    @apply text-gray-300 !important;
-}
-
-[data-theme="black"] .read-article-link, [data-theme="black"] .read-article-link svg > path {
-    @apply text-cyan-500 !important;
-}
-
-[data-theme="black"] #custom-substack-embed form > button {
-    @apply btn bg-neutral rounded-md text-sm;
-}
-
-[data-theme="garden"] .action-button {
-    @apply btn rounded-md text-sm;
-}
-
-[data-theme="black"] .action-button {
-    @apply btn bg-neutral rounded-md text-sm;
-}
-
-[data-theme="garden"] .themed-icon {
-    @apply text-gray-600 hover:text-cyan-500;
-}
-
-[data-theme="black"] .themed-icon {
-    @apply text-gray-300 hover:text-cyan-500;
-}
-
-#custom-substack-embed .error {
-    @apply text-error text-sm mt-2;
-}
-
-#custom-substack-embed .success {
-    @apply text-success text-sm mt-2;
-}
-
-.timeline-divider {
-    background: #E4E7EB;
-    @apply rounded-t-lg rounded-b-lg
-}
-
-.timeline-box {
-    border-color: #E4E7EB;
-}
-
-.coding .command {
-    @apply text-xs md:text-sm !important;
-}
-
-.menu a {
-    @apply hover:bg-transparent hover:text-cyan-500 focus:bg-transparent focus:text-cyan-500 !important;
-}
-
-.menu a.active, .footer a.active {
-    @apply bg-transparent text-cyan-500 !important;
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }
 
 .loader {
-    width: fit-content;
-    font-weight: bold;
-    font-family: monospace;
-    white-space: pre;
-    font-size: 30px;
-    line-height: 1.2em;
-    height: 1.2em;
-    overflow: hidden;
+  width: fit-content;
+  font-weight: bold;
+  font-family: monospace;
+  white-space: pre;
+  font-size: 30px;
+  line-height: 1.2em;
+  height: 1.2em;
+  overflow: hidden;
 }
 
 .loader:before {
-    content: "Loading...\A⌰oading...\A⌰⍜ading...\A⌰⍜⏃ding...\A⌰⍜⏃⎅ing...\A⌰⍜⏃⎅⟟ng...\A⌰⍜⏃⎅⟟⋏g...\A⌰⍜⏃⎅⟟⋏☌...\A⌰⍜⏃⎅⟟⋏☌⟒..\A⌰⍜⏃⎅⟟⋏☌⟒⏁.\A⌰⍜⏃⎅⟟⋏☌⟒⏁⋔";
-    white-space: pre;
-    display: inline-block;
-    animation: l39 1s infinite steps(11) alternate;
+  content: "Loading...\A⌰oading...\A⌰⍜ading...\A⌰⍜⏃ding...\A⌰⍜⏃⎅ing...\A⌰⍜⏃⎅⟟ng...\A⌰⍜⏃⎅⟟⋏g...\A⌰⍜⏃⎅⟟⋏☌...\A⌰⍜⏃⎅⟟⋏☌⟒..\A⌰⍜⏃⎅⟟⋏☌⟒⏁.\A⌰⍜⏃⎅⟟⋏☌⟒⏁⋔";
+  white-space: pre;
+  display: inline-block;
+  animation: l39 1s infinite steps(11) alternate;
 }
 
 @keyframes l39 {
-    100% {
-        transform: translateY(-100%)
-    }
+  100% {
+    transform: translateY(-100%);
+  }
 }

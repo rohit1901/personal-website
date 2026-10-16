@@ -134,31 +134,6 @@ query GetResumes {
       }
     }
     awardsCount
-    certificates {
-      id
-      title
-      description
-      image {
-        id
-        src
-        alt
-        width
-        height
-        fill
-        type {
-          id
-          label
-        }
-        preview
-      }
-      link
-      language {
-        id
-        label
-        value
-      }
-    }
-    certificatesCount
     publications {
       id
       name

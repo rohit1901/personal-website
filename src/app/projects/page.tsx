@@ -1,30 +1,59 @@
-import Runner from "@website/components/Runner";
-import {Navbar} from "@website/components/Navbar";
-import {Footer} from "@website/components/Footer";
-import ProjectsContent from "@website/components/Projects/ProjectsContent";
-import Section from "@website/components/Section";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { projects } from "@website/content/projects";
+
+export const metadata: Metadata = {
+  title: "Projects — Rohit Khanduri",
+  description:
+    "Selected cloud architecture, platform engineering, and product work by Rohit Khanduri.",
+};
 
 export default function Projects() {
-    return (
-        <main className="min-w-screen min-h-screen flex-auto">
-            <div className="flex flex-col mx-auto h-auto min-h-full">
-                <Runner>
-                    <Navbar/>
-                    <Section className="flex-col">
-                        <div className="flex flex-col lg:w-3/4 w-full lg:ml-5 mb-4">
-                            <h1 className="text-4xl font-bold tracking-tight">Things I’ve made trying to put my dent in the universe.</h1>
-                            <div className="mt-6 space-y-7 text-base">
-                        <span>I’ve worked on tons of little projects over the years but these are the
-                        ones that I’m most proud of. Many of them are open-source,
-                        so if you see something that piques your interest, check out the code and
-                        contribute if you have ideas for how it can be improved.</span>
-                            </div>
-                        </div>
-                        <ProjectsContent/>
-                    </Section>
-                    <Footer/>
-                </Runner>
-            </div>
-        </main>
-    );
+  return (
+    <div className="ds-container py-16 md:py-20">
+      <header className="max-w-prose">
+        <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+          Projects
+        </h1>
+        <p className="mt-6 text-base leading-relaxed text-muted-foreground">
+          A selection of the cloud architecture, platform, and product work
+          I&apos;ve led or built. Each case study describes the problem, my
+          role, and the outcome.
+        </p>
+      </header>
+
+      <ul className="mt-12 divide-y divide-border border-y border-border">
+        {projects.map((project) => (
+          <li key={project.slug}>
+            <Link
+              href={`/projects/${project.slug}`}
+              className="group flex flex-col gap-2 py-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
+            >
+              <div className="flex flex-wrap items-baseline justify-between gap-2">
+                <h2 className="text-lg font-semibold text-foreground group-hover:text-accent">
+                  {project.title}
+                </h2>
+                <span className="text-sm text-muted-foreground">
+                  {project.role}
+                </span>
+              </div>
+              <p className="max-w-prose text-sm leading-relaxed text-muted-foreground">
+                {project.summary}
+              </p>
+              <ul className="flex flex-wrap gap-2 pt-1">
+                {project.technologies.slice(0, 6).map((tech) => (
+                  <li
+                    key={tech}
+                    className="rounded-md border border-border px-2 py-0.5 text-xs text-muted-foreground"
+                  >
+                    {tech}
+                  </li>
+                ))}
+              </ul>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }

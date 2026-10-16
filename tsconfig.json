@@ -1,10 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -22,19 +18,12 @@
       }
     ],
     "paths": {
-      "@website/*": [
-        "./src/*"
-      ]
+      "@website/*": ["./src/*"]
     },
-    "typeRoots": [
-      "node_modules/@types",
-      "src/@types"
-    ],
+    "typeRoots": ["node_modules/@types", "src/@types"],
     "target": "ES2017"
   },
-  "files": [
-    "src/@types/graphql.d.ts"
-  ],
+  "files": ["src/@types/graphql.d.ts"],
   "include": [
     "next-env.d.ts",
     "**/*.ts",
@@ -42,7 +31,5 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

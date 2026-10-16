@@ -1,22 +1,46 @@
-import Runner from "@website/components/Runner";
-import { Navbar } from "@website/components/Navbar";
-import { Footer } from "@website/components/Footer";
-import { ResumeContent } from "@website/components/Resume/ResumeContent";
-import { ResumeSchema } from "@website/types";
-import { getResumes } from "@website/lib/fetchData";
+import type { Metadata } from "next";
+import { ResumeView } from "@website/components/Resume/ResumeView";
+import { getResumeWithCertifications } from "@website/lib/server/resume";
+import { site } from "@website/content/site";
+
+export const metadata: Metadata = {
+  title: "Résumé — Rohit Khanduri",
+  description:
+    "Rohit Khanduri's résumé: AWS Cloud & Software Architect with 14+ years of experience across cloud architecture, platform engineering, and enterprise systems.",
+};
 
 export default async function Resume() {
-  const resumes: ResumeSchema[] = await getResumes();
-  const resume = resumes?.[0] ?? {};
+  const resume = await getResumeWithCertifications();
+
   return (
-    <main className="min-w-screen min-h-screen flex-auto">
-      <div className="flex flex-col mx-auto h-auto min-h-full">
-        <Runner>
-          <Navbar />
-          <ResumeContent resume={resume} />
-          <Footer />
-        </Runner>
+    <div className="ds-container py-16 md:py-20">
+      <div className="mb-10 flex flex-wrap gap-x-6 gap-y-2">
+        <a
+          href={site.resume.en}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm font-medium text-accent underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
+        >
+          Download résumé (EN) →
+        </a>
+        <a
+          href={site.resume.de}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
+        >
+          Lebenslauf (DE) →
+        </a>
       </div>
-    </main>
+
+      {resume ? (
+        <ResumeView resume={resume} />
+      ) : (
+        <p className="ds-prose">
+          Résumé content is temporarily unavailable. Please use the download
+          links above.
+        </p>
+      )}
+    </div>
   );
 }

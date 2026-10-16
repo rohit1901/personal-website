@@ -14,6 +14,8 @@ const nextConfig = {
     },
   },
   images: {
+    // High-res hero portraits render crisper at 90; 75 stays the default.
+    qualities: [75, 90],
     remotePatterns: [
       {
         protocol: "https",
