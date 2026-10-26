@@ -3,7 +3,10 @@ import { ExternalServiceError } from "@website/lib/server/graphql";
 
 /**
  * Logs a structured, secret-free summary of an external request failure.
- * Full error context stays on the server; only the reason/status are emitted.
+ *
+ * Upstream response bodies are deliberately never logged: they can contain
+ * personal data, internal hostnames, or values echoed back from the request.
+ * The full detail remains on the error object for local debugging.
  */
 export function logExternalFailure(service: string, error: unknown): void {
   if (error instanceof ExternalServiceError) {
@@ -12,7 +15,6 @@ export function logExternalFailure(service: string, error: unknown): void {
       reason: error.reason,
       status: error.status,
       message: error.message,
-      detail: error.detail,
     });
     return;
   }
@@ -20,6 +22,6 @@ export function logExternalFailure(service: string, error: unknown): void {
   console.error(`[${service}] external request failed`, {
     service,
     reason: "unknown",
-    message: error instanceof Error ? error.message : String(error),
+    errorName: error instanceof Error ? error.name : typeof error,
   });
 }

@@ -61,15 +61,33 @@ describe("toArticle", () => {
     const article = toArticle({
       title: "Hello",
       description: "<p>World</p>",
-      link: "https://example.com/p/hello",
+      link: "https://rohitkhanduri.substack.com/p/hello",
       pubDate: "2024-01-02T00:00:00.000Z",
       content: "",
     });
     expect(article).toEqual({
       title: "Hello",
-      url: "https://example.com/p/hello",
+      url: "https://rohitkhanduri.substack.com/p/hello",
       publishedAt: "2024-01-02T00:00:00.000Z",
       summary: "<p>World</p>",
     });
+  });
+
+  it("drops items with unexpected or unsafe links", () => {
+    for (const link of [
+      "https://example.com/p/hello",
+      "http://rohitkhanduri.substack.com/p/hello",
+      "javascript:alert(1)",
+    ]) {
+      expect(
+        toArticle({
+          title: "Hello",
+          description: "World",
+          link,
+          pubDate: "2024-01-02T00:00:00.000Z",
+          content: "",
+        }),
+      ).toBeUndefined();
+    }
   });
 });

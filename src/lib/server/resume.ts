@@ -6,6 +6,10 @@ import {
 import type { Certificate, ResumeSchema } from "@website/types";
 import { logExternalFailure } from "@website/lib/server/log";
 import { requestGraphQL } from "@website/lib/server/graphql";
+import {
+  normalizeCertificate,
+  parseResume,
+} from "@website/lib/server/resume-schema";
 
 /**
  * Résumé data is refreshed at most once per hour. Bumping this value trades
@@ -15,25 +19,28 @@ export const RESUME_REVALIDATE_SECONDS = 3600;
 
 export const DEFAULT_RESUME_LANGUAGE = "English";
 
+/**
+ * The backend also contains résumés for other people. Record selection must
+ * match this verified owner as well as the requested language so an unrelated
+ * person's data can never render on the site.
+ */
+export const RESUME_OWNER_NAME = "Rohit Khanduri";
+
 type ResumesPayload = { resumes?: unknown };
 type CertificationsPayload = { resumeCertifications?: unknown };
 
 function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null;
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function normalizeText(value: string): string {
+  return value.trim().replace(/\s+/g, " ").toLowerCase();
 }
 
 /**
  * The backend does not expose per-locale query arguments, so we always fetch
- * every résumé and select the requested language locally.
+ * every résumé, validate each record, and select the requested one locally.
  */
-function isUsableResume(value: unknown): value is ResumeSchema {
-  return (
-    isRecord(value) &&
-    typeof value.id === "string" &&
-    isRecord(value.basicInformation)
-  );
-}
-
 export async function getResumes(): Promise<ResumeSchema[]> {
   try {
     const payload = await requestGraphQL<ResumesPayload>(GetResumesQuery, {
@@ -44,7 +51,9 @@ export async function getResumes(): Promise<ResumeSchema[]> {
       throw new Error("Expected `resumes` to be an array");
     }
 
-    return payload.resumes.filter(isUsableResume);
+    return payload.resumes
+      .map(parseResume)
+      .filter((resume): resume is ResumeSchema => resume !== undefined);
   } catch (error) {
     logExternalFailure("resume", error);
     return [];
@@ -53,43 +62,24 @@ export async function getResumes(): Promise<ResumeSchema[]> {
 
 export async function getResumeByLanguage(
   language: string = DEFAULT_RESUME_LANGUAGE,
+  ownerName: string | undefined = RESUME_OWNER_NAME,
 ): Promise<ResumeSchema | undefined> {
   const resumes = await getResumes();
-  return resumes.find((resume) => resume.language?.label === language);
+  const requestedLanguage = normalizeText(language);
+  const requestedOwner = ownerName ? normalizeText(ownerName) : undefined;
+
+  return resumes.find((resume) => {
+    const resumeLanguage = resume.language?.label;
+    if (!resumeLanguage) return false;
+    if (normalizeText(resumeLanguage) !== requestedLanguage) return false;
+    if (!requestedOwner) return true;
+
+    return normalizeText(resume.basicInformation.name) === requestedOwner;
+  });
 }
 
 export const getEnglishResume = () =>
   getResumeByLanguage(DEFAULT_RESUME_LANGUAGE);
-
-function toCertificate(entry: unknown): Certificate | undefined {
-  if (!isRecord(entry) || !isRecord(entry.certification)) {
-    return undefined;
-  }
-  const certification = entry.certification;
-  const image = certification.image;
-
-  if (
-    typeof certification.title !== "string" ||
-    !isRecord(image) ||
-    typeof image.src !== "string"
-  ) {
-    return undefined;
-  }
-
-  return {
-    id:
-      typeof certification.id === "string"
-        ? certification.id
-        : certification.title,
-    title: certification.title,
-    description:
-      typeof certification.description === "string"
-        ? certification.description
-        : "",
-    link: typeof certification.link === "string" ? certification.link : "",
-    image: image as Certificate["image"],
-  };
-}
 
 /**
  * Certifications live behind a separate relation (`resumeCertifications`).
@@ -116,7 +106,7 @@ export async function getResumeCertifications(
             isRecord(entry.resume) &&
             entry.resume.id === resumeId),
       )
-      .map(toCertificate)
+      .map(normalizeCertificate)
       .filter(
         (certificate): certificate is Certificate => certificate !== undefined,
       );

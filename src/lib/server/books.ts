@@ -5,7 +5,9 @@ import {
   type GoodreadsReadingState,
   type GoodreadsReadingStatus,
 } from "substack-feed-api";
+import { ExternalServiceError } from "@website/lib/server/graphql";
 import { logExternalFailure } from "@website/lib/server/log";
+import { toSafeExternalUrl } from "@website/lib/url";
 
 /**
  * Books change infrequently; cache for an hour.
@@ -13,6 +15,7 @@ import { logExternalFailure } from "@website/lib/server/log";
 export const BOOKS_REVALIDATE_SECONDS = 3600;
 
 const BOOKS_TIMEOUT_MS = 8000;
+const GOODREADS_HOSTS = ["goodreads.com"] as const;
 
 /**
  * Maps a Goodreads shelf string to a reading status. The exclusive shelf is
@@ -49,8 +52,9 @@ export function snapshotToStates(): GoodreadsReadingState[] {
  * absent the bundled snapshot is used.
  */
 function getFeedUrl(): string | undefined {
-  const url = process.env.GOODREADS_FEED_URL;
-  return url && url.length > 0 ? url : undefined;
+  return toSafeExternalUrl(process.env.GOODREADS_FEED_URL, {
+    allowedHosts: GOODREADS_HOSTS,
+  });
 }
 
 /**
@@ -73,7 +77,12 @@ export async function getBooks(): Promise<GoodreadsReadingState[]> {
     });
 
     if (!response.ok) {
-      throw new Error(`Goodreads feed responded with HTTP ${response.status}`);
+      throw new ExternalServiceError(
+        "books",
+        "http",
+        `Goodreads feed responded with HTTP ${response.status}`,
+        { status: response.status },
+      );
     }
 
     const states = parseGoodreadsRss(await response.text(), {
@@ -82,7 +91,16 @@ export async function getBooks(): Promise<GoodreadsReadingState[]> {
 
     return states.length > 0 ? states : snapshotToStates();
   } catch (error) {
-    logExternalFailure("books", error);
+    const failure = controller.signal.aborted
+      ? new ExternalServiceError(
+          "books",
+          "timeout",
+          `Goodreads request timed out after ${BOOKS_TIMEOUT_MS}ms`,
+          { cause: error },
+        )
+      : error;
+
+    logExternalFailure("books", failure);
     return snapshotToStates();
   } finally {
     clearTimeout(timeout);

@@ -29,7 +29,12 @@ afterEach(() => {
 describe("getResumes", () => {
   it("returns only usable resumes", async () => {
     requestGraphQL.mockResolvedValueOnce({
-      resumes: [resume(), { id: "no-basics" }, null],
+      resumes: [
+        resume(),
+        { id: "no-basics" },
+        resume({ id: "bad-sections", work: "not-an-array" }),
+        null,
+      ],
     });
     const result = await getResumes();
     expect(result).toHaveLength(1);
@@ -61,6 +66,29 @@ describe("getResumeByLanguage", () => {
       ],
     });
     const result = await getResumeByLanguage("English");
+    expect(result?.id).toBe("47");
+  });
+
+  it("never selects another person's résumé for the same language", async () => {
+    requestGraphQL.mockResolvedValueOnce({
+      resumes: [
+        resume({
+          id: "99",
+          basicInformation: { id: "b99", name: "Florian Zeidler" },
+        }),
+        resume(),
+      ],
+    });
+
+    const result = await getResumeByLanguage("English");
+    expect(result?.id).toBe("47");
+  });
+
+  it("matches names and languages case-insensitively", async () => {
+    requestGraphQL.mockResolvedValueOnce({
+      resumes: [resume({ language: { id: "1", label: "english" } })],
+    });
+    const result = await getResumeByLanguage("ENGLISH");
     expect(result?.id).toBe("47");
   });
 
@@ -96,6 +124,34 @@ describe("getResumeWithCertifications", () => {
     const result = await getResumeWithCertifications("English");
     expect(result?.certificates).toHaveLength(1);
     expect(result?.certificates[0]?.title).toBe("AWS Solutions Architect");
+  });
+
+  it("renders untrusted certificate links as text", async () => {
+    requestGraphQL
+      .mockResolvedValueOnce({ resumes: [resume()] })
+      .mockResolvedValueOnce({
+        resumeCertifications: [
+          {
+            resume: { id: "47" },
+            certification: {
+              id: "c1",
+              title: "Legacy certificate",
+              description: "Issued by someone",
+              link: "http://example.test/cert",
+            },
+          },
+        ],
+      });
+
+    const result = await getResumeWithCertifications("English");
+    expect(result?.certificates).toEqual([
+      {
+        id: "c1",
+        title: "Legacy certificate",
+        description: "Issued by someone",
+        link: "",
+      },
+    ]);
   });
 
   it("degrades to an empty certification list on failure", async () => {

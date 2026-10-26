@@ -64,6 +64,18 @@ function truncate(value: string): string {
     : value;
 }
 
+/**
+ * Accepts either a backend origin (`https://api.example.com`) or an already
+ * complete endpoint (`https://api.example.com/api/graphql`) so a host value
+ * with a path does not produce `/api/graphql/api/graphql`.
+ */
+function toEndpoint(host: string): string {
+  const normalized = host.replace(/\/+$/, "");
+  return normalized.endsWith("/api/graphql")
+    ? normalized
+    : `${normalized}/api/graphql`;
+}
+
 function serializeBody(
   query: DocumentNode,
   variables?: Record<string, unknown>,
@@ -99,21 +111,27 @@ export async function requestGraphQL<T>(
     );
   }
 
+  const body = serializeBody(query, options.variables);
   const controller = new AbortController();
   const timeoutMs = options.timeoutMs ?? DEFAULT_TIMEOUT_MS;
   const timeout = setTimeout(() => controller.abort(), timeoutMs);
 
   let response: Response;
+  let rawBody: string;
   try {
-    response = await fetch(`${host}/api/graphql`, {
+    response = await fetch(toEndpoint(host), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: serializeBody(query, options.variables),
+      body,
       signal: controller.signal,
       ...(options.revalidateSeconds === undefined
         ? {}
         : { next: { revalidate: options.revalidateSeconds } }),
     });
+
+    // Keep the deadline active while reading the body. Aborting after headers
+    // arrive must also interrupt a stalled body stream.
+    rawBody = await response.text();
   } catch (error) {
     if (controller.signal.aborted) {
       throw new ExternalServiceError(
@@ -126,14 +144,12 @@ export async function requestGraphQL<T>(
     throw new ExternalServiceError(
       "graphql",
       "network",
-      "GraphQL request could not reach the server",
+      "GraphQL request could not reach or read from the server",
       { cause: error },
     );
   } finally {
     clearTimeout(timeout);
   }
-
-  const rawBody = await response.text().catch(() => "");
 
   if (!response.ok) {
     throw new ExternalServiceError(

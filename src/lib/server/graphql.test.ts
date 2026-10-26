@@ -34,11 +34,32 @@ describe("requestGraphQL", () => {
     });
   });
 
-  it("returns data on success", async () => {
-    mockFetch(
-      async () => new Response(JSON.stringify({ data: { ping: "pong" } })),
+  it("returns data on success and appends the endpoint to an origin", async () => {
+    const fetchMock = vi.fn(
+      async (_input: RequestInfo | URL, _init?: RequestInit) =>
+        new Response(JSON.stringify({ data: { ping: "pong" } })),
     );
+    vi.stubGlobal("fetch", fetchMock);
+
     await expect(requestGraphQL(QUERY)).resolves.toEqual({ ping: "pong" });
+    expect(fetchMock.mock.calls[0]?.[0]).toBe(
+      "https://example.test/api/graphql",
+    );
+  });
+
+  it("does not duplicate an endpoint that is already present", async () => {
+    process.env.NEXT_PUBLIC_GRAPHQL_SERVER_HOST =
+      "https://example.test/api/graphql";
+    const fetchMock = vi.fn(
+      async (_input: RequestInfo | URL, _init?: RequestInit) =>
+        new Response(JSON.stringify({ data: { ping: "pong" } })),
+    );
+    vi.stubGlobal("fetch", fetchMock);
+
+    await expect(requestGraphQL(QUERY)).resolves.toEqual({ ping: "pong" });
+    expect(fetchMock.mock.calls[0]?.[0]).toBe(
+      "https://example.test/api/graphql",
+    );
   });
 
   it("throws on a non-2xx response", async () => {
@@ -89,6 +110,25 @@ describe("requestGraphQL", () => {
           );
         }),
     );
+    await expect(
+      requestGraphQL(QUERY, { timeoutMs: 10 }),
+    ).rejects.toMatchObject({ reason: "timeout" });
+  });
+
+  it("keeps the deadline active while reading a stalled body", async () => {
+    mockFetch(async (_input, init) => {
+      return {
+        ok: true,
+        status: 200,
+        text: () =>
+          new Promise<string>((_resolve, reject) => {
+            init?.signal?.addEventListener("abort", () =>
+              reject(new DOMException("Aborted", "AbortError")),
+            );
+          }),
+      } as Response;
+    });
+
     await expect(
       requestGraphQL(QUERY, { timeoutMs: 10 }),
     ).rejects.toMatchObject({ reason: "timeout" });

@@ -35,7 +35,7 @@ Notes:
 | `/_not-found` | default                 | static       | —                                              |
 | `/thank-you`  | —                       | **missing**  | `SubstackCard` posts to it; returns 404        |
 
-No API routes. `src/lib/sendEmail.ts` (nodemailer) exists but is **imported nowhere** (dead code).
+No API routes. The dead nodemailer helper (`src/lib/sendEmail.ts`) and `public/email.template.html` were removed during hardening.
 
 ## 3. Component and data-flow summary
 
@@ -47,19 +47,19 @@ No API routes. `src/lib/sendEmail.ts` (nodemailer) exists but is **imported nowh
 - Article fetch: `components/Articles/ArticlesContent.tsx` `getSubstackPosts()` fetches `${SUBSTACK_FEED_URL}/feed`, parses with `substack-feed-api`, falls back to bundled `SUBSTACK_DATA`. Imported by homepage `MainContent`, coupling résumé page render to Substack availability. On failure returns `undefined`; `MainContent` then returns `null` (hides Posts + Substack + Work Experience).
 - Projects: `ProjectsContent` fetches GitHub repos, throws on `data.message`/empty, then `fetchMeta` per repo.
 - Books: `BooksContent` fetches Goodreads RSS with bundled fallback.
-- Assets: only default favicons + `public/avatar.png` + `public/email.template.html`. `PROFILE_PIC = /assets/resume/avatar.png` is **not** in `public/`; it is served via `NEXT_PUBLIC_AWS_CLOUDFRONT_URL` prefix (`getImageUrl`).
+- Assets: default favicons + `public/avatar.png`. The unreferenced legacy `public/email.template.html` was removed during hardening. `PROFILE_PIC = /assets/resume/avatar.png` is **not** in `public/`; it is served via a `NEXT_PUBLIC_AWS_CLOUDFRONT_URL` prefix (`getResumeImageUrl`).
 
 ## 4. Environment variable names (values NOT recorded here)
 
 From `.env` / `.env.copy` / `.env.prod`:
 `NEXT_PUBLIC_GRAPHQL_SERVER_HOST`, `NEXT_PUBLIC_AWS_CLOUDFRONT_URL`, `INSTAGRAM_TESTER_SECRET`, `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, `SMTP_FROM_EMAIL`, `SMTP_TO_EMAIL`.
 
-**Post-refactor (Task 02/09) env still referenced by code:** `NEXT_PUBLIC_GRAPHQL_SERVER_HOST` (GraphQL base URL) and `GOODREADS_FEED_URL` (Goodreads list RSS URL, server-only). The legacy `INSTAGRAM_*`, `SMTP_*`, and `NEXT_PUBLIC_AWS_CLOUDFRONT_URL` variables are no longer read (Instagram/email/CloudFront helpers were removed as unused). `.env.example` documents only the two used variables. `.env.copy` (tracked, held secrets) was removed and gitignored.
+**Post-refactor env referenced by code:** `NEXT_PUBLIC_GRAPHQL_SERVER_HOST` (GraphQL base URL), `NEXT_PUBLIC_AWS_CLOUDFRONT_URL` (résumé image prefix), and `GOODREADS_FEED_URL` (Goodreads list RSS URL, server-only). The legacy `INSTAGRAM_*` and `SMTP_*` variables are no longer referenced. `.env.example` documents only the current variables. `.env.copy` (tracked, held secrets) was removed and gitignored.
 
 Secret-handling findings (no values printed):
 
 - `.env.copy` is **tracked in git** and contains non-empty values for all of the above → committed secrets. Needs rotation + removal from history/tracked files. (Also note `.env` and `.env.prod` are gitignored, `.env.copy` is not.)
-- `src/constants/index.ts` hard-codes a Goodreads RSS URL containing an access key (tracked in source).
+- `src/constants/index.ts` hard-coded a Goodreads RSS URL containing an access key in the baseline; it has been removed and the key is now supplied through `GOODREADS_FEED_URL`. Rotate the exposed key.
 - GraphQL host is `NEXT_PUBLIC_*` (client-exposable by design).
 
 ## 5. Checks executed (baseline)
@@ -116,7 +116,7 @@ Additional live content: Substack writing feed (bundled fallback in `src/data/in
 2. **Secrets remediation callout.** `.env.copy` (tracked) and the hard-coded Goodreads key should be flagged for rotation; not fixed silently here since it may require history rewrite/authorization.
 3. **More than one résumé exists** (4 records, including "Florian Zeidler" entries unrelated to Rohit). The website must select the Rohit record by explicit criteria, not `resumes[0]`, so another person's résumé can never render.
 4. **`/thank-you` route missing** though referenced by `SubstackCard`; and `/resume` is unlinked in nav/footer. Deferred to Tasks 05/07/09.
-5. **`sendEmail.ts`** is dead code; keep or remove deliberately in Task 09.
+5. **`sendEmail.ts`** was dead code and has been removed; SMTP/Instagram remnants are gone.
 
 ## 9. Running implementation checklist
 
@@ -148,7 +148,16 @@ Failure behavior: adapters never throw to the render tree. Résumé failures ret
 
 **Schema reconciliation:** `resumes.graphql` no longer selects `certificates`/`certificatesCount` (unsupported by the reachable backend). Certifications are fetched separately via `resumeCertifications { certification { … } }` and attached to the résumé. This unblocked the clean production build.
 
-## 11. Unresolved content requirements
+## 11. Hardening update (2026-10-26)
+
+- The GraphQL client keeps its deadline active through `response.text()`, and failure logs contain structured metadata only — never upstream bodies, GraphQL messages, or arbitrary error text.
+- Résumé records are normalized to a canonical JSON Resume projection, validated at runtime with `@jsonresume/schema`, and selected by verified owner name plus language. Invalid records are dropped.
+- Certificate links must be HTTPS; article links are restricted to the Substack host. Invalid links render as text or are filtered out.
+- `getResumeImageUrl` only accepts observed CloudFront hosts and otherwise falls back to `/avatar.png`. `next/image` remote patterns are narrowed to observed hosts only.
+- Security headers and a static-friendly CSP are configured in `next.config.mjs`; `X-Powered-By` is disabled.
+- The Goodreads feed URL must be HTTPS on `goodreads.com`. Rotating the access key is an external operational action.
+
+## 12. Unresolved content requirements
 
 - Production GraphQL schema (does `certificates` or `resumeCertifications` apply?). Blocking for a clean build.
 - Canonical production origin for metadata (deploy target stated as Heroku + `rohit.khanduri.de`).

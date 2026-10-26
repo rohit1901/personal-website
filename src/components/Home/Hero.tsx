@@ -93,7 +93,7 @@ export function Hero({ image }: { image?: ResumeImage }) {
               alt={image?.alt || site.name}
               fill
               priority
-              quality={100}
+              quality={90}
               sizes="(min-width: 1024px) 18rem, (min-width: 640px) 16rem, 15rem"
               className="object-cover"
             />

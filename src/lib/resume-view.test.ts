@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { getResumeImageUrl } from "@website/lib";
+import { getCoverImage, getResumeImageUrl } from "@website/lib";
 import {
   formatDateRange,
   toHighlights,
@@ -33,16 +33,48 @@ describe("getResumeImageUrl", () => {
     );
   });
 
-  it("leaves absolute URLs untouched", () => {
+  it("accepts absolute URLs on the configured CloudFront host", () => {
     vi.stubEnv("NEXT_PUBLIC_AWS_CLOUDFRONT_URL", CLOUDFRONT);
-    const url = "https://example.com/photo.png";
+    const url = `${CLOUDFRONT}/assets/resume/avatar.png`;
     expect(getResumeImageUrl(url)).toBe(url);
   });
 
-  it("returns the relative src when no CloudFront origin is configured", () => {
+  it("rejects untrusted, insecure, and spoofed absolute sources", () => {
+    vi.stubEnv("NEXT_PUBLIC_AWS_CLOUDFRONT_URL", CLOUDFRONT);
+    for (const url of [
+      "https://example.com/photo.png",
+      "http://d1ljophloyhryl.cloudfront.net/photo.png",
+      "https://d1ljophloyhryl.cloudfront.net.evil.test/photo.png",
+      "//example.com/photo.png",
+      "javascript:alert(1)",
+    ]) {
+      expect(getResumeImageUrl(url)).toBe("/avatar.png");
+    }
+  });
+
+  it("falls back when no CloudFront origin is configured", () => {
     vi.stubEnv("NEXT_PUBLIC_AWS_CLOUDFRONT_URL", "");
-    expect(getResumeImageUrl("/assets/resume/avatar.png")).toBe(
-      "/assets/resume/avatar.png",
+    expect(getResumeImageUrl("/assets/resume/avatar.png")).toBe("/avatar.png");
+  });
+
+  it("falls back for path traversal", () => {
+    vi.stubEnv("NEXT_PUBLIC_AWS_CLOUDFRONT_URL", CLOUDFRONT);
+    expect(getResumeImageUrl("/assets/../secret.png")).toBe("/avatar.png");
+    expect(getResumeImageUrl("/assets/%2e%2e/secret.png")).toBe("/avatar.png");
+  });
+});
+
+describe("getCoverImage", () => {
+  it("accepts verified Goodreads cover hosts", () => {
+    const url = "https://i.gr-assets.com/images/S/cover.jpg";
+    expect(getCoverImage(url)).toBe(url);
+  });
+
+  it("falls back for missing or unexpected hosts", () => {
+    expect(getCoverImage(undefined)).toBe("/avatar.png");
+    expect(getCoverImage("https://example.com/cover.jpg")).toBe("/avatar.png");
+    expect(getCoverImage("http://i.gr-assets.com/images/S/cover.jpg")).toBe(
+      "/avatar.png",
     );
   });
 });

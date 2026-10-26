@@ -6,7 +6,7 @@ import { ContactCta } from "@website/components/Home/ContactCta";
 import { getFeaturedProjects } from "@website/content/projects";
 import { getArticles } from "@website/lib/server/articles";
 import { getEnglishResume } from "@website/lib/server/resume";
-import { toArticle } from "@website/types/article";
+import { toArticle, type Article } from "@website/types/article";
 
 export default async function Home() {
   const featuredProjects = getFeaturedProjects();
@@ -14,7 +14,10 @@ export default async function Home() {
     getArticles(),
     getEnglishResume(),
   ]);
-  const topArticles = articles.map(toArticle).slice(0, 3);
+  const topArticles = articles
+    .map(toArticle)
+    .filter((article): article is Article => article !== undefined)
+    .slice(0, 3);
 
   return (
     <>

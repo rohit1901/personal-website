@@ -7,6 +7,9 @@ settings:
 importers:
   .:
     dependencies:
+      "@jsonresume/schema":
+        specifier: 1.7.0
+        version: 1.7.0
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -620,6 +623,13 @@ packages:
       {
         integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==,
       }
+
+  "@jsonresume/schema@1.7.0":
+    resolution:
+      {
+        integrity: sha512-J8a0X8c6NHpfI+XBBMQMT394EIhtnOqGT9zlEGJF2ahxfashQNvtxYqp6oL1nOXvjW6bdoUJMJIF4I0qVd1yOg==,
+      }
+    engines: { node: ">=20" }
 
   "@napi-rs/wasm-runtime@1.2.5":
     resolution:
@@ -2810,6 +2820,12 @@ packages:
     engines: { node: ">=6" }
     hasBin: true
 
+  jsonschema@1.5.0:
+    resolution:
+      {
+        integrity: sha512-K+A9hhqbn0f3pJX17Q/7H6yQfD/5OXgdrR5UE12gMXCiN9D5Xq2o5mddV2QEcX/bjla99ASsAAQUyMCCRWAEhw==,
+      }
+
   jsx-ast-utils@3.3.5:
     resolution:
       {
@@ -4559,6 +4575,10 @@ snapshots:
       "@jridgewell/resolve-uri": 3.1.2
       "@jridgewell/sourcemap-codec": 1.6.0
 
+  "@jsonresume/schema@1.7.0":
+    dependencies:
+      jsonschema: 1.5.0
+
   "@napi-rs/wasm-runtime@1.2.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)":
     dependencies:
       "@emnapi/core": 1.10.0
@@ -5952,6 +5972,8 @@ snapshots:
       minimist: 1.2.8
 
   json5@2.2.3: {}
+
+  jsonschema@1.5.0: {}
 
   jsx-ast-utils@3.3.5:
     dependencies:

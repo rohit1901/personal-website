@@ -1,10 +1,12 @@
 import { getArticles } from "@website/lib/server/articles";
-import { toArticle } from "@website/types/article";
+import { toArticle, type Article } from "@website/types/article";
 import { SUBSTACK_FEED_URL } from "@website/constants";
 import { formatDate, stripHtmlTags } from "@website/lib";
 
 export default async function ArticlesContent() {
-  const articles = (await getArticles()).map(toArticle);
+  const articles = (await getArticles())
+    .map(toArticle)
+    .filter((article): article is Article => article !== undefined);
 
   return (
     <div className="space-y-12">

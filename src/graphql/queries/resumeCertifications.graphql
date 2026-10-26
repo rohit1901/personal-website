@@ -1,7 +1,5 @@
 query GetResumeCertifications {
   resumeCertifications {
-    id
-    credentialUrl
     resume {
       id
     }
@@ -10,24 +8,6 @@ query GetResumeCertifications {
       title
       description
       link
-      image {
-        id
-        src
-        alt
-        width
-        height
-        fill
-        type {
-          id
-          label
-        }
-        preview
-      }
-      language {
-        id
-        label
-        value
-      }
     }
   }
 }

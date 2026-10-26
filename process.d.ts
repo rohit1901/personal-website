@@ -1,6 +1,9 @@
 declare namespace NodeJS {
   export interface ProcessEnv {
-    /** Base URL of the GraphQL backend, e.g. `https://api.example.com`. */
+    /**
+     * Base URL or full endpoint of the GraphQL backend, e.g.
+     * `https://api.example.com` or `https://api.example.com/api/graphql`.
+     */
     NEXT_PUBLIC_GRAPHQL_SERVER_HOST?: string;
     /**
      * CloudFront distribution origin used to prefix relative résumé image
